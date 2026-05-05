@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EUR - Europa Plates Dispersion</title>
+    
+    <!-- Load D3.js and TopoJSON -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson-client@3"></script>
+
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-main: #2c3e50;
+            --panel-bg: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 20px;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .sidebar { display: flex; flex-direction: column; gap: 20px; z-index: 10;}
+        .panel {
+            background-color: var(--panel-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 { margin-top: 0; font-size: 1.4rem; color: #1a365d; }
+        h2 { font-size: 1.1rem; border-bottom: 2px solid var(--border-color); padding-bottom: 8px;}
+        
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem;}
+        select {
+            width: 100%; padding: 10px; border-radius: 6px;
+            border: 1px solid #cbd5e1; font-size: 1rem;
+            background-color: #f8fafc; cursor: pointer;
+        }
+        select:disabled { background-color: #e2e8f0; cursor: not-allowed; }
+
+        .stat-grid { display: grid; grid-template-columns: 1fr; gap: 10px; font-size: 0.95rem; }
+        .stat-row { display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px;}
+        .stat-label { font-weight: 600; color: #64748b;}
+        .stat-value { font-family: monospace; font-size: 1rem; font-weight: bold;}
+
+        .map-container {
+            background-color: var(--panel-bg); border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid var(--border-color);
+            position: relative; overflow: hidden; cursor: grab;
+        }
+        .map-container:active { cursor: grabbing; }
+
+        svg { width: 100%; height: 100%; }
+
+        .tooltip {
+            position: absolute; background: rgba(255, 255, 255, 0.95);
+            padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            pointer-events: none; opacity: 0; font-size: 0.9rem; z-index: 100;
+        }
+        .tt-country { font-weight: bold; font-size: 1.1rem; border-bottom: 1px solid #e2e8f0; margin-bottom: 5px; padding-bottom: 3px;}
+
+        .legend-container {
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+            width: 60%; background: rgba(255,255,255,0.9); padding: 10px 20px;
+            border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); pointer-events: none;
+        }
+        
+        .help-box {
+            background-color: #eff6ff; border-left: 4px solid #3b82f6;
+            padding: 15px; font-size: 0.85rem; line-height: 1.5; color: #1e3a8a;
+        }
+
+        .instruction-overlay {
+            position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.8);
+            padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; color: #64748b;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="panel">
+            <h1>🌍 EUR Plates Dispersion</h1>
+            <p style="font-size: 0.85rem; color: #64748b;">Explore the real journey of Euro notes using the Location Quotient algorithm.</p>
+            
+            <div class="form-group">
+                <label>1. Denomination</label>
+                <select id="sel-denom"><option value="">Loading...</option></select>
+            </div>
+            <div class="form-group">
+                <label>2. Printer / Origin</label>
+                <select id="sel-printer" disabled><option value="">Select Denomination first</option></select>
+            </div>
+            <div class="form-group">
+                <label>3. Plate Shortcode</label>
+                <select id="sel-plate" disabled><option value="">Select Printer first</option></select>
+            </div>
+        </div>
+
+        <div class="panel" id="plate-profile" style="display: none;">
+            <h2>Plate Profile</h2>
+            <div class="stat-grid">
+                <div class="stat-row"><span class="stat-label">ID:</span><span class="stat-value" id="val-id">-</span></div>
+                <div class="stat-row"><span class="stat-label">Origin:</span><span class="stat-value" id="val-origin" style="font-size:0.85rem;">-</span></div>
+                <div class="stat-row"><span class="stat-label">Print Run:</span><span class="stat-value" id="val-print">-</span></div>
+                <div class="stat-row"><span class="stat-label">EBT Notes:</span><span class="stat-value" id="val-notes">-</span></div>
+                <div class="stat-row"><span class="stat-label">System Confidence:</span><span class="stat-value" id="val-conf">-</span></div>
+            </div>
+            <div style="margin-top: 15px; padding: 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; font-weight: bold; text-align: center; color: #0f172a;" id="val-dispersion">
+                -
+            </div>
+        </div>
+
+        <div class="help-box">
+            <strong>What is the LQ?</strong><br>
+            The Location Quotient measures geographic concentration relative to the EBT community size.<br><br>
+            • <strong>LQ = 1.0:</strong> Normal dispersion.<br>
+            • <strong>LQ = 2.0:</strong> The note is 2x more frequent in this country than expected.<br>
+            • <strong>LQ = 0.2:</strong> The note is 5x rarer than expected.
+        </div>
+    </div>
+
+    <div class="map-container">
+        <svg id="europe-map"></svg>
+        <div class="instruction-overlay">Scroll to Zoom • Drag to Pan</div>
+        <div class="tooltip" id="tooltip"></div>
+        
+        <div class="legend-container" id="legend-box" style="display: none;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: bold; margin-bottom: 5px;">
+                <span>Rare (LQ ≈ 0)</span>
+                <span>Baseline (LQ = 1.0)</span>
+                <span id="legend-max">Extreme</span>
+            </div>
+            <canvas id="legend-canvas" width="400" height="15" style="width: 100%; border-radius: 4px;"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const denomColors = {
+            "5": "#8C92AC", "10": "#DA2131", "20": "#004494", 
+            "50": "#F29527", "100": "#3C7D22", "200": "#FBC11D", "500": "#8D3C8E"
+        };
+
+        let masterData = null;
+        let geoData = null;
+        const container = document.querySelector('.map-container');
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+
+        const projection = d3.geoAzimuthalEqualArea()
+            .rotate([-10, -52])
+            .scale(800)
+            .translate([width / 2, height / 2]);
+
+        const path = d3.geoPath().projection(projection);
+        const svg = d3.select("#europe-map");
+        const tooltip = d3.select("#tooltip");
+
+        // SVG LAYERS ARCHITECTURE (Crucial for fixing interaction bugs)
+        const gMap = svg.append("g");
+        const gCountries = gMap.append("g").attr("class", "layer-countries");
+        const gMicrostates = gMap.append("g").attr("class", "layer-microstates");
+        const gPins = gMap.append("g").attr("class", "layer-pins").style("pointer-events", "none");
+
+        // SEMANTIC ZOOMING LOGIC
+        let currentZoomK = 1; // Guarda o nível de zoom atual
+        const zoom = d3.zoom()
+            .scaleExtent([0.5, 8])
+            .on("zoom", (event) => {
+                currentZoomK = event.transform.k;
+                gMap.attr("transform", event.transform);
+                
+                // Keep country strokes crisp
+                gCountries.selectAll(".country-path").attr("stroke-width", 0.5 / currentZoomK);
+                
+                // Keep microstates fixed screen-size
+                gMicrostates.selectAll(".microstate")
+                    .attr("r", 5 / currentZoomK)
+                    .attr("stroke-width", 1 / currentZoomK);
+
+                // Keep Origin Pin fixed screen-size
+                gPins.selectAll(".origin-pin")
+                    .attr("transform", function() {
+                        const cx = d3.select(this).attr("data-cx");
+                        const cy = d3.select(this).attr("data-cy");
+                        return `translate(${cx}, ${cy}) scale(${1 / currentZoomK})`;
+                    });
+            });
+        svg.call(zoom);
+
+        Promise.all([
+            d3.json("ebt_dispersion_master_data.json"),
+            d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json")
+        ]).then(function(files) {
+            masterData = files[0];
+            const world = files[1];
+            
+            geoData = topojson.feature(world, world.objects.countries).features;
+            
+            geoData.forEach(d => {
+                if(d.properties.name === "Bosnia and Herz.") d.properties.name = "Bosnia and Herzegovina";
+            });
+
+            gCountries.selectAll(".country-path")
+                .data(geoData)
+                .enter().append("path")
+                .attr("class", "country-path")
+                .attr("d", path)
+                .attr("fill", "#ffffff")
+                .attr("stroke", "#cbd5e1")
+                .attr("stroke-width", 0.5);
+
+            initCascadingDropdowns();
+        }).catch(err => {
+            console.error("Error loading data:", err);
+            document.getElementById('sel-denom').innerHTML = `<option>Error loading data.</option>`;
+        });
+
+        function initCascadingDropdowns() {
+            const denoms = Object.keys(masterData.hierarchy).sort((a,b) => parseInt(a)-parseInt(b));
+            const selDenom = document.getElementById('sel-denom');
+            const selPrinter = document.getElementById('sel-printer');
+            const selPlate = document.getElementById('sel-plate');
+
+            selDenom.innerHTML = `<option value="">-- Choose Denom --</option>` + 
+                denoms.map(d => `<option value="${d}">${d}€</option>`).join("");
+
+            selDenom.addEventListener('change', function() {
+                selPlate.innerHTML = `<option value="">Select Printer first</option>`;
+                selPlate.disabled = true;
+                
+                if(!this.value) {
+                    selPrinter.innerHTML = `<option value="">Select Denomination first</option>`;
+                    selPrinter.disabled = true;
+                    return;
+                }
+
+                const printers = Object.keys(masterData.hierarchy[this.value]).sort();
+                selPrinter.innerHTML = `<option value="">-- Choose Printer --</option>` + 
+                    printers.map(p => `<option value="${p}">${p}</option>`).join("");
+                selPrinter.disabled = false;
+            });
+
+            selPrinter.addEventListener('change', function() {
+                if(!this.value) {
+                    selPlate.innerHTML = `<option value="">Select Printer first</option>`;
+                    selPlate.disabled = true;
+                    return;
+                }
+                const denom = selDenom.value;
+                const plates = masterData.hierarchy[denom][this.value].sort();
+                selPlate.innerHTML = `<option value="">-- Choose Plate --</option>` + 
+                    plates.map(p => `<option value="${p}">${p}</option>`).join("");
+                selPlate.disabled = false;
+            });
+
+            selPlate.addEventListener('change', function() {
+                if(!this.value) return;
+                renderMap(`${selDenom.value}_${this.value}`);
+            });
+        }
+
+        function renderMap(plateId) {
+            const data = masterData.plates[plateId];
+            if(!data) return;
+
+            document.getElementById('plate-profile').style.display = 'block';
+            document.getElementById('val-id').innerText = `${data.denomination}€ ${data.plate}`;
+            document.getElementById('val-origin').innerText = data.origin;
+            document.getElementById('val-print').innerText = data.print_run;
+            document.getElementById('val-notes').innerText = data.total_ebt.toLocaleString();
+            
+            let confColor = data.confidence.includes("High") ? "green" : (data.confidence.includes("Low") ? "red" : "orange");
+            document.getElementById('val-conf').innerHTML = `<span style="color:${confColor}">${data.confidence}</span>`;
+            document.getElementById('val-dispersion').innerText = data.dispersion;
+
+            const baseHex = denomColors[data.denomination] || "#333333";
+            const maxLq = d3.max(Object.values(data.countries), d => d.lq) || 2;
+            const cappedMax = Math.min(maxLq, 6.0); 
+            const scaleMax = cappedMax <= 1.0 ? 2.0 : cappedMax;
+
+            const colorScale = d3.scaleLinear()
+                .domain([0, 1.0, scaleMax])
+                .range(["#f8fafc", baseHex, d3.color(baseHex).darker(1.5)]);
+
+            gCountries.selectAll(".country-path")
+                .transition().duration(500)
+                .attr("fill", function(d) {
+                    const cData = data.countries[d.properties.name];
+                    if(cData) return colorScale(cData.lq);
+                    return "url(#diagonal-stripe)"; 
+                });
+
+            // CLEAN AND BUG-FREE COUNTRY HOVER
+            gCountries.selectAll(".country-path")
+                .on("mouseover", function(event, d) {
+                    const cData = data.countries[d.properties.name];
+                    if(!cData) return;
+
+                    // Apenas puxa o país para a frente dentro da sua PRÓPRIA camada! Não estraga nada.
+                    d3.select(this).attr("stroke", "#1e293b").attr("stroke-width", 1.5 / currentZoomK).raise();
+
+                    let hint = "Normal";
+                    if(cData.lq > 2.0) hint = "Over-represented";
+                    if(cData.lq < 0.5) hint = "Sub-represented";
+
+                    let cConf = "Low";
+                    let ratio = cData.notes / cData.baseline;
+                    if (cData.notes >= 100 || (cData.notes >= 20 && ratio >= 0.05)) {
+                        cConf = "High";
+                    } else if (cData.notes >= 30 || (cData.notes >= 5 && ratio >= 0.02)) {
+                        cConf = "Medium";
+                    }
+                    let cConfColor = cConf === "High" ? "green" : (cConf === "Low" ? "red" : "orange");
+
+                    tooltip.html(`
+                        <div class="tt-country">${d.properties.name}</div>
+                        <div><strong>LQ:</strong> ${cData.lq.toFixed(2)} <i>(${hint})</i></div>
+                        <div><strong>Notes Found:</strong> ${cData.notes.toLocaleString()} <span style="color:#64748b; font-size:0.8rem;">(out of ${cData.baseline.toLocaleString()})</span></div>
+                        <div style="margin-top:4px; font-size:0.8rem;">Data Confidence: <strong style="color:${cConfColor}">${cConf}</strong></div>
+                    `);
+                    tooltip.style("opacity", 1);
+                })
+                .on("mousemove", function(event) {
+                    let ttWidth = tooltip.node().offsetWidth;
+                    let ttHeight = tooltip.node().offsetHeight;
+                    let x = event.pageX + 15;
+                    let y = event.pageY - 28;
+
+                    if (x + ttWidth > window.innerWidth) x = event.pageX - ttWidth - 15;
+                    if (y + ttHeight > window.innerHeight) y = event.pageY - ttHeight - 15;
+
+                    tooltip.style("left", x + "px").style("top", y + "px");
+                })
+                .on("mouseout", function() {
+                    d3.select(this).attr("stroke", "#cbd5e1").attr("stroke-width", 0.5 / currentZoomK);
+                    tooltip.style("opacity", 0);
+                });
+
+            // MICROSTATES LOGIC
+            const microstates = [
+                { id: "Malta", lon: 14.3754, lat: 35.9375 },
+                { id: "Andorra", lon: 1.5218, lat: 42.5063 },
+                { id: "Monaco", lon: 7.4200, lat: 43.7384 },
+                { id: "San Marino", lon: 12.4578, lat: 43.9424 },
+                { id: "Liechtenstein", lon: 9.5209, lat: 47.1660 }
+            ];
+
+            gMicrostates.selectAll(".microstate").remove();
+            
+            microstates.forEach(ms => {
+                const msData = data.countries[ms.id];
+                if(msData) {
+                    const coords = projection([ms.lon, ms.lat]);
+                    if(coords) {
+                        gMicrostates.append("circle")
+                            .attr("class", "microstate")
+                            .attr("cx", coords[0])
+                            .attr("cy", coords[1])
+                            .attr("r", 5 / currentZoomK)
+                            .attr("fill", colorScale(msData.lq))
+                            .attr("stroke", "#1e293b")
+                            .attr("stroke-width", 1 / currentZoomK)
+                            .on("mouseover", function(event) {
+                                d3.select(this).attr("r", 8 / currentZoomK).attr("stroke-width", 2 / currentZoomK).raise();
+                                
+                                let hint = msData.lq > 2.0 ? "Over-represented" : (msData.lq < 0.5 ? "Sub-represented" : "Normal");
+                                let ratio = msData.notes / msData.baseline;
+                                let cConf = "Low";
+                                if (msData.notes >= 100 || (msData.notes >= 20 && ratio >= 0.05)) {
+                                    cConf = "High";
+                                } else if (msData.notes >= 30 || (msData.notes >= 5 && ratio >= 0.02)) {
+                                    cConf = "Medium";
+                                }
+                                let cConfColor = cConf === "High" ? "green" : (cConf === "Low" ? "red" : "orange");
+
+                                tooltip.html(`
+                                    <div class="tt-country">${ms.id}</div>
+                                    <div><strong>LQ:</strong> ${msData.lq.toFixed(2)} <i>(${hint})</i></div>
+                                    <div><strong>Notes Found:</strong> ${msData.notes.toLocaleString()} <span style="color:#64748b; font-size:0.8rem;">(out of ${msData.baseline.toLocaleString()})</span></div>
+                                    <div style="margin-top:4px; font-size:0.8rem;">Data Confidence: <strong style="color:${cConfColor}">${cConf}</strong></div>
+                                `);
+                                tooltip.style("opacity", 1);
+                            })
+                            .on("mousemove", function(event) {
+                                let ttWidth = tooltip.node().offsetWidth; 
+                                let ttHeight = tooltip.node().offsetHeight;
+                                let x = event.pageX + 15; 
+                                let y = event.pageY - 28;
+                                if (x + ttWidth > window.innerWidth) x = event.pageX - ttWidth - 15;
+                                if (y + ttHeight > window.innerHeight) y = event.pageY - ttHeight - 15;
+                                tooltip.style("left", x + "px").style("top", y + "px");
+                            })
+                            .on("mouseout", function() {
+                                d3.select(this).attr("r", 5 / currentZoomK).attr("stroke-width", 1 / currentZoomK);
+                                tooltip.style("opacity", 0);
+                            });
+                    }
+                }
+            });
+
+            // FIXED ORIGIN PIN (Now a Ghost that doesn't scale with zoom)
+            gPins.selectAll(".origin-pin").remove();
+            if (data.origin_coords && data.origin_coords.lon !== null) {
+                const coords = projection([data.origin_coords.lon, data.origin_coords.lat]);
+                if (coords) {
+                    const pinGroup = gPins.append("g")
+                        .attr("class", "origin-pin")
+                        .attr("data-cx", coords[0])
+                        .attr("data-cy", coords[1])
+                        // Mantém a posição visual constante mesmo em zoom
+                        .attr("transform", `translate(${coords[0]}, ${coords[1]}) scale(${1 / currentZoomK})`);
+
+                    pinGroup.append("path")
+                        .attr("d", "M0,0 l-12,-24 a14,14 0 1,1 24,0 z")
+                        .attr("fill", "#2C3E50")
+                        .attr("stroke", "white")
+                        .attr("stroke-width", 1.5);
+                        
+                    pinGroup.append("circle")
+                        .attr("cy", -28)
+                        .attr("r", 9)
+                        .attr("fill", "white");
+
+                    pinGroup.append("text")
+                        .attr("y", -24)
+                        .attr("text-anchor", "middle")
+                        .attr("font-size", "11px")
+                        .attr("font-weight", "bold")
+                        .attr("fill", "#2C3E50")
+                        .text(data.plate.charAt(0));
+                }
+            }
+
+            document.getElementById('legend-box').style.display = 'block';
+            document.getElementById('legend-max').innerText = `Extreme (LQ = ${scaleMax.toFixed(1)}+)`;
+            drawLegendCanvas(colorScale, scaleMax);
+        }
+
+        svg.append('defs')
+          .append('pattern')
+            .attr('id', 'diagonal-stripe')
+            .attr('patternUnits', 'userSpaceOnUse')
+            .attr('width', 4)
+            .attr('height', 4)
+          .append('path')
+            .attr('d', 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2')
+            .attr('stroke', '#e2e8f0')
+            .attr('stroke-width', 1);
+
+        function drawLegendCanvas(colorScale, maxVal) {
+            const canvas = document.getElementById('legend-canvas');
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width;
+            
+            for (let i = 0; i < w; i++) {
+                let lqValue = (i / w) * maxVal;
+                ctx.fillStyle = colorScale(lqValue);
+                ctx.fillRect(i, 0, 1, canvas.height);
+            }
+        }
+    </script>
+</body>
+</html>
