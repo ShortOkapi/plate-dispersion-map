@@ -38,6 +38,18 @@ Based on the Standard Deviation of the LQ across all countries, the system class
 *   **Emigrant:** Heavily exported and concentrated in a foreign country.
 *   **Pandemic:** Uniformly spread across the entire continent.
 
+### 💡 The "Visual Paradox" (Text vs. Map Colors)
+When exploring the map, you might encounter situations that look contradictory. For example, looking at the **200€ E005** plate:
+* The dashboard text declares it as **"Emigrant (Exported to Germany)"**.
+* Yet, on the map, **Germany is colored light orange** (LQ 0.90), while France is colored dark brown (LQ 1.56).
+
+**Why does the system say it was exported to a lighter-colored country?**
+This is a feature, not a bug! The system calculates two different things:
+1. **The Map Colors (Micro-Density):** This shows pure Location Quotient. France has a high LQ because it has very few 200€ notes registered overall (only 1,794). Finding 97 E005 notes there is a huge statistical spike (~5.4% of their pool), making it dark brown.
+2. **The Text Label (Macro-Migration):** To declare that a plate was "Exported" to a specific country, the algorithm uses a **Confidence Volume Filter**. A country must have a massive baseline of notes (>10,000) and hold at least 1% of the plate's entire European volume. 
+
+France's 97 notes are a statistical curiosity, but they don't represent a macro-economic migration. Germany (with 2,124 notes) passes the volume filter and stands as the true macro-destination for this plate's print run, even if it represents a smaller drop in their massive ocean of registered notes.
+
 ---
 
 ## 🤝 Credits & Acknowledgements
