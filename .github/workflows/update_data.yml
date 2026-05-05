@@ -1,0 +1,36 @@
+name: Auto-Update EBT Map Data
+
+on:
+  schedule:
+    # Corre automaticamente todas as segundas-feiras às 04:00 da manhã (hora UTC)
+    - cron: '0 4 * * 1'
+  workflow_dispatch:
+    # Este comando permite-te correr a atualização à mão sempre que quiseres!
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas requests beautifulsoup4
+
+      - name: Run Data Engine
+        run: python update_map.py
+
+      - name: Commit and Push new JSON map
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action Bot"
+          git add ebt_dispersion_master_data.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update map data with latest EBT and Sohier dumps" && git push)
