@@ -6,9 +6,8 @@ import requests
 from bs4 import BeautifulSoup
 import re
 from collections import defaultdict
-from datetime import datetime, timezone
 
-VERSION = "1.1.0"
+VERSION = "1.1.1"
 print(f"=== STARTING EBT MAP AUTO-UPDATE v{VERSION} ===")
 
 # ==========================================
@@ -100,14 +99,23 @@ europa_df = ebt_df[ebt_df['year'] > 2002].copy()
 valid_europa_df = pd.merge(europa_df, wl, on=['denomination', 'shortcode_detailed'], how='inner')
 
 # ==========================================
-# 2.5. FETCH EBT GLOBAL TOTALS (INCLUDES < 10 NOTES)
+# 2.5. FETCH EBT GLOBAL TOTALS & EXACT TIMESTAMP
 # ==========================================
-print("Step 2.5: Fetching EBT global totals (including rare notes)...")
+print("Step 2.5: Fetching EBT global totals and server timestamp...")
 url_totals = "https://www.eurobilltracker.com/tmp/denomination_serial_detailedshortcode.txt"
 r_totals = requests.get(url_totals, headers=headers)
 r_totals.encoding = 'utf-8'
 
-lines_totals = [line for line in r_totals.text.split('\n') if '|' in line]
+raw_lines_totals = r_totals.text.split('\n')
+ebt_update_date = "Unknown Date"
+
+# Procurar a data oficial do servidor EBT na primeira linha
+for line in raw_lines_totals:
+    if line.startswith("Updated:"):
+        ebt_update_date = line.replace("Updated:", "").strip()
+        break
+
+lines_totals = [line for line in raw_lines_totals if '|' in line]
 totals_df = pd.read_csv(io.StringIO('\n'.join(lines_totals)), sep='|', skipinitialspace=True)
 totals_df.columns = totals_df.columns.str.strip()
 totals_df = totals_df.dropna(axis=1, how='all')
@@ -160,7 +168,6 @@ baseline_df['baseline_pct'] = baseline_df['baseline_total_notes'] / baseline_df[
 plate_country_df = valid_europa_df.groupby(['denomination', 'shortcode_detailed', 'country'])['count'].sum().reset_index()
 plate_country_df.rename(columns={'count': 'plate_notes_in_country'}, inplace=True)
 
-# Injecting the REAL plate totals into the algorithm
 plate_totals = real_plate_totals
 
 plate_analysis = pd.merge(plate_country_df, plate_totals, on=['denomination', 'shortcode_detailed'], how='inner')
@@ -178,10 +185,9 @@ avg_capture_rate = {d: (denom_ebt_totals[d] / pr if pr > 0 else 500) for d, pr i
 # ==========================================
 print("Step 4: Writing the JSON map database...")
 
-# Injeta a versão e a data de atualização nos metadados
 master_data = {
     "metadata": {
-        "last_updated": datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC'),
+        "last_updated": ebt_update_date,
         "version": VERSION
     },
     "plates": {}, 
