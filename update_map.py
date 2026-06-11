@@ -6,8 +6,10 @@ import requests
 from bs4 import BeautifulSoup
 import re
 from collections import defaultdict
+from datetime import datetime, timezone
 
-print("=== STARTING EBT MAP AUTO-UPDATE ===")
+VERSION = "1.1.0"
+print(f"=== STARTING EBT MAP AUTO-UPDATE v{VERSION} ===")
 
 # ==========================================
 # 1. PARSE GUY SOHIER CATALOG (WEB SCRAPING)
@@ -73,9 +75,9 @@ wl = pd.DataFrame(wl_data)
 print(f"  > Successfully extracted {len(wl)} valid plates.")
 
 # ==========================================
-# 2. FETCH EBT DATA DUMP
+# 2. FETCH EBT DATA DUMP (COUNTRIES)
 # ==========================================
-print("Step 2: Fetching EBT raw data dump...")
+print("Step 2: Fetching EBT raw data dump (Countries)...")
 url_ebt = "https://www.eurobilltracker.com/tmp/denomination_serial_detailedshortcode_country.txt"
 r_ebt = requests.get(url_ebt, headers=headers)
 r_ebt.encoding = 'utf-8'
@@ -98,6 +100,35 @@ europa_df = ebt_df[ebt_df['year'] > 2002].copy()
 valid_europa_df = pd.merge(europa_df, wl, on=['denomination', 'shortcode_detailed'], how='inner')
 
 # ==========================================
+# 2.5. FETCH EBT GLOBAL TOTALS (INCLUDES < 10 NOTES)
+# ==========================================
+print("Step 2.5: Fetching EBT global totals (including rare notes)...")
+url_totals = "https://www.eurobilltracker.com/tmp/denomination_serial_detailedshortcode.txt"
+r_totals = requests.get(url_totals, headers=headers)
+r_totals.encoding = 'utf-8'
+
+lines_totals = [line for line in r_totals.text.split('\n') if '|' in line]
+totals_df = pd.read_csv(io.StringIO('\n'.join(lines_totals)), sep='|', skipinitialspace=True)
+totals_df.columns = totals_df.columns.str.strip()
+totals_df = totals_df.dropna(axis=1, how='all')
+totals_df = totals_df[totals_df['year'].astype(str).str.strip() != 'year']
+
+totals_df['year'] = pd.to_numeric(totals_df['year'], errors='coerce')
+totals_df['denomination'] = pd.to_numeric(totals_df['denomination'], errors='coerce')
+totals_df['count'] = pd.to_numeric(totals_df['count'], errors='coerce')
+totals_df['shortcode_detailed'] = totals_df['shortcode_detailed'].astype(str).str.strip().str[:4]
+totals_df = totals_df.dropna(subset=['year', 'denomination', 'count'])
+
+europa_totals_df = totals_df[totals_df['year'] > 2002].copy()
+
+# Calculate TRUE global totals from the uncensored list
+real_plate_totals = europa_totals_df.groupby(['denomination', 'shortcode_detailed'])['count'].sum().reset_index()
+real_plate_totals.rename(columns={'count': 'plate_global_total'}, inplace=True)
+
+real_denom_totals = europa_totals_df.groupby('denomination')['count'].sum().reset_index()
+real_denom_totals.rename(columns={'count': 'denom_global_total'}, inplace=True)
+
+# ==========================================
 # 3. CALCULATE LQs & CONFIDENCE
 # ==========================================
 print("Step 3: Calculating LQs and Confidence Algorithms...")
@@ -118,8 +149,8 @@ printers = {
     'Z': {"name": "Z - NBB (Belgium)", "country": "Belgium", "lon": 4.36017, "lat": 50.85019}
 }
 
-denom_totals = valid_europa_df.groupby('denomination')['count'].sum().reset_index()
-denom_totals.rename(columns={'count': 'denom_global_total'}, inplace=True)
+# Injecting the REAL global totals into the algorithm
+denom_totals = real_denom_totals
 
 baseline_df = valid_europa_df.groupby(['denomination', 'country'])['count'].sum().reset_index()
 baseline_df.rename(columns={'count': 'baseline_total_notes'}, inplace=True)
@@ -129,10 +160,10 @@ baseline_df['baseline_pct'] = baseline_df['baseline_total_notes'] / baseline_df[
 plate_country_df = valid_europa_df.groupby(['denomination', 'shortcode_detailed', 'country'])['count'].sum().reset_index()
 plate_country_df.rename(columns={'count': 'plate_notes_in_country'}, inplace=True)
 
-plate_totals = valid_europa_df.groupby(['denomination', 'shortcode_detailed'])['count'].sum().reset_index()
-plate_totals.rename(columns={'count': 'plate_global_total'}, inplace=True)
+# Injecting the REAL plate totals into the algorithm
+plate_totals = real_plate_totals
 
-plate_analysis = pd.merge(plate_country_df, plate_totals, on=['denomination', 'shortcode_detailed'])
+plate_analysis = pd.merge(plate_country_df, plate_totals, on=['denomination', 'shortcode_detailed'], how='inner')
 plate_analysis['plate_pct'] = plate_analysis['plate_notes_in_country'] / plate_analysis['plate_global_total']
 
 results_df = pd.merge(plate_analysis, baseline_df, on=['denomination', 'country'])
@@ -146,7 +177,17 @@ avg_capture_rate = {d: (denom_ebt_totals[d] / pr if pr > 0 else 500) for d, pr i
 # 4. EXPORT TO JSON
 # ==========================================
 print("Step 4: Writing the JSON map database...")
-master_data = {"plates": {}, "hierarchy": {}}
+
+# Injeta a versão e a data de atualização nos metadados
+master_data = {
+    "metadata": {
+        "last_updated": datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC'),
+        "version": VERSION
+    },
+    "plates": {}, 
+    "hierarchy": {}
+}
+
 for denom in results_df['denomination'].unique(): master_data["hierarchy"][str(denom)] = {}
 
 grouped_plates = results_df.groupby(['denomination', 'shortcode_detailed'])
