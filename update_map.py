@@ -6,6 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 from collections import defaultdict
+from datetime import datetime, timedelta
 
 VERSION = "1.1.1"
 print(f"=== STARTING EBT MAP AUTO-UPDATE v{VERSION} ===")
@@ -109,10 +110,32 @@ r_totals.encoding = 'utf-8'
 raw_lines_totals = r_totals.text.split('\n')
 ebt_update_date = "Unknown Date"
 
-# Procurar a data oficial do servidor EBT na primeira linha
+# Look for the official EBT server date in the first line and convert to UTC
 for line in raw_lines_totals:
     if line.startswith("Updated:"):
-        ebt_update_date = line.replace("Updated:", "").strip()
+        raw_date = line.replace("Updated:", "").strip()
+        try:
+            parts = [p for p in raw_date.split(' ') if p]
+            if len(parts) >= 6:
+                month, day, time_str, tz_str, year = parts[1], parts[2], parts[3], parts[4], parts[5]
+                
+                # Create a clean date string without timezone
+                clean_date_str = f"{year} {month} {day} {time_str}"
+                dt = datetime.strptime(clean_date_str, "%Y %b %d %H:%M:%S")
+                
+                # Subtract hours based on Finnish timezone (EEST = UTC+3, EET = UTC+2)
+                if tz_str == "EEST":
+                    dt -= timedelta(hours=3)
+                elif tz_str == "EET":
+                    dt -= timedelta(hours=2)
+                    
+                # Format into normalized numerical UTC format
+                ebt_update_date = dt.strftime("%Y-%m-%d %H:%M:%S UTC")
+            else:
+                ebt_update_date = raw_date
+        except Exception as e:
+            print("Date parse error:", e)
+            ebt_update_date = raw_date
         break
 
 lines_totals = [line for line in raw_lines_totals if '|' in line]
@@ -168,6 +191,7 @@ baseline_df['baseline_pct'] = baseline_df['baseline_total_notes'] / baseline_df[
 plate_country_df = valid_europa_df.groupby(['denomination', 'shortcode_detailed', 'country'])['count'].sum().reset_index()
 plate_country_df.rename(columns={'count': 'plate_notes_in_country'}, inplace=True)
 
+# Injecting the REAL plate totals into the algorithm
 plate_totals = real_plate_totals
 
 plate_analysis = pd.merge(plate_country_df, plate_totals, on=['denomination', 'shortcode_detailed'], how='inner')
@@ -185,6 +209,7 @@ avg_capture_rate = {d: (denom_ebt_totals[d] / pr if pr > 0 else 500) for d, pr i
 # ==========================================
 print("Step 4: Writing the JSON map database...")
 
+# Inject version and true server update date into metadata
 master_data = {
     "metadata": {
         "last_updated": ebt_update_date,
