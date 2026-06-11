@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EUR - Europa Plates Dispersion</title>
     
-    <!-- Load D3.js and TopoJSON -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://unpkg.com/topojson-client@3"></script>
 
@@ -37,9 +36,10 @@
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             border: 1px solid var(--border-color);
+            transition: border-color 0.5s ease;
         }
 
-        h1 { margin-top: 0; font-size: 1.4rem; color: #1a365d; }
+        h1 { margin-top: 0; font-size: 1.4rem; color: #1a365d; transition: color 0.5s ease;}
         h2 { font-size: 1.1rem; border-bottom: 2px solid var(--border-color); padding-bottom: 8px;}
         
         .form-group { margin-bottom: 15px; }
@@ -71,7 +71,7 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             pointer-events: none; opacity: 0; font-size: 0.9rem; z-index: 100;
         }
-        .tt-country { font-weight: bold; font-size: 1.1rem; border-bottom: 1px solid #e2e8f0; margin-bottom: 5px; padding-bottom: 3px;}
+        .tt-country { font-weight: bold; font-size: 1.1rem; border-bottom: 1px solid #e2e8f0; margin-bottom: 5px; padding-bottom: 3px; transition: border-color 0.3s, color 0.3s;}
 
         .legend-container {
             position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
@@ -94,8 +94,8 @@
 <body>
 
     <div class="sidebar">
-        <div class="panel">
-            <h1>🌍 EUR Plates Dispersion</h1>
+        <div class="panel" id="main-panel">
+            <h1 id="main-title">🌍 EUR Plates Dispersion</h1>
             <p style="font-size: 0.85rem; color: #64748b;">Explore the real journey of Euro notes using the Location Quotient algorithm.</p>
             <p id="data-timestamp" style="font-size: 0.75rem; color: #94a3b8; font-style: italic; margin-top: -10px; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">Data loading...</p>            
             <div class="form-group">
@@ -112,7 +112,7 @@
             </div>
         </div>
 
-        <div class="panel" id="plate-profile" style="display: none;">
+        <div class="panel" id="plate-profile" style="display: none; border-top: 4px solid var(--border-color);">
             <h2>Plate Profile</h2>
             <div class="stat-grid">
                 <div class="stat-row"><span class="stat-label">ID:</span><span class="stat-value" id="val-id">-</span></div>
@@ -131,7 +131,8 @@
             The Location Quotient measures geographic concentration relative to the EBT community size.<br><br>
             • <strong>LQ = 1.0:</strong> Normal dispersion.<br>
             • <strong>LQ = 2.0:</strong> The note is 2x more frequent in this country than expected.<br>
-            • <strong>LQ = 0.2:</strong> The note is 5x rarer than expected.
+            • <strong>LQ = 0.2:</strong> The note is 5x rarer than expected.<br><br>
+            <i>Note: Transparent/ghosted countries indicate very low data confidence for that specific territory.</i>
             <div style="margin-top: 15px; text-align: center;">
                 <a href="https://github.com/ShortOkapi/plate-dispersion-map#readme" target="_blank" style="display: inline-block; background-color: #2563eb; color: white; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                     📖 How this works (Methodology)
@@ -176,29 +177,24 @@
         const svg = d3.select("#europe-map");
         const tooltip = d3.select("#tooltip");
 
-        // SVG LAYERS ARCHITECTURE (Crucial for fixing interaction bugs)
         const gMap = svg.append("g");
         const gCountries = gMap.append("g").attr("class", "layer-countries");
         const gMicrostates = gMap.append("g").attr("class", "layer-microstates");
         const gPins = gMap.append("g").attr("class", "layer-pins").style("pointer-events", "none");
 
-        // SEMANTIC ZOOMING LOGIC
-        let currentZoomK = 1; // Guarda o nível de zoom atual
+        let currentZoomK = 1; 
         const zoom = d3.zoom()
             .scaleExtent([0.5, 8])
             .on("zoom", (event) => {
                 currentZoomK = event.transform.k;
                 gMap.attr("transform", event.transform);
                 
-                // Keep country strokes crisp
                 gCountries.selectAll(".country-path").attr("stroke-width", 0.5 / currentZoomK);
                 
-                // Keep microstates fixed screen-size
                 gMicrostates.selectAll(".microstate")
                     .attr("r", 5 / currentZoomK)
                     .attr("stroke-width", 1 / currentZoomK);
 
-                // Keep Origin Pin fixed screen-size
                 gPins.selectAll(".origin-pin")
                     .attr("transform", function() {
                         const cx = d3.select(this).attr("data-cx");
@@ -213,10 +209,9 @@
             d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json")
         ]).then(function(files) {
             masterData = files[0];
-            // Update UI with metadata timestamp
-                if(masterData.metadata) {
-                    document.getElementById('data-timestamp').innerText = `Data updated: ${masterData.metadata.last_updated} | Engine v${masterData.metadata.version}`;
-                }
+            if(masterData.metadata) {
+                document.getElementById('data-timestamp').innerText = `Data updated: ${masterData.metadata.last_updated} | Engine v${masterData.metadata.version}`;
+            }
             const world = files[1];
             
             geoData = topojson.feature(world, world.objects.countries).features;
@@ -284,9 +279,24 @@
             });
         }
 
+        // --- THE CONFIDENCE / VALUE-BY-ALPHA ALGORITHM ---
+        function getCountryConfidence(cData) {
+            if(!cData) return { level: "Low", opacity: 0.20, color: "red" };
+            let ratio = cData.notes / cData.baseline;
+            if (cData.notes >= 100 || (cData.notes >= 20 && ratio >= 0.05)) return { level: "High", opacity: 1.0, color: "green" };
+            if (cData.notes >= 30 || (cData.notes >= 5 && ratio >= 0.02)) return { level: "Medium", opacity: 0.55, color: "orange" };
+            return { level: "Low", opacity: 0.20, color: "red" };
+        }
+
         function renderMap(plateId) {
             const data = masterData.plates[plateId];
             if(!data) return;
+
+            const baseHex = denomColors[data.denomination] || "#333333";
+            
+            // UI Color Injection
+            document.getElementById('main-title').style.color = baseHex;
+            document.getElementById('plate-profile').style.borderTopColor = baseHex;
 
             document.getElementById('plate-profile').style.display = 'block';
             document.getElementById('val-id').innerText = `${data.denomination}€ ${data.plate}`;
@@ -298,14 +308,14 @@
             document.getElementById('val-conf').innerHTML = `<span style="color:${confColor}">${data.confidence}</span>`;
             document.getElementById('val-dispersion').innerText = data.dispersion;
 
-            const baseHex = denomColors[data.denomination] || "#333333";
             const maxLq = d3.max(Object.values(data.countries), d => d.lq) || 2;
             const cappedMax = Math.min(maxLq, 6.0); 
             const scaleMax = cappedMax <= 1.0 ? 2.0 : cappedMax;
 
+            // Universal Map Color Scale (White -> Slate -> Deep Blue)
             const colorScale = d3.scaleLinear()
                 .domain([0, 1.0, scaleMax])
-                .range(["#f8fafc", baseHex, d3.color(baseHex).darker(1.5)]);
+                .range(["#ffffff", "#94a3b8", "#1e3a8a"]);
 
             gCountries.selectAll(".country-path")
                 .transition().duration(500)
@@ -313,35 +323,31 @@
                     const cData = data.countries[d.properties.name];
                     if(cData) return colorScale(cData.lq);
                     return "url(#diagonal-stripe)"; 
+                })
+                .attr("fill-opacity", function(d) {
+                    const cData = data.countries[d.properties.name];
+                    if(!cData) return 1.0; 
+                    return getCountryConfidence(cData).opacity;
                 });
 
-            // CLEAN AND BUG-FREE COUNTRY HOVER
             gCountries.selectAll(".country-path")
                 .on("mouseover", function(event, d) {
                     const cData = data.countries[d.properties.name];
                     if(!cData) return;
 
-                    // Apenas puxa o país para a frente dentro da sua PRÓPRIA camada! Não estraga nada.
                     d3.select(this).attr("stroke", "#1e293b").attr("stroke-width", 1.5 / currentZoomK).raise();
 
                     let hint = "Normal";
                     if(cData.lq > 2.0) hint = "Over-represented";
                     if(cData.lq < 0.5) hint = "Sub-represented";
 
-                    let cConf = "Low";
-                    let ratio = cData.notes / cData.baseline;
-                    if (cData.notes >= 100 || (cData.notes >= 20 && ratio >= 0.05)) {
-                        cConf = "High";
-                    } else if (cData.notes >= 30 || (cData.notes >= 5 && ratio >= 0.02)) {
-                        cConf = "Medium";
-                    }
-                    let cConfColor = cConf === "High" ? "green" : (cConf === "Low" ? "red" : "orange");
+                    const cConfData = getCountryConfidence(cData);
 
                     tooltip.html(`
-                        <div class="tt-country">${d.properties.name}</div>
+                        <div class="tt-country" style="border-bottom: 2px solid ${baseHex}; color: ${baseHex};">${d.properties.name}</div>
                         <div><strong>LQ:</strong> ${cData.lq.toFixed(2)} <i>(${hint})</i></div>
                         <div><strong>Notes Found:</strong> ${cData.notes.toLocaleString()} <span style="color:#64748b; font-size:0.8rem;">(out of ${cData.baseline.toLocaleString()})</span></div>
-                        <div style="margin-top:4px; font-size:0.8rem;">Data Confidence: <strong style="color:${cConfColor}">${cConf}</strong></div>
+                        <div style="margin-top:4px; font-size:0.8rem;">Data Confidence: <strong style="color:${cConfData.color}">${cConfData.level}</strong></div>
                     `);
                     tooltip.style("opacity", 1);
                 })
@@ -361,7 +367,7 @@
                     tooltip.style("opacity", 0);
                 });
 
-            // MICROSTATES LOGIC
+            // MICROSTATES
             const microstates = [
                 { id: "Malta", lon: 14.3754, lat: 35.9375 },
                 { id: "Andorra", lon: 1.5218, lat: 42.5063 },
@@ -377,32 +383,26 @@
                 if(msData) {
                     const coords = projection([ms.lon, ms.lat]);
                     if(coords) {
+                        const cConfData = getCountryConfidence(msData);
                         gMicrostates.append("circle")
                             .attr("class", "microstate")
                             .attr("cx", coords[0])
                             .attr("cy", coords[1])
                             .attr("r", 5 / currentZoomK)
                             .attr("fill", colorScale(msData.lq))
+                            .attr("fill-opacity", cConfData.opacity)
                             .attr("stroke", "#1e293b")
                             .attr("stroke-width", 1 / currentZoomK)
                             .on("mouseover", function(event) {
                                 d3.select(this).attr("r", 8 / currentZoomK).attr("stroke-width", 2 / currentZoomK).raise();
                                 
                                 let hint = msData.lq > 2.0 ? "Over-represented" : (msData.lq < 0.5 ? "Sub-represented" : "Normal");
-                                let ratio = msData.notes / msData.baseline;
-                                let cConf = "Low";
-                                if (msData.notes >= 100 || (msData.notes >= 20 && ratio >= 0.05)) {
-                                    cConf = "High";
-                                } else if (msData.notes >= 30 || (msData.notes >= 5 && ratio >= 0.02)) {
-                                    cConf = "Medium";
-                                }
-                                let cConfColor = cConf === "High" ? "green" : (cConf === "Low" ? "red" : "orange");
-
+                                
                                 tooltip.html(`
-                                    <div class="tt-country">${ms.id}</div>
+                                    <div class="tt-country" style="border-bottom: 2px solid ${baseHex}; color: ${baseHex};">${ms.id}</div>
                                     <div><strong>LQ:</strong> ${msData.lq.toFixed(2)} <i>(${hint})</i></div>
                                     <div><strong>Notes Found:</strong> ${msData.notes.toLocaleString()} <span style="color:#64748b; font-size:0.8rem;">(out of ${msData.baseline.toLocaleString()})</span></div>
-                                    <div style="margin-top:4px; font-size:0.8rem;">Data Confidence: <strong style="color:${cConfColor}">${cConf}</strong></div>
+                                    <div style="margin-top:4px; font-size:0.8rem;">Data Confidence: <strong style="color:${cConfData.color}">${cConfData.level}</strong></div>
                                 `);
                                 tooltip.style("opacity", 1);
                             })
@@ -423,7 +423,7 @@
                 }
             });
 
-            // FIXED ORIGIN PIN (Now a Ghost that doesn't scale with zoom)
+            // FIXED ORIGIN PIN (Using Denomination Color)
             gPins.selectAll(".origin-pin").remove();
             if (data.origin_coords && data.origin_coords.lon !== null) {
                 const coords = projection([data.origin_coords.lon, data.origin_coords.lat]);
@@ -432,12 +432,11 @@
                         .attr("class", "origin-pin")
                         .attr("data-cx", coords[0])
                         .attr("data-cy", coords[1])
-                        // Mantém a posição visual constante mesmo em zoom
                         .attr("transform", `translate(${coords[0]}, ${coords[1]}) scale(${1 / currentZoomK})`);
 
                     pinGroup.append("path")
                         .attr("d", "M0,0 l-12,-24 a14,14 0 1,1 24,0 z")
-                        .attr("fill", "#2C3E50")
+                        .attr("fill", baseHex)
                         .attr("stroke", "white")
                         .attr("stroke-width", 1.5);
                         
@@ -451,7 +450,7 @@
                         .attr("text-anchor", "middle")
                         .attr("font-size", "11px")
                         .attr("font-weight", "bold")
-                        .attr("fill", "#2C3E50")
+                        .attr("fill", baseHex)
                         .text(data.plate.charAt(0));
                 }
             }
