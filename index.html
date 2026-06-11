@@ -97,7 +97,7 @@
         <div class="panel">
             <h1>🌍 EUR Plates Dispersion</h1>
             <p style="font-size: 0.85rem; color: #64748b;">Explore the real journey of Euro notes using the Location Quotient algorithm.</p>
-            
+            <p id="data-timestamp" style="font-size: 0.75rem; color: #94a3b8; font-style: italic; margin-top: -10px; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">Data loading...</p>            
             <div class="form-group">
                 <label>1. Denomination</label>
                 <select id="sel-denom"><option value="">Loading...</option></select>
@@ -213,6 +213,10 @@
             d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json")
         ]).then(function(files) {
             masterData = files[0];
+            // Update UI with metadata timestamp
+                if(masterData.metadata) {
+                    document.getElementById('data-timestamp').innerText = `Data updated: ${masterData.metadata.last_updated} | Engine v${masterData.metadata.version}`;
+                }
             const world = files[1];
             
             geoData = topojson.feature(world, world.objects.countries).features;
