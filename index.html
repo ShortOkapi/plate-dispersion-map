@@ -75,7 +75,7 @@
 
         .legend-container {
             position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-            width: 65%; background: rgba(255,255,255,0.95); padding: 12px 20px;
+            width: 70%; background: rgba(255,255,255,0.95); padding: 15px 20px;
             border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid #cbd5e1; pointer-events: none;
         }
         
@@ -94,7 +94,7 @@
             display: inline-flex; align-items: center; margin: 0 10px; font-size: 0.75rem; color: #475569;
         }
         .conf-box {
-            width: 24px; height: 14px; margin-right: 6px; border: 1px solid #cbd5e1; border-radius: 2px;
+            width: 24px; height: 14px; margin-right: 6px; border: 1px solid #cbd5e1; border-radius: 2px; vertical-align: middle;
         }
     </style>
 </head>
@@ -153,18 +153,18 @@
         <div class="tooltip" id="tooltip"></div>
         
         <div class="legend-container" id="legend-box" style="display: none;">
-            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: bold; margin-bottom: 5px;">
-                <span style="color: #313695; width: 33.3%;">Rare (LQ &lt; 1.0)</span>
-                <span style="color: #64748b; width: 33.3%; text-align: center;">Normal (LQ = 1.0)</span>
-                <span id="legend-max" style="color: #d73027; width: 33.3%; text-align: right;">Extreme</span>
+            <div style="display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: bold; margin-bottom: 8px;">
+                <span style="color: #0000FF; width: 33.3%;">Rare (LQ &lt; 0.5)</span>
+                <span style="color: #800080; width: 33.3%; text-align: center;">Normal (LQ ~ 1.0)</span>
+                <span style="color: #FF0000; width: 33.3%; text-align: right;">Extreme (LQ &gt; 1.5)</span>
             </div>
             <canvas id="legend-canvas" width="400" height="15" style="width: 100%; border-radius: 4px; border: 1px solid #e2e8f0;"></canvas>
             
-            <div style="margin-top: 12px; font-size: 0.75rem; color: #475569; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 8px;">
+            <div style="margin-top: 15px; font-size: 0.75rem; color: #475569; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 10px;">
                 <strong>Data Reliability:</strong> 
-                <span class="conf-legend-item"><div class="conf-box" style="background: #94a3b8;"></div> High (Solid)</span>
-                <span class="conf-legend-item"><div class="conf-box" style="background: url(#white-stripe-medium) #94a3b8;"></div> Medium (Hatched)</span>
-                <span class="conf-legend-item"><div class="conf-box" style="background: url(#white-dot-low) #94a3b8;"></div> Low (Stippled)</span>
+                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="#800080"></rect></svg> High (Solid)</span>
+                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="url(#pat-med-3)"></rect></svg> Medium (50%)</span>
+                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="url(#pat-low-3)"></rect></svg> Low (25%)</span>
             </div>
         </div>
     </div>
@@ -174,6 +174,20 @@
             "5": "#8C92AC", "10": "#DA2131", "20": "#004494", 
             "50": "#F29527", "100": "#3C7D22", "200": "#FBC11D", "500": "#8D3C8E"
         };
+
+        // NEW 7-STEP DISCRETE COLOR SCALE
+        const lqColors = ["#0000FF", "#2A00D5", "#5500AA", "#800080", "#AA0055", "#D5002B", "#FF0000"];
+
+        // Data Math Bucketing
+        function getLqBucket(lq) {
+            if (lq < 0.25) return 0;
+            if (lq < 0.6) return 1;
+            if (lq < 0.9) return 2;
+            if (lq <= 1.1) return 3; // The Purple Center (0.9 to 1.1)
+            if (lq <= 1.5) return 4;
+            if (lq <= 2.5) return 5;
+            return 6;
+        }
 
         let masterData = null;
         let geoData = null;
@@ -193,35 +207,31 @@
         // SVG LAYERS ARCHITECTURE
         const gMap = svg.append("g");
         const gCountries = gMap.append("g").attr("class", "layer-countries");
-        const gOverlays = gMap.append("g").attr("class", "layer-overlays").style("pointer-events", "none");
         const gMicrostates = gMap.append("g").attr("class", "layer-microstates");
         const gPins = gMap.append("g").attr("class", "layer-pins").style("pointer-events", "none");
 
-        // Inject White Textures for Data Uncertainty into SVG Definitions
+        // INJECT THE 14 DYNAMIC PATTERNS (7 Colors x 2 Densities)
         const defs = svg.append('defs');
-        
-        // Medium Confidence Texture: Fine white diagonal lines
-        defs.append('pattern')
-            .attr('id', 'white-stripe-medium')
-            .attr('patternUnits', 'userSpaceOnUse')
-            .attr('width', 8)
-            .attr('height', 8)
-          .append('path')
-            .attr('d', 'M-2,2 l4,-4 M0,8 l8,-8 M6,10 l4,-4')
-            .attr('stroke', '#ffffff')
-            .attr('stroke-width', 1.5);
+        lqColors.forEach((hexColor, i) => {
+            // 50% Coverage (Checkerboard / Dense Dots)
+            defs.append('pattern')
+                .attr('id', `pat-med-${i}`)
+                .attr('patternUnits', 'userSpaceOnUse')
+                .attr('width', 4).attr('height', 4)
+                .call(p => {
+                    p.append('rect').attr('width', 2).attr('height', 2).attr('fill', hexColor);
+                    p.append('rect').attr('x', 2).attr('y', 2).attr('width', 2).attr('height', 2).attr('fill', hexColor);
+                });
 
-        // Low Confidence Texture: Dense white dots (stippling) to ghost out the country
-        defs.append('pattern')
-            .attr('id', 'white-dot-low')
-            .attr('patternUnits', 'userSpaceOnUse')
-            .attr('width', 4)
-            .attr('height', 4)
-          .append('circle')
-            .attr('cx', 2)
-            .attr('cy', 2)
-            .attr('r', 1)
-            .attr('fill', '#ffffff');
+            // 25% Coverage (Sparse Dots)
+            defs.append('pattern')
+                .attr('id', `pat-low-${i}`)
+                .attr('patternUnits', 'userSpaceOnUse')
+                .attr('width', 4).attr('height', 4)
+                .call(p => {
+                    p.append('rect').attr('width', 2).attr('height', 2).attr('fill', hexColor);
+                });
+        });
 
         let currentZoomK = 1; 
         const zoom = d3.zoom()
@@ -231,7 +241,6 @@
                 gMap.attr("transform", event.transform);
                 
                 gCountries.selectAll(".country-path").attr("stroke-width", 0.5 / currentZoomK);
-                gOverlays.selectAll(".overlay-path").attr("stroke-width", 0);
                 
                 gMicrostates.selectAll(".microstate")
                     .attr("r", 5 / currentZoomK)
@@ -262,7 +271,7 @@
                 if(d.properties.name === "Bosnia and Herz.") d.properties.name = "Bosnia and Herzegovina";
             });
 
-            // Base map layer (Default clean slate gray for No Data countries)
+            // Base Map Init
             gCountries.selectAll(".country-path")
                 .data(geoData)
                 .enter().append("path")
@@ -323,11 +332,11 @@
         }
 
         function getCountryConfidence(cData) {
-            if(!cData) return { level: "Low", pattern: "url(#white-dot-low)", color: "red" };
+            if(!cData) return { level: "Low", color: "red" };
             let ratio = cData.notes / cData.baseline;
-            if (cData.notes >= 100 || (cData.notes >= 20 && ratio >= 0.05)) return { level: "High", pattern: "none", color: "green" };
-            if (cData.notes >= 30 || (cData.notes >= 5 && ratio >= 0.02)) return { level: "Medium", pattern: "url(#white-stripe-medium)", color: "orange" };
-            return { level: "Low", pattern: "url(#white-dot-low)", color: "red" };
+            if (cData.notes >= 100 || (cData.notes >= 20 && ratio >= 0.05)) return { level: "High", color: "green" };
+            if (cData.notes >= 30 || (cData.notes >= 5 && ratio >= 0.02)) return { level: "Medium", color: "orange" };
+            return { level: "Low", color: "red" };
         }
 
         function renderMap(plateId) {
@@ -336,6 +345,7 @@
 
             const baseHex = denomColors[data.denomination] || "#333333";
             
+            // Dynamic UI Styling
             document.getElementById('main-title').style.color = baseHex;
             document.getElementById('plate-profile').style.borderTopColor = baseHex;
 
@@ -349,40 +359,22 @@
             document.getElementById('val-conf').innerHTML = `<span style="color:${confColor}">${data.confidence}</span>`;
             document.getElementById('val-dispersion').innerText = data.dispersion;
 
-            const maxLq = d3.max(Object.values(data.countries), d => d.lq) || 2;
-            const cappedMax = Math.min(maxLq, 6.0); 
-            const scaleMax = cappedMax <= 1.0 ? 2.0 : cappedMax;
-
-            // BILINEAR DIVERGING CHROMATIC SCALE (Centered at 1.0)
-            const colorScale = d3.scaleLinear()
-                .domain([0, 1.0, scaleMax])
-                .range(["#313695", "#fef9e7", "#d73027"]);
-
-            // Render Base Country Fills
+            // Paint the Map Polygons
             gCountries.selectAll(".country-path")
                 .transition().duration(500)
                 .attr("fill", function(d) {
                     const cData = data.countries[d.properties.name];
-                    if(cData) return colorScale(cData.lq);
-                    return "#e2e8f0"; 
+                    if(!cData) return "#e2e8f0"; // Missing Data = Clean Silver/Gray
+                    
+                    const bucketIdx = getLqBucket(cData.lq);
+                    const conf = getCountryConfidence(cData);
+                    
+                    if(conf.level === "High") return lqColors[bucketIdx];
+                    if(conf.level === "Medium") return `url(#pat-med-${bucketIdx})`;
+                    return `url(#pat-low-${bucketIdx})`;
                 });
 
-            // Rebuild the White Texture Overlay Layer dynamically
-            gOverlays.selectAll(".overlay-path").remove();
-            
-            gOverlays.selectAll(".overlay-path")
-                .data(geoData)
-                .enter().append("path")
-                .attr("class", "overlay-path")
-                .attr("d", path)
-                .attr("fill", function(d) {
-                    const cData = data.countries[d.properties.name];
-                    if(!cData) return "none";
-                    return getCountryConfidence(cData).pattern;
-                })
-                .attr("stroke", "none");
-
-            // Interactive Tooltip Handling
+            // Tooltips
             gCountries.selectAll(".country-path")
                 .on("mouseover", function(event, d) {
                     const cData = data.countries[d.properties.name];
@@ -430,20 +422,24 @@
             ];
 
             gMicrostates.selectAll(".microstate").remove();
-            
             microstates.forEach(ms => {
                 const msData = data.countries[ms.id];
                 if(msData) {
                     const coords = projection([ms.lon, ms.lat]);
                     if(coords) {
-                        const cConfData = getCountryConfidence(msData);
+                        const bucketIdx = getLqBucket(msData.lq);
+                        const conf = getCountryConfidence(msData);
                         
+                        let fillValue = lqColors[bucketIdx];
+                        if(conf.level === "Medium") fillValue = `url(#pat-med-${bucketIdx})`;
+                        if(conf.level === "Low") fillValue = `url(#pat-low-${bucketIdx})`;
+
                         gMicrostates.append("circle")
                             .attr("class", "microstate")
                             .attr("cx", coords[0])
                             .attr("cy", coords[1])
                             .attr("r", 5 / currentZoomK)
-                            .attr("fill", colorScale(msData.lq))
+                            .attr("fill", fillValue)
                             .attr("stroke", "#1e293b")
                             .attr("stroke-width", 1 / currentZoomK)
                             .on("mouseover", function(event) {
@@ -453,7 +449,7 @@
                                     <div class="tt-country" style="border-bottom: 2px solid ${baseHex}; color: ${baseHex};">${ms.id}</div>
                                     <div><strong>LQ:</strong> ${msData.lq.toFixed(2)} <i>(${hint})</i></div>
                                     <div><strong>Notes Found:</strong> ${msData.notes.toLocaleString()} <span style="color:#64748b; font-size:0.8rem;">(out of ${msData.baseline.toLocaleString()})</span></div>
-                                    <div style="margin-top:4px; font-size:0.8rem;">Data Reliability: <strong style="color:${cConfData.color}">${cConfData.level}</strong></div>
+                                    <div style="margin-top:4px; font-size:0.8rem;">Data Reliability: <strong style="color:${conf.color}">${conf.level}</strong></div>
                                 `);
                                 tooltip.style("opacity", 1);
                             })
@@ -470,15 +466,6 @@
                                 d3.select(this).attr("r", 5 / currentZoomK).attr("stroke-width", 1 / currentZoomK);
                                 tooltip.style("opacity", 0);
                             });
-
-                        if(cConfData.pattern !== "none") {
-                            gMicrostates.append("circle")
-                                .attr("cx", coords[0])
-                                .attr("cy", coords[1])
-                                .attr("r", 5 / currentZoomK)
-                                .attr("fill", cConfData.pattern)
-                                .style("pointer-events", "none");
-                        }
                     }
                 }
             });
@@ -516,26 +503,21 @@
             }
 
             document.getElementById('legend-box').style.display = 'block';
-            document.getElementById('legend-max').innerText = `Extreme (LQ = ${scaleMax.toFixed(1)}+)`;
-            drawLegendCanvas(colorScale, scaleMax);
+            drawLegendCanvas();
         }
 
-        function drawLegendCanvas(colorScale, maxVal) {
+        // Discrete Legend Drawer
+        function drawLegendCanvas() {
             const canvas = document.getElementById('legend-canvas');
             const ctx = canvas.getContext('2d');
             const w = canvas.width;
-            const mid = w / 2;
+            const h = canvas.height;
+            const stepW = w / lqColors.length;
             
-            for (let i = 0; i < w; i++) {
-                let lqValue;
-                if (i <= mid) {
-                    lqValue = (i / mid) * 1.0;
-                } else {
-                    lqValue = 1.0 + ((i - mid) / mid) * (maxVal - 1.0);
-                }
-                ctx.fillStyle = colorScale(lqValue);
-                ctx.fillRect(i, 0, 1, canvas.height);
-            }
+            lqColors.forEach((color, i) => {
+                ctx.fillStyle = color;
+                ctx.fillRect(i * stepW, 0, stepW, h);
+            });
         }
     </script>
 </body>
