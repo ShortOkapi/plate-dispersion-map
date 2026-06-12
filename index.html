@@ -71,7 +71,7 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             pointer-events: none; opacity: 0; font-size: 0.9rem; z-index: 100;
         }
-        .tt-country { font-weight: bold; font-size: 1.1rem; border-bottom: 1px solid #e2e8f0; margin-bottom: 5px; padding-bottom: 3px; transition: border-color 0.3s, color 0.3s;}
+        .tt-country { font-weight: bold; font-size: 1.1rem; border-bottom: 2px solid var(--border-color); margin-bottom: 5px; padding-bottom: 3px; transition: border-color 0.3s, color 0.3s;}
 
         .legend-container {
             position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
@@ -90,8 +90,11 @@
             pointer-events: none;
         }
 
-        .conf-badge {
-            display: inline-block; padding: 2px 8px; border-radius: 4px; font-weight: bold; color: white; margin-right: 8px; font-size: 0.75rem;
+        .conf-legend-item {
+            display: inline-flex; align-items: center; margin: 0 10px; font-size: 0.75rem; color: #475569;
+        }
+        .conf-box {
+            width: 24px; height: 14px; margin-right: 6px; border: 1px solid #cbd5e1; border-radius: 2px;
         }
     </style>
 </head>
@@ -150,18 +153,18 @@
         <div class="tooltip" id="tooltip"></div>
         
         <div class="legend-container" id="legend-box" style="display: none;">
-            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: bold; margin-bottom: 5px; color: #334155;">
-                <span style="color: #d73027;">Rare (LQ < 1)</span>
-                <span style="color: #64748b;">Normal (LQ = 1)</span>
-                <span id="legend-max" style="color: #313695;">Extreme</span>
+            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: bold; margin-bottom: 5px;">
+                <span style="color: #313695; width: 33.3%;">Rare (LQ < 1.0)</span>
+                <span style="color: #64748b; width: 33.3%; text-align: center;">Normal (LQ = 1.0)</span>
+                <span id="legend-max" style="color: #d73027; width: 33.3%; text-align: right;">Extreme</span>
             </div>
             <canvas id="legend-canvas" width="400" height="15" style="width: 100%; border-radius: 4px; border: 1px solid #e2e8f0;"></canvas>
             
-            <div style="margin-top: 10px; font-size: 0.75rem; color: #475569; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 8px;">
-                <strong>Data Confidence:</strong> 
-                <span class="conf-badge" style="background: #94a3b8; opacity: 1;">High (Solid)</span>
-                <span class="conf-badge" style="background: #94a3b8; opacity: 0.55;">Medium (Faded)</span>
-                <span class="conf-badge" style="background: #94a3b8; opacity: 0.20;">Low (Ghost)</span>
+            <div style="margin-top: 12px; font-size: 0.75rem; color: #475569; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 8px;">
+                <strong>Data Reliability:</strong> 
+                <span class="conf-legend-item"><div class="conf-box" style="background: #94a3b8;"></div> High (Solid)</span>
+                <span class="conf-legend-item"><div class="conf-box" style="background: url(#white-stripe-medium) #94a3b8;"></div> Medium (Hatched)</span>
+                <span class="conf-legend-item"><div class="conf-box" style="background: url(#white-dot-low) #94a3b8;"></div> Low (Stippled)</span>
             </div>
         </div>
     </div>
@@ -187,10 +190,38 @@
         const svg = d3.select("#europe-map");
         const tooltip = d3.select("#tooltip");
 
+        // SVG LAYERS ARCHITECTURE
         const gMap = svg.append("g");
         const gCountries = gMap.append("g").attr("class", "layer-countries");
+        const gOverlays = gMap.append("g").attr("class", "layer-overlays").style("pointer-events", "none");
         const gMicrostates = gMap.append("g").attr("class", "layer-microstates");
         const gPins = gMap.append("g").attr("class", "layer-pins").style("pointer-events", "none");
+
+        // Inject White Textures for Data Uncertainty into SVG Definitions
+        const defs = svg.append('defs');
+        
+        // Medium Confidence Texture: Fine white diagonal lines
+        defs.append('pattern')
+            .attr('id', 'white-stripe-medium')
+            .attr('patternUnits', 'userSpaceOnUse')
+            .attr('width', 8)
+            .attr('height', 8)
+          .append('path')
+            .attr('d', 'M-2,2 l4,-4 M0,8 l8,-8 M6,10 l4,-4')
+            .attr('stroke', '#ffffff')
+            .attr('stroke-width', 1.5);
+
+        // Low Confidence Texture: Dense white dots (stippling) to ghost out the country
+        defs.append('pattern')
+            .attr('id', 'white-dot-low')
+            .attr('patternUnits', 'userSpaceOnUse')
+            .attr('width', 4)
+            .attr('height', 4)
+          .append('circle')
+            .attr('cx', 2)
+            .attr('cy', 2)
+            .attr('r', 1)
+            .attr('fill', '#ffffff');
 
         let currentZoomK = 1; 
         const zoom = d3.zoom()
@@ -200,6 +231,7 @@
                 gMap.attr("transform", event.transform);
                 
                 gCountries.selectAll(".country-path").attr("stroke-width", 0.5 / currentZoomK);
+                gOverlays.selectAll(".overlay-path").attr("stroke-width", 0);
                 
                 gMicrostates.selectAll(".microstate")
                     .attr("r", 5 / currentZoomK)
@@ -230,12 +262,13 @@
                 if(d.properties.name === "Bosnia and Herz.") d.properties.name = "Bosnia and Herzegovina";
             });
 
+            // Base map layer (Default clean slate gray for No Data countries)
             gCountries.selectAll(".country-path")
                 .data(geoData)
                 .enter().append("path")
                 .attr("class", "country-path")
                 .attr("d", path)
-                .attr("fill", "#ffffff")
+                .attr("fill", "#e2e8f0")
                 .attr("stroke", "#cbd5e1")
                 .attr("stroke-width", 0.5);
 
@@ -290,11 +323,11 @@
         }
 
         function getCountryConfidence(cData) {
-            if(!cData) return { level: "Low", opacity: 0.20, color: "red" };
+            if(!cData) return { level: "Low", pattern: "url(#white-dot-low)", color: "red" };
             let ratio = cData.notes / cData.baseline;
-            if (cData.notes >= 100 || (cData.notes >= 20 && ratio >= 0.05)) return { level: "High", opacity: 1.0, color: "green" };
-            if (cData.notes >= 30 || (cData.notes >= 5 && ratio >= 0.02)) return { level: "Medium", opacity: 0.55, color: "orange" };
-            return { level: "Low", opacity: 0.20, color: "red" };
+            if (cData.notes >= 100 || (cData.notes >= 20 && ratio >= 0.05)) return { level: "High", pattern: "none", color: "green" };
+            if (cData.notes >= 30 || (cData.notes >= 5 && ratio >= 0.02)) return { level: "Medium", pattern: "url(#white-stripe-medium)", color: "orange" };
+            return { level: "Low", pattern: "url(#white-dot-low)", color: "red" };
         }
 
         function renderMap(plateId) {
@@ -303,6 +336,7 @@
 
             const baseHex = denomColors[data.denomination] || "#333333";
             
+            // Dynamic UI Styling Based on Denomination Color Code
             document.getElementById('main-title').style.color = baseHex;
             document.getElementById('plate-profile').style.borderTopColor = baseHex;
 
@@ -320,24 +354,37 @@
             const cappedMax = Math.min(maxLq, 6.0); 
             const scaleMax = cappedMax <= 1.0 ? 2.0 : cappedMax;
 
-            // DIVERGING COLOR SCALE (Red -> Silver -> Deep Blue)
+            // BILINEAR DIVERGING CHROMATIC SCALE (Centered at 1.0)
+            // Rare (LQ=0) -> Indigo Blue | Normal (LQ=1) -> Off-White Ivory | Extreme (LQ=Max) -> Deep Red
             const colorScale = d3.scaleLinear()
                 .domain([0, 1.0, scaleMax])
-                .range(["#d73027", "#e2e8f0", "#313695"]);
+                .range(["#313695", "#fef9e7", "#d73027"]);
 
+            // Render Base Country Fills with True Unaltered Hues
             gCountries.selectAll(".country-path")
                 .transition().duration(500)
                 .attr("fill", function(d) {
                     const cData = data.countries[d.properties.name];
                     if(cData) return colorScale(cData.lq);
-                    return "url(#diagonal-stripe)"; 
-                })
-                .attr("fill-opacity", function(d) {
-                    const cData = data.countries[d.properties.name];
-                    if(!cData) return 1.0; 
-                    return getCountryConfidence(cData).opacity;
+                    return "#e2e8f0"; // No data = solid clean light gray
                 });
 
+            // Rebuild the White Texture Overlay Layer dynamically to avoid muddy overlapping
+            gOverlays.selectAll(".overlay-path").remove();
+            
+            gOverlays.selectAll(".overlay-path")
+                .data(geoData)
+                .enter().append("path")
+                .attr("class", "overlay-path")
+                .attr("d", path)
+                .attr("fill", function(d) {
+                    const cData = data.countries[d.properties.name];
+                    if(!cData) return "none";
+                    return getCountryConfidence(cData).pattern;
+                })
+                .attr("stroke", "none");
+
+            // Interactive Tooltip Handling
             gCountries.selectAll(".country-path")
                 .on("mouseover", function(event, d) {
                     const cData = data.countries[d.properties.name];
@@ -355,139 +402,4 @@
                         <div class="tt-country" style="border-bottom: 2px solid ${baseHex}; color: ${baseHex};">${d.properties.name}</div>
                         <div><strong>LQ:</strong> ${cData.lq.toFixed(2)} <i>(${hint})</i></div>
                         <div><strong>Notes Found:</strong> ${cData.notes.toLocaleString()} <span style="color:#64748b; font-size:0.8rem;">(out of ${cData.baseline.toLocaleString()})</span></div>
-                        <div style="margin-top:4px; font-size:0.8rem;">Data Confidence: <strong style="color:${cConfData.color}">${cConfData.level}</strong></div>
-                    `);
-                    tooltip.style("opacity", 1);
-                })
-                .on("mousemove", function(event) {
-                    let ttWidth = tooltip.node().offsetWidth;
-                    let ttHeight = tooltip.node().offsetHeight;
-                    let x = event.pageX + 15;
-                    let y = event.pageY - 28;
-
-                    if (x + ttWidth > window.innerWidth) x = event.pageX - ttWidth - 15;
-                    if (y + ttHeight > window.innerHeight) y = event.pageY - ttHeight - 15;
-
-                    tooltip.style("left", x + "px").style("top", y + "px");
-                })
-                .on("mouseout", function() {
-                    d3.select(this).attr("stroke", "#cbd5e1").attr("stroke-width", 0.5 / currentZoomK);
-                    tooltip.style("opacity", 0);
-                });
-
-            const microstates = [
-                { id: "Malta", lon: 14.3754, lat: 35.9375 },
-                { id: "Andorra", lon: 1.5218, lat: 42.5063 },
-                { id: "Monaco", lon: 7.4200, lat: 43.7384 },
-                { id: "San Marino", lon: 12.4578, lat: 43.9424 },
-                { id: "Liechtenstein", lon: 9.5209, lat: 47.1660 }
-            ];
-
-            gMicrostates.selectAll(".microstate").remove();
-            
-            microstates.forEach(ms => {
-                const msData = data.countries[ms.id];
-                if(msData) {
-                    const coords = projection([ms.lon, ms.lat]);
-                    if(coords) {
-                        const cConfData = getCountryConfidence(msData);
-                        gMicrostates.append("circle")
-                            .attr("class", "microstate")
-                            .attr("cx", coords[0])
-                            .attr("cy", coords[1])
-                            .attr("r", 5 / currentZoomK)
-                            .attr("fill", colorScale(msData.lq))
-                            .attr("fill-opacity", cConfData.opacity)
-                            .attr("stroke", "#1e293b")
-                            .attr("stroke-width", 1 / currentZoomK)
-                            .on("mouseover", function(event) {
-                                d3.select(this).attr("r", 8 / currentZoomK).attr("stroke-width", 2 / currentZoomK).raise();
-                                
-                                let hint = msData.lq > 2.0 ? "Over-represented" : (msData.lq < 0.5 ? "Sub-represented" : "Normal");
-                                
-                                tooltip.html(`
-                                    <div class="tt-country" style="border-bottom: 2px solid ${baseHex}; color: ${baseHex};">${ms.id}</div>
-                                    <div><strong>LQ:</strong> ${msData.lq.toFixed(2)} <i>(${hint})</i></div>
-                                    <div><strong>Notes Found:</strong> ${msData.notes.toLocaleString()} <span style="color:#64748b; font-size:0.8rem;">(out of ${msData.baseline.toLocaleString()})</span></div>
-                                    <div style="margin-top:4px; font-size:0.8rem;">Data Confidence: <strong style="color:${cConfData.color}">${cConfData.level}</strong></div>
-                                `);
-                                tooltip.style("opacity", 1);
-                            })
-                            .on("mousemove", function(event) {
-                                let ttWidth = tooltip.node().offsetWidth; 
-                                let ttHeight = tooltip.node().offsetHeight;
-                                let x = event.pageX + 15; 
-                                let y = event.pageY - 28;
-                                if (x + ttWidth > window.innerWidth) x = event.pageX - ttWidth - 15;
-                                if (y + ttHeight > window.innerHeight) y = event.pageY - ttHeight - 15;
-                                tooltip.style("left", x + "px").style("top", y + "px");
-                            })
-                            .on("mouseout", function() {
-                                d3.select(this).attr("r", 5 / currentZoomK).attr("stroke-width", 1 / currentZoomK);
-                                tooltip.style("opacity", 0);
-                            });
-                    }
-                }
-            });
-
-            gPins.selectAll(".origin-pin").remove();
-            if (data.origin_coords && data.origin_coords.lon !== null) {
-                const coords = projection([data.origin_coords.lon, data.origin_coords.lat]);
-                if (coords) {
-                    const pinGroup = gPins.append("g")
-                        .attr("class", "origin-pin")
-                        .attr("data-cx", coords[0])
-                        .attr("data-cy", coords[1])
-                        .attr("transform", `translate(${coords[0]}, ${coords[1]}) scale(${1 / currentZoomK})`);
-
-                    pinGroup.append("path")
-                        .attr("d", "M0,0 l-12,-24 a14,14 0 1,1 24,0 z")
-                        .attr("fill", baseHex)
-                        .attr("stroke", "white")
-                        .attr("stroke-width", 1.5);
-                        
-                    pinGroup.append("circle")
-                        .attr("cy", -28)
-                        .attr("r", 9)
-                        .attr("fill", "white");
-
-                    pinGroup.append("text")
-                        .attr("y", -24)
-                        .attr("text-anchor", "middle")
-                        .attr("font-size", "11px")
-                        .attr("font-weight", "bold")
-                        .attr("fill", baseHex)
-                        .text(data.plate.charAt(0));
-                }
-            }
-
-            document.getElementById('legend-box').style.display = 'block';
-            document.getElementById('legend-max').innerText = `Extreme (LQ = ${scaleMax.toFixed(1)}+)`;
-            drawLegendCanvas(colorScale, scaleMax);
-        }
-
-        svg.append('defs')
-          .append('pattern')
-            .attr('id', 'diagonal-stripe')
-            .attr('patternUnits', 'userSpaceOnUse')
-            .attr('width', 4)
-            .attr('height', 4)
-          .append('path')
-            .attr('d', 'M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2')
-            .attr('stroke', '#e2e8f0')
-            .attr('stroke-width', 1);
-
-        function drawLegendCanvas(colorScale, maxVal) {
-            const canvas = document.getElementById('legend-canvas');
-            const ctx = canvas.getContext('2d');
-            const w = canvas.width;
-            
-            for (let i = 0; i < w; i++) {
-                let lqValue = (i / w) * maxVal;
-                ctx.fillStyle = colorScale(lqValue);
-                ctx.fillRect(i, 0, 1, canvas.height);
-            }
-        }
-    </script>
-</body>
-</html>
+                        <div style="margin-top:4px; font-size:0.8rem;">Data Reliability: <strong style="color:${cConfData.color}">${
