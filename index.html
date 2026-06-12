@@ -14,6 +14,7 @@
             --text-main: #2c3e50;
             --panel-bg: #ffffff;
             --border-color: #e2e8f0;
+            --empty-country: #e2e8f0; /* Variável global para garantir correspondência exata */
         }
 
         body {
@@ -154,17 +155,17 @@
         
         <div class="legend-container" id="legend-box" style="display: none;">
             <div style="display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: bold; margin-bottom: 8px;">
-                <span style="color: #0000FF; width: 33.3%;">Rare (LQ &lt; 0.5)</span>
-                <span style="color: #800080; width: 33.3%; text-align: center;">Normal (LQ ~ 1.0)</span>
-                <span style="color: #FF0000; width: 33.3%; text-align: right;">Extreme (LQ &gt; 1.5)</span>
+                <span style="color: #313695; width: 33.3%;">Rare (LQ &lt; 1.0)</span>
+                <span style="color: #64748b; width: 33.3%; text-align: center;">Normal (LQ = 1.0)</span>
+                <span id="legend-max" style="color: #d73027; width: 33.3%; text-align: right;">Extreme</span>
             </div>
             <canvas id="legend-canvas" width="400" height="15" style="width: 100%; border-radius: 4px; border: 1px solid #e2e8f0;"></canvas>
             
             <div style="margin-top: 15px; font-size: 0.75rem; color: #475569; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 10px;">
                 <strong>Data Reliability:</strong> 
-                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="#800080"></rect></svg> High (Solid)</span>
-                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="url(#pat-med-3)"></rect></svg> Medium (50%)</span>
-                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="url(#pat-low-3)"></rect></svg> Low (25%)</span>
+                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="#94a3b8"></rect></svg> High (Solid)</span>
+                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="#94a3b8"></rect><rect width="24" height="14" fill="url(#empty-stripe-medium)"></rect></svg> Medium (Hatched)</span>
+                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="#94a3b8"></rect><rect width="24" height="14" fill="url(#empty-dot-low)"></rect></svg> Low (Stippled)</span>
             </div>
         </div>
     </div>
@@ -175,19 +176,7 @@
             "50": "#F29527", "100": "#3C7D22", "200": "#FBC11D", "500": "#8D3C8E"
         };
 
-        // NEW 7-STEP DISCRETE COLOR SCALE
-        const lqColors = ["#0000FF", "#2A00D5", "#5500AA", "#800080", "#AA0055", "#D5002B", "#FF0000"];
-
-        // Data Math Bucketing
-        function getLqBucket(lq) {
-            if (lq < 0.25) return 0;
-            if (lq < 0.6) return 1;
-            if (lq < 0.9) return 2;
-            if (lq <= 1.1) return 3; // The Purple Center (0.9 to 1.1)
-            if (lq <= 1.5) return 4;
-            if (lq <= 2.5) return 5;
-            return 6;
-        }
+        const EMPTY_COLOR = "#e2e8f0"; // A tua sugestão correta para a cor de ausência
 
         let masterData = null;
         let geoData = null;
@@ -204,34 +193,38 @@
         const svg = d3.select("#europe-map");
         const tooltip = d3.select("#tooltip");
 
-        // SVG LAYERS ARCHITECTURE
+        // SVG LAYERS ARCHITECTURE (Duas camadas separadas)
         const gMap = svg.append("g");
         const gCountries = gMap.append("g").attr("class", "layer-countries");
+        const gOverlays = gMap.append("g").attr("class", "layer-overlays").style("pointer-events", "none");
         const gMicrostates = gMap.append("g").attr("class", "layer-microstates");
         const gPins = gMap.append("g").attr("class", "layer-pins").style("pointer-events", "none");
 
-        // INJECT THE 14 DYNAMIC PATTERNS (7 Colors x 2 Densities)
+        // INJECT TEXTURES WITH "EMPTY" COLOR (#e2e8f0)
         const defs = svg.append('defs');
-        lqColors.forEach((hexColor, i) => {
-            // 50% Coverage (Checkerboard / Dense Dots)
-            defs.append('pattern')
-                .attr('id', `pat-med-${i}`)
-                .attr('patternUnits', 'userSpaceOnUse')
-                .attr('width', 4).attr('height', 4)
-                .call(p => {
-                    p.append('rect').attr('width', 2).attr('height', 2).attr('fill', hexColor);
-                    p.append('rect').attr('x', 2).attr('y', 2).attr('width', 2).attr('height', 2).attr('fill', hexColor);
-                });
+        
+        // Medium Confidence Texture
+        defs.append('pattern')
+            .attr('id', 'empty-stripe-medium')
+            .attr('patternUnits', 'userSpaceOnUse')
+            .attr('width', 8)
+            .attr('height', 8)
+          .append('path')
+            .attr('d', 'M-2,2 l4,-4 M0,8 l8,-8 M6,10 l4,-4')
+            .attr('stroke', EMPTY_COLOR)
+            .attr('stroke-width', 2);
 
-            // 25% Coverage (Sparse Dots)
-            defs.append('pattern')
-                .attr('id', `pat-low-${i}`)
-                .attr('patternUnits', 'userSpaceOnUse')
-                .attr('width', 4).attr('height', 4)
-                .call(p => {
-                    p.append('rect').attr('width', 2).attr('height', 2).attr('fill', hexColor);
-                });
-        });
+        // Low Confidence Texture
+        defs.append('pattern')
+            .attr('id', 'empty-dot-low')
+            .attr('patternUnits', 'userSpaceOnUse')
+            .attr('width', 5)
+            .attr('height', 5)
+          .append('circle')
+            .attr('cx', 2.5)
+            .attr('cy', 2.5)
+            .attr('r', 1.5)
+            .attr('fill', EMPTY_COLOR);
 
         let currentZoomK = 1; 
         const zoom = d3.zoom()
@@ -240,11 +233,14 @@
                 currentZoomK = event.transform.k;
                 gMap.attr("transform", event.transform);
                 
-                gCountries.selectAll(".country-path").attr("stroke-width", 0.5 / currentZoomK);
+                // Manter texturas ancoradas no ecrã (sem zoom)
+                defs.selectAll('pattern').attr('patternTransform', `scale(${1 / currentZoomK})`);
                 
-                gMicrostates.selectAll(".microstate")
-                    .attr("r", 5 / currentZoomK)
-                    .attr("stroke-width", 1 / currentZoomK);
+                gCountries.selectAll(".country-path").attr("stroke-width", 0.5 / currentZoomK);
+                gOverlays.selectAll(".overlay-path").attr("stroke-width", 0);
+                
+                gMicrostates.selectAll(".microstate-base").attr("r", 5 / currentZoomK).attr("stroke-width", 1 / currentZoomK);
+                gMicrostates.selectAll(".microstate-overlay").attr("r", 5 / currentZoomK);
 
                 gPins.selectAll(".origin-pin")
                     .attr("transform", function() {
@@ -277,7 +273,7 @@
                 .enter().append("path")
                 .attr("class", "country-path")
                 .attr("d", path)
-                .attr("fill", "#e2e8f0")
+                .attr("fill", EMPTY_COLOR)
                 .attr("stroke", "#cbd5e1")
                 .attr("stroke-width", 0.5);
 
@@ -332,11 +328,11 @@
         }
 
         function getCountryConfidence(cData) {
-            if(!cData) return { level: "Low", color: "red" };
+            if(!cData) return { level: "Low", pattern: "url(#empty-dot-low)", color: "red" };
             let ratio = cData.notes / cData.baseline;
-            if (cData.notes >= 100 || (cData.notes >= 20 && ratio >= 0.05)) return { level: "High", color: "green" };
-            if (cData.notes >= 30 || (cData.notes >= 5 && ratio >= 0.02)) return { level: "Medium", color: "orange" };
-            return { level: "Low", color: "red" };
+            if (cData.notes >= 100 || (cData.notes >= 20 && ratio >= 0.05)) return { level: "High", pattern: "none", color: "green" };
+            if (cData.notes >= 30 || (cData.notes >= 5 && ratio >= 0.02)) return { level: "Medium", pattern: "url(#empty-stripe-medium)", color: "orange" };
+            return { level: "Low", pattern: "url(#empty-dot-low)", color: "red" };
         }
 
         function renderMap(plateId) {
@@ -359,28 +355,48 @@
             document.getElementById('val-conf').innerHTML = `<span style="color:${confColor}">${data.confidence}</span>`;
             document.getElementById('val-dispersion').innerText = data.dispersion;
 
-            // Paint the Map Polygons
+            // Encontrar o teto dinâmico (com limite mínimo de 2.0 para evitar escalas microscópicas)
+            const maxLq = d3.max(Object.values(data.countries), d => d.lq) || 2;
+            const scaleMax = maxLq <= 1.0 ? 2.0 : maxLq;
+
+            // ESCALA CONTÍNUA DIVERGENTE BILINEAR
+            const colorScale = d3.scaleLinear()
+                .domain([0, 1.0, scaleMax])
+                .range(["#313695", "#fef9e7", "#d73027"]);
+
+            // 1. Pinta a Camada de Base com Cor Contínua
             gCountries.selectAll(".country-path")
                 .transition().duration(500)
                 .attr("fill", function(d) {
                     const cData = data.countries[d.properties.name];
-                    if(!cData) return "#e2e8f0"; // Missing Data = Clean Silver/Gray
-                    
-                    const bucketIdx = getLqBucket(cData.lq);
-                    const conf = getCountryConfidence(cData);
-                    
-                    if(conf.level === "High") return lqColors[bucketIdx];
-                    if(conf.level === "Medium") return `url(#pat-med-${bucketIdx})`;
-                    return `url(#pat-low-${bucketIdx})`;
+                    if(cData) return colorScale(cData.lq);
+                    return EMPTY_COLOR;
                 });
 
-            // Tooltips
+            // 2. Pinta a Camada Sobreposta de Textura (O "escantilhão")
+            gOverlays.selectAll(".overlay-path").remove();
+            gOverlays.selectAll(".overlay-path")
+                .data(geoData)
+                .enter().append("path")
+                .attr("class", "overlay-path")
+                .attr("d", path)
+                .attr("fill", function(d) {
+                    const cData = data.countries[d.properties.name];
+                    if(!cData) return "none";
+                    return getCountryConfidence(cData).pattern;
+                })
+                .attr("stroke", "none");
+
+            // Tooltips (ancoradas aos polígonos de base)
             gCountries.selectAll(".country-path")
                 .on("mouseover", function(event, d) {
                     const cData = data.countries[d.properties.name];
                     if(!cData) return;
 
                     d3.select(this).attr("stroke", "#1e293b").attr("stroke-width", 1.5 / currentZoomK).raise();
+                    // Garante que a textura sobreposta fica por cima da borda ao fazer hover
+                    gOverlays.raise();
+                    gPins.raise();
 
                     let hint = "Normal";
                     if(cData.lq > 2.0) hint = "Over-represented";
@@ -412,7 +428,7 @@
                     tooltip.style("opacity", 0);
                 });
 
-            // MICROSTATES
+            // MICROSTATES - Duas camadas: círculo base (cor) + círculo overlay (textura)
             const microstates = [
                 { id: "Malta", lon: 14.3754, lat: 35.9375 },
                 { id: "Andorra", lon: 1.5218, lat: 42.5063 },
@@ -421,29 +437,28 @@
                 { id: "Liechtenstein", lon: 9.5209, lat: 47.1660 }
             ];
 
-            gMicrostates.selectAll(".microstate").remove();
+            gMicrostates.selectAll("*").remove();
             microstates.forEach(ms => {
                 const msData = data.countries[ms.id];
                 if(msData) {
                     const coords = projection([ms.lon, ms.lat]);
                     if(coords) {
-                        const bucketIdx = getLqBucket(msData.lq);
                         const conf = getCountryConfidence(msData);
+                        const cGroup = gMicrostates.append("g");
                         
-                        let fillValue = lqColors[bucketIdx];
-                        if(conf.level === "Medium") fillValue = `url(#pat-med-${bucketIdx})`;
-                        if(conf.level === "Low") fillValue = `url(#pat-low-${bucketIdx})`;
-
-                        gMicrostates.append("circle")
-                            .attr("class", "microstate")
+                        // 1. Base color circle
+                        cGroup.append("circle")
+                            .attr("class", "microstate-base")
                             .attr("cx", coords[0])
                             .attr("cy", coords[1])
                             .attr("r", 5 / currentZoomK)
-                            .attr("fill", fillValue)
+                            .attr("fill", colorScale(msData.lq))
                             .attr("stroke", "#1e293b")
                             .attr("stroke-width", 1 / currentZoomK)
                             .on("mouseover", function(event) {
                                 d3.select(this).attr("r", 8 / currentZoomK).attr("stroke-width", 2 / currentZoomK).raise();
+                                cGroup.selectAll(".microstate-overlay").attr("r", 8 / currentZoomK).raise();
+                                
                                 let hint = msData.lq > 2.0 ? "Over-represented" : (msData.lq < 0.5 ? "Sub-represented" : "Normal");
                                 tooltip.html(`
                                     <div class="tt-country" style="border-bottom: 2px solid ${baseHex}; color: ${baseHex};">${ms.id}</div>
@@ -464,8 +479,20 @@
                             })
                             .on("mouseout", function() {
                                 d3.select(this).attr("r", 5 / currentZoomK).attr("stroke-width", 1 / currentZoomK);
+                                cGroup.selectAll(".microstate-overlay").attr("r", 5 / currentZoomK);
                                 tooltip.style("opacity", 0);
                             });
+
+                        // 2. Texture overlay circle
+                        if(conf.pattern !== "none") {
+                            cGroup.append("circle")
+                                .attr("class", "microstate-overlay")
+                                .attr("cx", coords[0])
+                                .attr("cy", coords[1])
+                                .attr("r", 5 / currentZoomK)
+                                .attr("fill", conf.pattern)
+                                .style("pointer-events", "none");
+                        }
                     }
                 }
             });
@@ -503,21 +530,27 @@
             }
 
             document.getElementById('legend-box').style.display = 'block';
-            drawLegendCanvas();
+            document.getElementById('legend-max').innerText = `Extreme (LQ = ${scaleMax.toFixed(1)}+)`;
+            drawLegendCanvas(colorScale, scaleMax);
         }
 
-        // Discrete Legend Drawer
-        function drawLegendCanvas() {
+        function drawLegendCanvas(colorScale, maxVal) {
             const canvas = document.getElementById('legend-canvas');
             const ctx = canvas.getContext('2d');
             const w = canvas.width;
-            const h = canvas.height;
-            const stepW = w / lqColors.length;
+            const mid = w / 2;
             
-            lqColors.forEach((color, i) => {
-                ctx.fillStyle = color;
-                ctx.fillRect(i * stepW, 0, stepW, h);
-            });
+            // Desenha um gradiente contínuo bilateral preciso
+            for (let i = 0; i < w; i++) {
+                let lqValue;
+                if (i <= mid) {
+                    lqValue = (i / mid) * 1.0;
+                } else {
+                    lqValue = 1.0 + ((i - mid) / mid) * (maxVal - 1.0);
+                }
+                ctx.fillStyle = colorScale(lqValue);
+                ctx.fillRect(i, 0, 1, canvas.height);
+            }
         }
     </script>
 </body>
