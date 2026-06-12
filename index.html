@@ -118,6 +118,13 @@
                 <label>3. Plate Shortcode</label>
                 <select id="sel-plate" disabled><option value="">Select Printer first</option></select>
             </div>
+
+            <div class="form-group" style="margin-top: 15px; padding-top: 12px; border-top: 1px solid var(--border-color);">
+                <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer;">
+                    <input type="checkbox" id="chk-show-all" style="width: auto; cursor: pointer;">
+                    <span style="font-size: 0.85rem; color: #475569; font-weight: 600;">Show low/medium reliability data</span>
+                </label>
+            </div>
         </div>
 
         <div class="panel" id="plate-profile" style="display: none; border-top: 4px solid var(--border-color);">
@@ -164,8 +171,8 @@
             <div style="margin-top: 15px; font-size: 0.75rem; color: #475569; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 10px;">
                 <strong>Data Reliability:</strong> 
                 <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="#800080"></rect></svg> High (Solid)</span>
-                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="#800080"></rect><rect width="24" height="14" fill="url(#empty-med-50)"></rect></svg> Medium (50%)</span>
-                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="#800080"></rect><rect width="24" height="14" fill="url(#empty-low-25)"></rect></svg> Low (25%)</span>
+                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="#94a3b8"></rect><rect width="24" height="14" fill="url(#empty-med-50)"></rect></svg> Medium (50%)</span>
+                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="#94a3b8"></rect><rect width="24" height="14" fill="url(#empty-low-25)"></rect></svg> Low (25%)</span>
             </div>
         </div>
     </div>
@@ -177,12 +184,11 @@
         };
 
         const EMPTY_COLOR = "#e2e8f0";
-
-        // A escala de 7 cores desenhada no teu Excel
         const lqColors = ["#0000FF", "#2A00D5", "#5500AA", "#800080", "#AA0055", "#D5002B", "#FF0000"];
 
         let masterData = null;
         let geoData = null;
+        let currentPlateId = null; // Guardar estado global da chapa ativa
         const container = document.querySelector('.map-container');
         const width = container.clientWidth;
         const height = container.clientHeight;
@@ -204,23 +210,19 @@
 
         const defs = svg.append('defs');
         
-        // Padrão Médio (Apaga 50% em xadrez de 2x2)
         defs.append('pattern')
             .attr('id', 'empty-med-50')
             .attr('patternUnits', 'userSpaceOnUse')
-            .attr('width', 4)
-            .attr('height', 4)
+            .attr('width', 4).attr('height', 4)
             .call(p => {
                 p.append('rect').attr('width', 2).attr('height', 2).attr('fill', EMPTY_COLOR);
                 p.append('rect').attr('x', 2).attr('y', 2).attr('width', 2).attr('height', 2).attr('fill', EMPTY_COLOR);
             });
 
-        // Padrão Baixo (Apaga 75%, deixando apenas 25% de cor num canto)
         defs.append('pattern')
             .attr('id', 'empty-low-25')
             .attr('patternUnits', 'userSpaceOnUse')
-            .attr('width', 4)
-            .attr('height', 4)
+            .attr('width', 4).attr('height', 4)
             .call(p => {
                 p.append('rect').attr('width', 4).attr('height', 2).attr('fill', EMPTY_COLOR);
                 p.append('rect').attr('y', 2).attr('width', 2).attr('height', 2).attr('fill', EMPTY_COLOR);
@@ -233,9 +235,7 @@
                 currentZoomK = event.transform.k;
                 gMap.attr("transform", event.transform);
                 
-                // Manter escalas fixas no ecrã independentemente do Zoom
                 defs.selectAll('pattern').attr('patternTransform', `scale(${1 / currentZoomK})`);
-                
                 gCountries.selectAll(".country-path").attr("stroke-width", 0.5 / currentZoomK);
                 gOverlays.selectAll(".overlay-path").attr("stroke-width", 0);
                 
@@ -260,7 +260,6 @@
                 document.getElementById('data-timestamp').innerText = `Data updated: ${masterData.metadata.last_updated} | Engine v${masterData.metadata.version}`;
             }
             const world = files[1];
-            
             geoData = topojson.feature(world, world.objects.countries).features;
             
             geoData.forEach(d => {
@@ -294,13 +293,11 @@
             selDenom.addEventListener('change', function() {
                 selPlate.innerHTML = `<option value="">Select Printer first</option>`;
                 selPlate.disabled = true;
-                
                 if(!this.value) {
                     selPrinter.innerHTML = `<option value="">Select Denomination first</option>`;
                     selPrinter.disabled = true;
                     return;
                 }
-
                 const printers = Object.keys(masterData.hierarchy[this.value]).sort();
                 selPrinter.innerHTML = `<option value="">-- Choose Printer --</option>` + 
                     printers.map(p => `<option value="${p}">${p}</option>`).join("");
@@ -322,7 +319,13 @@
 
             selPlate.addEventListener('change', function() {
                 if(!this.value) return;
-                renderMap(`${selDenom.value}_${this.value}`);
+                currentPlateId = `${selDenom.value}_${this.value}`;
+                renderMap(currentPlateId);
+            });
+
+            // Listener do Item d) para re-renderizar imediatamente na mudança do toggle
+            document.getElementById('chk-show-all').addEventListener('change', function() {
+                if (currentPlateId) renderMap(currentPlateId);
             });
         }
 
@@ -339,10 +342,10 @@
             if(!data) return;
 
             const baseHex = denomColors[data.denomination] || "#333333";
+            const showAll = document.getElementById('chk-show-all').checked;
             
             document.getElementById('main-title').style.color = baseHex;
             document.getElementById('plate-profile').style.borderTopColor = baseHex;
-
             document.getElementById('plate-profile').style.display = 'block';
             document.getElementById('val-id').innerText = `${data.denomination}€ ${data.plate}`;
             document.getElementById('val-origin').innerText = data.origin;
@@ -353,32 +356,32 @@
             document.getElementById('val-conf').innerHTML = `<span style="color:${confColor}">${data.confidence}</span>`;
             document.getElementById('val-dispersion').innerText = data.dispersion;
 
-            const maxLq = d3.max(Object.values(data.countries), d => d.lq) || 2;
+            // Item b) Filtrar scaleMax APENAS pelos países com reliability = High
+            const highConfCountries = Object.values(data.countries).filter(d => getCountryConfidence(d).level === "High");
+            const maxLq = highConfCountries.length > 0 ? d3.max(highConfCountries, d => d.lq) : (d3.max(Object.values(data.countries), d => d.lq) || 2);
             const scaleMax = maxLq <= 1.0 ? 2.0 : maxLq;
 
-            // Delinear os limites da escala contínua de 7 cores, forçando 1.0 no Violeta (#800080)
             const d_step_low = 1.0 / 3;
             const d_step_high = (scaleMax - 1.0) / 3;
             const colorScale = d3.scaleLinear()
-                .domain([
-                    0, 
-                    d_step_low, 
-                    d_step_low * 2, 
-                    1.0, 
-                    1.0 + d_step_high, 
-                    1.0 + d_step_high * 2, 
-                    scaleMax
-                ])
+                .domain([0, d_step_low, d_step_low * 2, 1.0, 1.0 + d_step_high, 1.0 + d_step_high * 2, scaleMax])
                 .range(lqColors);
 
+            // 1. Camada de Base Dinâmica (Oculta dados provisórios se showAll = false)
             gCountries.selectAll(".country-path")
                 .transition().duration(500)
                 .attr("fill", function(d) {
                     const cData = data.countries[d.properties.name];
-                    if(cData) return colorScale(cData.lq);
+                    if(cData) {
+                        const conf = getCountryConfidence(cData);
+                        if(conf.level === "High" || showAll) {
+                            return colorScale(cData.lq);
+                        }
+                    }
                     return EMPTY_COLOR;
                 });
 
+            // 2. Camada Sobreposta de Texturas (Só renderiza se showAll = true)
             gOverlays.selectAll(".overlay-path").remove();
             gOverlays.selectAll(".overlay-path")
                 .data(geoData)
@@ -388,7 +391,11 @@
                 .attr("fill", function(d) {
                     const cData = data.countries[d.properties.name];
                     if(!cData) return "none";
-                    return getCountryConfidence(cData).pattern;
+                    const conf = getCountryConfidence(cData);
+                    if(conf.level !== "High" && showAll) {
+                        return conf.pattern;
+                    }
+                    return "none";
                 })
                 .attr("stroke", "none");
 
@@ -396,16 +403,21 @@
                 .on("mouseover", function(event, d) {
                     const cData = data.countries[d.properties.name];
                     if(!cData) return;
+                    
+                    const cConfData = getCountryConfidence(cData);
+                    if(cConfData.level !== "High" && !showAll) return; // Bloquear hover em dados ocultos
 
                     d3.select(this).attr("stroke", "#1e293b").attr("stroke-width", 1.5 / currentZoomK).raise();
                     gOverlays.raise();
                     gPins.raise();
 
+                    // Item c) Aumento de granularidade para 5 categorias analíticas nas Tooltips
                     let hint = "Normal";
-                    if(cData.lq > 1.5) hint = "Over-represented";
-                    if(cData.lq < 0.8) hint = "Sub-represented";
-
-                    const cConfData = getCountryConfidence(cData);
+                    if (cData.lq < 0.3) hint = "Rare";
+                    else if (cData.lq < 0.8) hint = "Sub-represented";
+                    else if (cData.lq <= 1.2) hint = "Normal";
+                    else if (cData.lq <= 4.0) hint = "Over-represented";
+                    else hint = "Extreme Concentration";
 
                     tooltip.html(`
                         <div class="tt-country" style="border-bottom: 2px solid ${baseHex}; color: ${baseHex};">${d.properties.name}</div>
@@ -420,10 +432,8 @@
                     let ttHeight = tooltip.node().offsetHeight;
                     let x = event.pageX + 15;
                     let y = event.pageY - 28;
-
                     if (x + ttWidth > window.innerWidth) x = event.pageX - ttWidth - 15;
                     if (y + ttHeight > window.innerHeight) y = event.pageY - ttHeight - 15;
-
                     tooltip.style("left", x + "px").style("top", y + "px");
                 })
                 .on("mouseout", function() {
@@ -444,24 +454,30 @@
             microstates.forEach(ms => {
                 const msData = data.countries[ms.id];
                 if(msData) {
+                    const conf = getCountryConfidence(msData);
+                    if(conf.level !== "High" && !showAll) return; // Esconder microestado se não for fiável
+
                     const coords = projection([ms.lon, ms.lat]);
                     if(coords) {
-                        const conf = getCountryConfidence(msData);
                         const cGroup = gMicrostates.append("g");
                         
                         cGroup.append("circle")
                             .attr("class", "microstate-base")
-                            .attr("cx", coords[0])
-                            .attr("cy", coords[1])
+                            .attr("cx", coords[0]).attr("cy", coords[1])
                             .attr("r", 5 / currentZoomK)
                             .attr("fill", colorScale(msData.lq))
-                            .attr("stroke", "#1e293b")
-                            .attr("stroke-width", 1 / currentZoomK)
+                            .attr("stroke", "#1e293b").attr("stroke-width", 1 / currentZoomK)
                             .on("mouseover", function(event) {
                                 d3.select(this).attr("r", 8 / currentZoomK).attr("stroke-width", 2 / currentZoomK).raise();
                                 cGroup.selectAll(".microstate-overlay").attr("r", 8 / currentZoomK).raise();
                                 
-                                let hint = msData.lq > 1.5 ? "Over-represented" : (msData.lq < 0.8 ? "Sub-represented" : "Normal");
+                                let hint = "Normal";
+                                if (msData.lq < 0.3) hint = "Rare";
+                                else if (msData.lq < 0.8) hint = "Sub-represented";
+                                else if (msData.lq <= 1.2) hint = "Normal";
+                                else if (msData.lq <= 4.0) hint = "Over-represented";
+                                else hint = "Extreme Concentration";
+
                                 tooltip.html(`
                                     <div class="tt-country" style="border-bottom: 2px solid ${baseHex}; color: ${baseHex};">${ms.id}</div>
                                     <div><strong>LQ:</strong> ${msData.lq.toFixed(2)} <i>(${hint})</i></div>
@@ -470,26 +486,16 @@
                                 `);
                                 tooltip.style("opacity", 1);
                             })
-                            .on("mousemove", function(event) {
-                                let ttWidth = tooltip.node().offsetWidth; 
-                                let ttHeight = tooltip.nodeoffsetHeight;
-                                let x = event.pageX + 15; 
-                                let y = event.pageY - 28;
-                                if (x + ttWidth > window.innerWidth) x = event.pageX - ttWidth - 15;
-                                if (y + ttHeight > window.innerHeight) y = event.pageY - ttHeight - 15;
-                                tooltip.style("left", x + "px").style("top", y + "px");
-                            })
                             .on("mouseout", function() {
                                 d3.select(this).attr("r", 5 / currentZoomK).attr("stroke-width", 1 / currentZoomK);
                                 cGroup.selectAll(".microstate-overlay").attr("r", 5 / currentZoomK);
                                 tooltip.style("opacity", 0);
                             });
 
-                        if(conf.pattern !== "none") {
+                        if(conf.pattern !== "none" && showAll) {
                             cGroup.append("circle")
                                 .attr("class", "microstate-overlay")
-                                .attr("cx", coords[0])
-                                .attr("cy", coords[1])
+                                .attr("cx", coords[0]).attr("cy", coords[1])
                                 .attr("r", 5 / currentZoomK)
                                 .attr("fill", conf.pattern)
                                 .style("pointer-events", "none");
@@ -504,33 +510,23 @@
                 if (coords) {
                     const pinGroup = gPins.append("g")
                         .attr("class", "origin-pin")
-                        .attr("data-cx", coords[0])
-                        .attr("data-cy", coords[1])
+                        .attr("data-cx", coords[0]).attr("data-cy", coords[1])
                         .attr("transform", `translate(${coords[0]}, ${coords[1]}) scale(${1 / currentZoomK})`);
 
                     pinGroup.append("path")
                         .attr("d", "M0,0 l-12,-24 a14,14 0 1,1 24,0 z")
-                        .attr("fill", baseHex)
-                        .attr("stroke", "white")
-                        .attr("stroke-width", 1.5);
-                        
-                    pinGroup.append("circle")
-                        .attr("cy", -28)
-                        .attr("r", 9)
-                        .attr("fill", "white");
-
-                    pinGroup.append("text")
-                        .attr("y", -24)
-                        .attr("text-anchor", "middle")
-                        .attr("font-size", "11px")
-                        .attr("font-weight", "bold")
-                        .attr("fill", baseHex)
-                        .text(data.plate.charAt(0));
+                        .attr("fill", baseHex).attr("stroke", "white").attr("stroke-width", 1.5);
+                    pinGroup.append("circle").attr("cy", -28).attr("r", 9).attr("fill", "white");
+                    pinGroup.append("text").attr("y", -24).attr("text-anchor", "middle").attr("font-size", "11px").attr("font-weight", "bold").attr("fill", baseHex).text(data.plate.charAt(0));
                 }
             }
 
             document.getElementById('legend-box').style.display = 'block';
-            document.getElementById('legend-max').innerText = `Extreme (LQ = ${scaleMax.toFixed(1)}+)`;
+            
+            // Item a) Arredondar para baixo o valor máximo de exibição da legenda (.floor)
+            const displayMax = (Math.floor(scaleMax * 10) / 10).toFixed(1);
+            document.getElementById('legend-max').innerText = `Extreme (LQ = ${displayMax}+)`;
+            
             drawLegendCanvas(colorScale, scaleMax);
         }
 
