@@ -14,7 +14,7 @@
             --text-main: #2c3e50;
             --panel-bg: #ffffff;
             --border-color: #e2e8f0;
-            --empty-country: #e2e8f0; /* Variável global para garantir correspondência exata */
+            --empty-country: #e2e8f0;
         }
 
         body {
@@ -155,17 +155,17 @@
         
         <div class="legend-container" id="legend-box" style="display: none;">
             <div style="display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: bold; margin-bottom: 8px;">
-                <span style="color: #313695; width: 33.3%;">Rare (LQ &lt; 1.0)</span>
-                <span style="color: #64748b; width: 33.3%; text-align: center;">Normal (LQ = 1.0)</span>
-                <span id="legend-max" style="color: #d73027; width: 33.3%; text-align: right;">Extreme</span>
+                <span style="color: #0000FF; width: 33.3%;">Rare (LQ &lt; 1.0)</span>
+                <span style="color: #800080; width: 33.3%; text-align: center;">Normal (LQ = 1.0)</span>
+                <span id="legend-max" style="color: #FF0000; width: 33.3%; text-align: right;">Extreme</span>
             </div>
             <canvas id="legend-canvas" width="400" height="15" style="width: 100%; border-radius: 4px; border: 1px solid #e2e8f0;"></canvas>
             
             <div style="margin-top: 15px; font-size: 0.75rem; color: #475569; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 10px;">
                 <strong>Data Reliability:</strong> 
-                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="#94a3b8"></rect></svg> High (Solid)</span>
-                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="#94a3b8"></rect><rect width="24" height="14" fill="url(#empty-stripe-medium)"></rect></svg> Medium (Hatched)</span>
-                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="#94a3b8"></rect><rect width="24" height="14" fill="url(#empty-dot-low)"></rect></svg> Low (Stippled)</span>
+                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="#800080"></rect></svg> High (Solid)</span>
+                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="#800080"></rect><rect width="24" height="14" fill="url(#empty-med-50)"></rect></svg> Medium (50%)</span>
+                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="#800080"></rect><rect width="24" height="14" fill="url(#empty-low-25)"></rect></svg> Low (25%)</span>
             </div>
         </div>
     </div>
@@ -176,7 +176,10 @@
             "50": "#F29527", "100": "#3C7D22", "200": "#FBC11D", "500": "#8D3C8E"
         };
 
-        const EMPTY_COLOR = "#e2e8f0"; // A tua sugestão correta para a cor de ausência
+        const EMPTY_COLOR = "#e2e8f0";
+
+        // A escala de 7 cores desenhada no teu Excel
+        const lqColors = ["#0000FF", "#2A00D5", "#5500AA", "#800080", "#AA0055", "#D5002B", "#FF0000"];
 
         let masterData = null;
         let geoData = null;
@@ -193,38 +196,35 @@
         const svg = d3.select("#europe-map");
         const tooltip = d3.select("#tooltip");
 
-        // SVG LAYERS ARCHITECTURE (Duas camadas separadas)
         const gMap = svg.append("g");
         const gCountries = gMap.append("g").attr("class", "layer-countries");
         const gOverlays = gMap.append("g").attr("class", "layer-overlays").style("pointer-events", "none");
         const gMicrostates = gMap.append("g").attr("class", "layer-microstates");
         const gPins = gMap.append("g").attr("class", "layer-pins").style("pointer-events", "none");
 
-        // INJECT TEXTURES WITH "EMPTY" COLOR (#e2e8f0)
         const defs = svg.append('defs');
         
-        // Medium Confidence Texture
+        // Padrão Médio (Apaga 50% em xadrez de 2x2)
         defs.append('pattern')
-            .attr('id', 'empty-stripe-medium')
+            .attr('id', 'empty-med-50')
             .attr('patternUnits', 'userSpaceOnUse')
-            .attr('width', 8)
-            .attr('height', 8)
-          .append('path')
-            .attr('d', 'M-2,2 l4,-4 M0,8 l8,-8 M6,10 l4,-4')
-            .attr('stroke', EMPTY_COLOR)
-            .attr('stroke-width', 2);
+            .attr('width', 4)
+            .attr('height', 4)
+            .call(p => {
+                p.append('rect').attr('width', 2).attr('height', 2).attr('fill', EMPTY_COLOR);
+                p.append('rect').attr('x', 2).attr('y', 2).attr('width', 2).attr('height', 2).attr('fill', EMPTY_COLOR);
+            });
 
-        // Low Confidence Texture
+        // Padrão Baixo (Apaga 75%, deixando apenas 25% de cor num canto)
         defs.append('pattern')
-            .attr('id', 'empty-dot-low')
+            .attr('id', 'empty-low-25')
             .attr('patternUnits', 'userSpaceOnUse')
-            .attr('width', 5)
-            .attr('height', 5)
-          .append('circle')
-            .attr('cx', 2.5)
-            .attr('cy', 2.5)
-            .attr('r', 1.5)
-            .attr('fill', EMPTY_COLOR);
+            .attr('width', 4)
+            .attr('height', 4)
+            .call(p => {
+                p.append('rect').attr('width', 4).attr('height', 2).attr('fill', EMPTY_COLOR);
+                p.append('rect').attr('y', 2).attr('width', 2).attr('height', 2).attr('fill', EMPTY_COLOR);
+            });
 
         let currentZoomK = 1; 
         const zoom = d3.zoom()
@@ -233,7 +233,7 @@
                 currentZoomK = event.transform.k;
                 gMap.attr("transform", event.transform);
                 
-                // Manter texturas ancoradas no ecrã (sem zoom)
+                // Manter escalas fixas no ecrã independentemente do Zoom
                 defs.selectAll('pattern').attr('patternTransform', `scale(${1 / currentZoomK})`);
                 
                 gCountries.selectAll(".country-path").attr("stroke-width", 0.5 / currentZoomK);
@@ -267,7 +267,6 @@
                 if(d.properties.name === "Bosnia and Herz.") d.properties.name = "Bosnia and Herzegovina";
             });
 
-            // Base Map Init
             gCountries.selectAll(".country-path")
                 .data(geoData)
                 .enter().append("path")
@@ -328,11 +327,11 @@
         }
 
         function getCountryConfidence(cData) {
-            if(!cData) return { level: "Low", pattern: "url(#empty-dot-low)", color: "red" };
+            if(!cData) return { level: "Low", pattern: "url(#empty-low-25)", color: "red" };
             let ratio = cData.notes / cData.baseline;
             if (cData.notes >= 100 || (cData.notes >= 20 && ratio >= 0.05)) return { level: "High", pattern: "none", color: "green" };
-            if (cData.notes >= 30 || (cData.notes >= 5 && ratio >= 0.02)) return { level: "Medium", pattern: "url(#empty-stripe-medium)", color: "orange" };
-            return { level: "Low", pattern: "url(#empty-dot-low)", color: "red" };
+            if (cData.notes >= 30 || (cData.notes >= 5 && ratio >= 0.02)) return { level: "Medium", pattern: "url(#empty-med-50)", color: "orange" };
+            return { level: "Low", pattern: "url(#empty-low-25)", color: "red" };
         }
 
         function renderMap(plateId) {
@@ -341,7 +340,6 @@
 
             const baseHex = denomColors[data.denomination] || "#333333";
             
-            // Dynamic UI Styling
             document.getElementById('main-title').style.color = baseHex;
             document.getElementById('plate-profile').style.borderTopColor = baseHex;
 
@@ -355,16 +353,24 @@
             document.getElementById('val-conf').innerHTML = `<span style="color:${confColor}">${data.confidence}</span>`;
             document.getElementById('val-dispersion').innerText = data.dispersion;
 
-            // Encontrar o teto dinâmico (com limite mínimo de 2.0 para evitar escalas microscópicas)
             const maxLq = d3.max(Object.values(data.countries), d => d.lq) || 2;
             const scaleMax = maxLq <= 1.0 ? 2.0 : maxLq;
 
-            // ESCALA CONTÍNUA DIVERGENTE BILINEAR
+            // Delinear os limites da escala contínua de 7 cores, forçando 1.0 no Violeta (#800080)
+            const d_step_low = 1.0 / 3;
+            const d_step_high = (scaleMax - 1.0) / 3;
             const colorScale = d3.scaleLinear()
-                .domain([0, 1.0, scaleMax])
-                .range(["#313695", "#fef9e7", "#d73027"]);
+                .domain([
+                    0, 
+                    d_step_low, 
+                    d_step_low * 2, 
+                    1.0, 
+                    1.0 + d_step_high, 
+                    1.0 + d_step_high * 2, 
+                    scaleMax
+                ])
+                .range(lqColors);
 
-            // 1. Pinta a Camada de Base com Cor Contínua
             gCountries.selectAll(".country-path")
                 .transition().duration(500)
                 .attr("fill", function(d) {
@@ -373,7 +379,6 @@
                     return EMPTY_COLOR;
                 });
 
-            // 2. Pinta a Camada Sobreposta de Textura (O "escantilhão")
             gOverlays.selectAll(".overlay-path").remove();
             gOverlays.selectAll(".overlay-path")
                 .data(geoData)
@@ -387,20 +392,18 @@
                 })
                 .attr("stroke", "none");
 
-            // Tooltips (ancoradas aos polígonos de base)
             gCountries.selectAll(".country-path")
                 .on("mouseover", function(event, d) {
                     const cData = data.countries[d.properties.name];
                     if(!cData) return;
 
                     d3.select(this).attr("stroke", "#1e293b").attr("stroke-width", 1.5 / currentZoomK).raise();
-                    // Garante que a textura sobreposta fica por cima da borda ao fazer hover
                     gOverlays.raise();
                     gPins.raise();
 
                     let hint = "Normal";
-                    if(cData.lq > 2.0) hint = "Over-represented";
-                    if(cData.lq < 0.5) hint = "Sub-represented";
+                    if(cData.lq > 1.5) hint = "Over-represented";
+                    if(cData.lq < 0.8) hint = "Sub-represented";
 
                     const cConfData = getCountryConfidence(cData);
 
@@ -428,7 +431,7 @@
                     tooltip.style("opacity", 0);
                 });
 
-            // MICROSTATES - Duas camadas: círculo base (cor) + círculo overlay (textura)
+            // MICROSTATES
             const microstates = [
                 { id: "Malta", lon: 14.3754, lat: 35.9375 },
                 { id: "Andorra", lon: 1.5218, lat: 42.5063 },
@@ -446,7 +449,6 @@
                         const conf = getCountryConfidence(msData);
                         const cGroup = gMicrostates.append("g");
                         
-                        // 1. Base color circle
                         cGroup.append("circle")
                             .attr("class", "microstate-base")
                             .attr("cx", coords[0])
@@ -459,7 +461,7 @@
                                 d3.select(this).attr("r", 8 / currentZoomK).attr("stroke-width", 2 / currentZoomK).raise();
                                 cGroup.selectAll(".microstate-overlay").attr("r", 8 / currentZoomK).raise();
                                 
-                                let hint = msData.lq > 2.0 ? "Over-represented" : (msData.lq < 0.5 ? "Sub-represented" : "Normal");
+                                let hint = msData.lq > 1.5 ? "Over-represented" : (msData.lq < 0.8 ? "Sub-represented" : "Normal");
                                 tooltip.html(`
                                     <div class="tt-country" style="border-bottom: 2px solid ${baseHex}; color: ${baseHex};">${ms.id}</div>
                                     <div><strong>LQ:</strong> ${msData.lq.toFixed(2)} <i>(${hint})</i></div>
@@ -470,7 +472,7 @@
                             })
                             .on("mousemove", function(event) {
                                 let ttWidth = tooltip.node().offsetWidth; 
-                                let ttHeight = tooltip.node().offsetHeight;
+                                let ttHeight = tooltip.nodeoffsetHeight;
                                 let x = event.pageX + 15; 
                                 let y = event.pageY - 28;
                                 if (x + ttWidth > window.innerWidth) x = event.pageX - ttWidth - 15;
@@ -483,7 +485,6 @@
                                 tooltip.style("opacity", 0);
                             });
 
-                        // 2. Texture overlay circle
                         if(conf.pattern !== "none") {
                             cGroup.append("circle")
                                 .attr("class", "microstate-overlay")
@@ -497,7 +498,6 @@
                 }
             });
 
-            // PRINTER ORIGIN PIN
             gPins.selectAll(".origin-pin").remove();
             if (data.origin_coords && data.origin_coords.lon !== null) {
                 const coords = projection([data.origin_coords.lon, data.origin_coords.lat]);
@@ -540,7 +540,6 @@
             const w = canvas.width;
             const mid = w / 2;
             
-            // Desenha um gradiente contínuo bilateral preciso
             for (let i = 0; i < w; i++) {
                 let lqValue;
                 if (i <= mid) {
