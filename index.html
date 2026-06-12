@@ -75,8 +75,8 @@
 
         .legend-container {
             position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-            width: 60%; background: rgba(255,255,255,0.9); padding: 10px 20px;
-            border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); pointer-events: none;
+            width: 65%; background: rgba(255,255,255,0.95); padding: 12px 20px;
+            border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid #cbd5e1; pointer-events: none;
         }
         
         .help-box {
@@ -88,6 +88,10 @@
             position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.8);
             padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; color: #64748b;
             pointer-events: none;
+        }
+
+        .conf-badge {
+            display: inline-block; padding: 2px 8px; border-radius: 4px; font-weight: bold; color: white; margin-right: 8px; font-size: 0.75rem;
         }
     </style>
 </head>
@@ -131,8 +135,7 @@
             The Location Quotient measures geographic concentration relative to the EBT community size.<br><br>
             • <strong>LQ = 1.0:</strong> Normal dispersion.<br>
             • <strong>LQ = 2.0:</strong> The note is 2x more frequent in this country than expected.<br>
-            • <strong>LQ = 0.2:</strong> The note is 5x rarer than expected.<br><br>
-            <i>Note: Transparent/ghosted countries indicate very low data confidence for that specific territory.</i>
+            • <strong>LQ = 0.2:</strong> The note is 5x rarer than expected.<br>
             <div style="margin-top: 15px; text-align: center;">
                 <a href="https://github.com/ShortOkapi/plate-dispersion-map#readme" target="_blank" style="display: inline-block; background-color: #2563eb; color: white; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                     📖 How this works (Methodology)
@@ -147,12 +150,19 @@
         <div class="tooltip" id="tooltip"></div>
         
         <div class="legend-container" id="legend-box" style="display: none;">
-            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: bold; margin-bottom: 5px;">
-                <span>Rare (LQ ≈ 0)</span>
-                <span>Baseline (LQ = 1.0)</span>
-                <span id="legend-max">Extreme</span>
+            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: bold; margin-bottom: 5px; color: #334155;">
+                <span style="color: #d73027;">Rare (LQ < 1)</span>
+                <span style="color: #64748b;">Normal (LQ = 1)</span>
+                <span id="legend-max" style="color: #313695;">Extreme</span>
             </div>
-            <canvas id="legend-canvas" width="400" height="15" style="width: 100%; border-radius: 4px;"></canvas>
+            <canvas id="legend-canvas" width="400" height="15" style="width: 100%; border-radius: 4px; border: 1px solid #e2e8f0;"></canvas>
+            
+            <div style="margin-top: 10px; font-size: 0.75rem; color: #475569; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 8px;">
+                <strong>Data Confidence:</strong> 
+                <span class="conf-badge" style="background: #94a3b8; opacity: 1;">High (Solid)</span>
+                <span class="conf-badge" style="background: #94a3b8; opacity: 0.55;">Medium (Faded)</span>
+                <span class="conf-badge" style="background: #94a3b8; opacity: 0.20;">Low (Ghost)</span>
+            </div>
         </div>
     </div>
 
@@ -279,7 +289,6 @@
             });
         }
 
-        // --- THE CONFIDENCE / VALUE-BY-ALPHA ALGORITHM ---
         function getCountryConfidence(cData) {
             if(!cData) return { level: "Low", opacity: 0.20, color: "red" };
             let ratio = cData.notes / cData.baseline;
@@ -294,7 +303,6 @@
 
             const baseHex = denomColors[data.denomination] || "#333333";
             
-            // UI Color Injection
             document.getElementById('main-title').style.color = baseHex;
             document.getElementById('plate-profile').style.borderTopColor = baseHex;
 
@@ -312,10 +320,10 @@
             const cappedMax = Math.min(maxLq, 6.0); 
             const scaleMax = cappedMax <= 1.0 ? 2.0 : cappedMax;
 
-            // Universal Map Color Scale (White -> Slate -> Deep Blue)
+            // DIVERGING COLOR SCALE (Red -> Silver -> Deep Blue)
             const colorScale = d3.scaleLinear()
                 .domain([0, 1.0, scaleMax])
-                .range(["#ffffff", "#94a3b8", "#1e3a8a"]);
+                .range(["#d73027", "#e2e8f0", "#313695"]);
 
             gCountries.selectAll(".country-path")
                 .transition().duration(500)
@@ -367,7 +375,6 @@
                     tooltip.style("opacity", 0);
                 });
 
-            // MICROSTATES
             const microstates = [
                 { id: "Malta", lon: 14.3754, lat: 35.9375 },
                 { id: "Andorra", lon: 1.5218, lat: 42.5063 },
@@ -423,7 +430,6 @@
                 }
             });
 
-            // FIXED ORIGIN PIN (Using Denomination Color)
             gPins.selectAll(".origin-pin").remove();
             if (data.origin_coords && data.origin_coords.lon !== null) {
                 const coords = projection([data.origin_coords.lon, data.origin_coords.lat]);
