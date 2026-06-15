@@ -8,8 +8,76 @@ import re
 from collections import defaultdict
 from datetime import datetime, timedelta
 
-VERSION = "1.1.1"
+VERSION = "2.0.0"
 print(f"=== STARTING EBT MAP AUTO-UPDATE v{VERSION} ===")
+
+# ==========================================
+# 0. CORE DEFINITIONS & TAXONOMY ENGINE
+# ==========================================
+
+# Utilizar os nomes completos exatos como vêm no EBT Dump
+CORE_COUNTRIES = {
+    "Austria", "Belgium", "Croatia", "Cyprus", "Estonia", "Finland", 
+    "France", "Germany", "Greece", "Ireland", "Italy", "Latvia", 
+    "Lithuania", "Luxembourg", "Malta", "Netherlands", "Portugal", 
+    "Slovakia", "Slovenia", "Spain", "Andorra", "Monaco", "San Marino", 
+    "Vatican City", "Kosovo", "Montenegro", "Switzerland"
+}
+
+def get_reliability(notes, baseline):
+    """Calcula a fiabilidade estatística dos dados do país."""
+    if baseline == 0: return "Low"
+    ratio = notes / baseline
+    if notes >= 100 or (notes >= 20 and ratio >= 0.05): return "High"
+    if notes >= 30 or (notes >= 5 and ratio >= 0.02): return "Medium"
+    return "Low"
+
+def determine_taxonomy(high_data, origin_country, total_plate_notes):
+    """
+    O Cérebro do Motor: Avalia a topografia dos LQs fiáveis e atribui
+    a categoria correta baseada nas nossas regras geográficas.
+    """
+    if len(high_data) == 0 or total_plate_notes < 150:
+        return "Undetermined (Insufficient Data)"
+        
+    # Ordenar do maior LQ para o menor
+    high_data.sort(key=lambda x: x[1], reverse=True)
+    
+    # Se só há 1 país fiável
+    if len(high_data) == 1:
+        top1_c = high_data[0][0]
+        if top1_c == origin_country:
+            return "Domestic Concentration"
+        return f"Displaced Concentration ({top1_c})"
+        
+    top1_c, top1_lq = high_data[0]
+    top2_c, top2_lq = high_data[1]
+    
+    # 1. Teste de Dispersão Pandémica
+    lqs = [x[1] for x in high_data]
+    if len(high_data) >= 4 and np.std(lqs) < 0.6:
+        return "Pandemic Dispersion"
+        
+    # 2. Teste do Rácio de Isolamento (O abismo entre o 1º e o 2º)
+    ratio = top1_lq / top2_lq if top2_lq > 0 else 99
+    if ratio >= 1.8:
+        if top1_c == origin_country:
+            return "Domestic Concentration"
+        return f"Displaced Concentration ({top1_c})"
+    
+    # 3. Teste de Co-Liderança (Empate Técnico)
+    leaders = [top1_c, top2_c]
+    
+    # Verificar se há um 3º país colado ao 2º
+    if len(high_data) >= 3:
+        top3_c, top3_lq = high_data[2]
+        if (top2_lq / top3_lq) < 1.4:
+            leaders.append(top3_c)
+            
+    if origin_country in leaders:
+        return f"Endemic Leakage (Origin + {', '.join([c for c in leaders if c != origin_country])})"
+    else:
+        return f"Regional Cluster ({', '.join(leaders)})"
 
 # ==========================================
 # 1. PARSE GUY SOHIER CATALOG (WEB SCRAPING)
@@ -66,7 +134,6 @@ for row in soup.find_all('tr'):
                     whitelist[(current_denomination, plate)] += qty
                     processed_lines += 1
 
-# Build Whitelist DataFrame
 wl_data = []
 for (denom, plate), qty in whitelist.items():
     wl_data.append({'denomination': denom, 'shortcode_detailed': plate, 'Print_Run_Millions': round(qty, 3)})
@@ -110,7 +177,6 @@ r_totals.encoding = 'utf-8'
 raw_lines_totals = r_totals.text.split('\n')
 ebt_update_date = "Unknown Date"
 
-# Look for the official EBT server date in the first line and convert to UTC
 for line in raw_lines_totals:
     if line.startswith("Updated:"):
         raw_date = line.replace("Updated:", "").strip()
@@ -118,23 +184,14 @@ for line in raw_lines_totals:
             parts = [p for p in raw_date.split(' ') if p]
             if len(parts) >= 6:
                 month, day, time_str, tz_str, year = parts[1], parts[2], parts[3], parts[4], parts[5]
-                
-                # Create a clean date string without timezone
                 clean_date_str = f"{year} {month} {day} {time_str}"
                 dt = datetime.strptime(clean_date_str, "%Y %b %d %H:%M:%S")
-                
-                # Subtract hours based on Finnish timezone (EEST = UTC+3, EET = UTC+2)
-                if tz_str == "EEST":
-                    dt -= timedelta(hours=3)
-                elif tz_str == "EET":
-                    dt -= timedelta(hours=2)
-                    
-                # Format into normalized numerical UTC format
+                if tz_str == "EEST": dt -= timedelta(hours=3)
+                elif tz_str == "EET": dt -= timedelta(hours=2)
                 ebt_update_date = dt.strftime("%Y-%m-%d %H:%M:%S UTC")
             else:
                 ebt_update_date = raw_date
         except Exception as e:
-            print("Date parse error:", e)
             ebt_update_date = raw_date
         break
 
@@ -152,7 +209,6 @@ totals_df = totals_df.dropna(subset=['year', 'denomination', 'count'])
 
 europa_totals_df = totals_df[totals_df['year'] > 2002].copy()
 
-# Calculate TRUE global totals from the uncensored list
 real_plate_totals = europa_totals_df.groupby(['denomination', 'shortcode_detailed'])['count'].sum().reset_index()
 real_plate_totals.rename(columns={'count': 'plate_global_total'}, inplace=True)
 
@@ -180,7 +236,6 @@ printers = {
     'Z': {"name": "Z - NBB (Belgium)", "country": "Belgium", "lon": 4.36017, "lat": 50.85019}
 }
 
-# Injecting the REAL global totals into the algorithm
 denom_totals = real_denom_totals
 
 baseline_df = valid_europa_df.groupby(['denomination', 'country'])['count'].sum().reset_index()
@@ -191,7 +246,6 @@ baseline_df['baseline_pct'] = baseline_df['baseline_total_notes'] / baseline_df[
 plate_country_df = valid_europa_df.groupby(['denomination', 'shortcode_detailed', 'country'])['count'].sum().reset_index()
 plate_country_df.rename(columns={'count': 'plate_notes_in_country'}, inplace=True)
 
-# Injecting the REAL plate totals into the algorithm
 plate_totals = real_plate_totals
 
 plate_analysis = pd.merge(plate_country_df, plate_totals, on=['denomination', 'shortcode_detailed'], how='inner')
@@ -205,11 +259,10 @@ denom_ebt_totals = denom_totals.set_index('denomination')['denom_global_total'].
 avg_capture_rate = {d: (denom_ebt_totals[d] / pr if pr > 0 else 500) for d, pr in denom_print_runs.items()}
 
 # ==========================================
-# 4. EXPORT TO JSON
+# 4. EXPORT TO JSON WITH NEW TAXONOMY
 # ==========================================
 print("Step 4: Writing the JSON map database...")
 
-# Inject version and true server update date into metadata
 master_data = {
     "metadata": {
         "last_updated": ebt_update_date,
@@ -249,21 +302,47 @@ for name, group in grouped_plates:
         print_run_str = "Unknown"
         confidence = "Undetermined"
         
-    lq_std = group['location_quotient'].std()
-    threshold_notes = max(total_ebt * 0.01, 20) 
-    valid_dest = group[(group['plate_notes_in_country'] >= threshold_notes) & (group['baseline_total_notes'] >= 10000)]
-    if valid_dest.empty: valid_dest = group[group['plate_notes_in_country'] >= 20]
-    if valid_dest.empty: valid_dest = group
+    countries_data = {}
+    row_notes = 0
+    row_baseline = 0
     
-    max_country = valid_dest.loc[valid_dest['location_quotient'].idxmax(), 'country'] if not valid_dest.empty else ""
+    # Preencher dados dos países e separar a periferia
+    for _, row in group.iterrows():
+        c_code = row['country']
+        n_found = int(row['plate_notes_in_country'])
+        c_base = int(row['baseline_total_notes'])
+        c_lq = float(row['location_quotient'])
+        
+        countries_data[c_code] = {
+            "lq": round(c_lq, 2), 
+            "notes": n_found, 
+            "baseline": c_base
+        }
+        
+        if c_code not in CORE_COUNTRIES:
+            row_notes += n_found
+            row_baseline += c_base
+            
+    # Calcular matriz de LQs de alta fiabilidade para a Taxonomia
+    high_data_for_taxonomy = []
+    for c_code, c_data in countries_data.items():
+        if c_code in CORE_COUNTRIES:
+            rel = get_reliability(c_data["notes"], c_data["baseline"])
+            if rel == "High":
+                high_data_for_taxonomy.append((c_code, c_data["lq"]))
+                
+    # Adicionar o Rest of World se for estatisticamente fiável
+    if row_baseline > 0:
+        rel_row = get_reliability(row_notes, row_baseline)
+        if rel_row == "High":
+            row_pct = row_notes / total_ebt
+            row_base_pct = row_baseline / denom_ebt_totals[denom]
+            row_lq = row_pct / row_base_pct if row_base_pct > 0 else 0
+            high_data_for_taxonomy.append(("Rest of World", row_lq))
 
-    if pd.isna(lq_std) or lq_std < 0.7: dispersion = "Pandemic (Uniformly spread)"
-    elif lq_std > 1.0 and max_country == p_info["country"]: dispersion = "Endemic (Local retention)"
-    elif lq_std > 1.0: dispersion = f"Emigrant (Exported to {max_country})"
-    else: dispersion = "Mixed Pattern"
+    # Obter a nova categoria de dispersão geográfica
+    dispersion = determine_taxonomy(high_data_for_taxonomy, p_info["country"], total_ebt)
 
-    countries_data = {row['country']: {"lq": round(row['location_quotient'], 2), "notes": int(row['plate_notes_in_country']), "baseline": int(row['baseline_total_notes'])} for _, row in group.iterrows()}
-    
     master_data["plates"][f"{denom}_{plate}"] = {
         "denomination": denom, "plate": plate, "origin": p_info["name"],
         "origin_coords": {"lon": p_info["lon"], "lat": p_info["lat"]},
@@ -274,4 +353,4 @@ for name, group in grouped_plates:
 with open('ebt_dispersion_master_data.json', 'w', encoding='utf-8') as f:
     json.dump(master_data, f, ensure_ascii=False, indent=2)
 
-print("SUCCESS! JSON File generated and saved.")
+print("SUCCESS! JSON File generated and saved with Analytical Engine v2.0.")
