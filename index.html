@@ -30,9 +30,22 @@
             gap: 20px;
             height: 100vh;
             box-sizing: border-box;
+            overflow: hidden; /* O mapa não faz scroll, fica preso ao ecrã */
         }
 
-        .sidebar { display: flex; flex-direction: column; gap: 20px; z-index: 10;}
+        /* O scroll interno e suave da barra lateral */
+        .sidebar { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px; 
+            z-index: 10;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        
+        .sidebar::-webkit-scrollbar { width: 6px; }
+        .sidebar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
         .panel {
             background-color: var(--panel-bg);
             padding: 20px;
@@ -40,6 +53,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             border: 1px solid var(--border-color);
             transition: border-color 0.5s ease;
+            flex-shrink: 0; /* Impede os painéis de se esmagarem */
         }
 
         h1 { margin-top: 0; font-size: 1.4rem; color: #1a365d; transition: color 0.5s ease;}
@@ -85,6 +99,8 @@
         .help-box {
             background-color: #eff6ff; border-left: 4px solid #3b82f6;
             padding: 15px; font-size: 0.85rem; line-height: 1.5; color: #1e3a8a;
+            border-radius: 8px;
+            flex-shrink: 0; /* Impede a caixa de se esmagar no scroll */
         }
 
         .instruction-overlay {
@@ -155,6 +171,19 @@
                 -
             </div>
         </div>
+
+        <div class="help-box">
+            <strong>What is the LQ?</strong><br>
+            The Location Quotient measures geographic concentration relative to the EBT community size.<br><br>
+            • <strong>LQ = 1.0:</strong> Normal dispersion.<br>
+            • <strong>LQ = 2.0:</strong> The note is 2x more frequent in this country than expected.<br>
+            • <strong>LQ = 0.2:</strong> The note is 5x rarer than expected.<br>
+            <div style="margin-top: 15px; text-align: center;">
+                <a href="https://github.com/ShortOkapi/plate-dispersion-map#readme" target="_blank" style="display: inline-block; background-color: #2563eb; color: white; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    📖 How this works (Methodology)
+                </a>
+            </div>        
+        </div>
     </div>
 
     <div class="map-container">
@@ -188,7 +217,6 @@
         const EMPTY_COLOR = "#e2e8f0";
         const lqColors = ["#0000FF", "#2A00D5", "#5500AA", "#800080", "#AA0055", "#D5002B", "#FF0000"];
 
-        // Motor unificado para garantir que Filtro e Tooltip dizem o mesmo
         function getLqCategoryCode(lq) {
             if (lq < 0.3) return "rare";
             if (lq < 0.8) return "under";
@@ -349,7 +377,6 @@
                 renderMap(currentPlateId);
             });
 
-            // Re-render quando se altera o Botão de Fiabilidade ou o Menu de Categoria
             document.getElementById('chk-show-all').addEventListener('change', function() {
                 if (currentPlateId) renderMap(currentPlateId);
             });
@@ -404,7 +431,6 @@
                         const conf = getCountryConfidence(cData);
                         const catCode = getLqCategoryCode(cData.lq);
                         
-                        // Aplicar filtro de categoria de Dispersão e de Fiabilidade em simultâneo
                         const passesCatFilter = (activeFilter === "all" || activeFilter === catCode);
                         const passesConfFilter = (conf.level === "High" || showAll);
                         
@@ -444,7 +470,6 @@
                     const cConfData = getCountryConfidence(cData);
                     const catCode = getLqCategoryCode(cData.lq);
                     
-                    // Se o país estiver oculto por algum dos filtros, não mostramos tooltip
                     if(cConfData.level !== "High" && !showAll) return; 
                     if(activeFilter !== "all" && activeFilter !== catCode) return;
 
