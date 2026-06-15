@@ -108,6 +108,7 @@
             <h1 id="main-title">🌍 EUR Plates Dispersion</h1>
             <p style="font-size: 0.85rem; color: #64748b;">Explore the real journey of Euro notes using the Location Quotient algorithm.</p>
             <p id="data-timestamp" style="font-size: 0.75rem; color: #94a3b8; font-style: italic; margin-top: -10px; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">Data loading...</p>            
+            
             <div class="form-group">
                 <label>1. Denomination</label>
                 <select id="sel-denom"><option value="">Loading...</option></select>
@@ -119,6 +120,18 @@
             <div class="form-group">
                 <label>3. Plate Shortcode</label>
                 <select id="sel-plate" disabled><option value="">Select Printer first</option></select>
+            </div>
+
+            <div class="form-group" style="margin-top: 15px; padding-top: 12px; border-top: 1px solid var(--border-color);">
+                <label>4. Filter by Category</label>
+                <select id="sel-filter" disabled>
+                    <option value="all">👁️ Show All Categories</option>
+                    <option value="extreme">Extreme Concentration</option>
+                    <option value="over">Over-represented</option>
+                    <option value="normal">Normal Dispersion</option>
+                    <option value="under">Under-represented</option>
+                    <option value="rare">Rare</option>
+                </select>
             </div>
 
             <div class="form-group" style="margin-top: 15px; padding-top: 12px; border-top: 1px solid var(--border-color);">
@@ -141,19 +154,6 @@
             <div style="margin-top: 15px; padding: 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; font-weight: bold; text-align: center; color: #0f172a;" id="val-dispersion">
                 -
             </div>
-        </div>
-
-        <div class="help-box">
-            <strong>What is the LQ?</strong><br>
-            The Location Quotient measures geographic concentration relative to the EBT community size.<br><br>
-            • <strong>LQ = 1.0:</strong> Normal dispersion.<br>
-            • <strong>LQ = 2.0:</strong> The note is 2x more frequent in this country than expected.<br>
-            • <strong>LQ = 0.2:</strong> The note is 5x rarer than expected.<br>
-            <div style="margin-top: 15px; text-align: center;">
-                <a href="https://github.com/ShortOkapi/plate-dispersion-map#readme" target="_blank" style="display: inline-block; background-color: #2563eb; color: white; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                    📖 How this works (Methodology)
-                </a>
-            </div>        
         </div>
     </div>
 
@@ -187,6 +187,26 @@
 
         const EMPTY_COLOR = "#e2e8f0";
         const lqColors = ["#0000FF", "#2A00D5", "#5500AA", "#800080", "#AA0055", "#D5002B", "#FF0000"];
+
+        // Motor unificado para garantir que Filtro e Tooltip dizem o mesmo
+        function getLqCategoryCode(lq) {
+            if (lq < 0.3) return "rare";
+            if (lq < 0.8) return "under";
+            if (lq <= 1.2) return "normal";
+            if (lq <= 4.0) return "over";
+            return "extreme";
+        }
+        
+        function getLqCategoryLabel(code) {
+            const labels = {
+                "rare": "Rare",
+                "under": "Under-represented",
+                "normal": "Normal",
+                "over": "Over-represented",
+                "extreme": "Extreme Concentration"
+            };
+            return labels[code] || "Normal";
+        }
 
         let masterData = null;
         let geoData = null;
@@ -288,6 +308,7 @@
             const selDenom = document.getElementById('sel-denom');
             const selPrinter = document.getElementById('sel-printer');
             const selPlate = document.getElementById('sel-plate');
+            const selFilter = document.getElementById('sel-filter');
 
             selDenom.innerHTML = `<option value="">-- Choose Denom --</option>` + 
                 denoms.map(d => `<option value="${d}">${d}€</option>`).join("");
@@ -295,6 +316,7 @@
             selDenom.addEventListener('change', function() {
                 selPlate.innerHTML = `<option value="">Select Printer first</option>`;
                 selPlate.disabled = true;
+                selFilter.disabled = true;
                 if(!this.value) {
                     selPrinter.innerHTML = `<option value="">Select Denomination first</option>`;
                     selPrinter.disabled = true;
@@ -310,6 +332,7 @@
                 if(!this.value) {
                     selPlate.innerHTML = `<option value="">Select Printer first</option>`;
                     selPlate.disabled = true;
+                    selFilter.disabled = true;
                     return;
                 }
                 const denom = selDenom.value;
@@ -322,10 +345,15 @@
             selPlate.addEventListener('change', function() {
                 if(!this.value) return;
                 currentPlateId = `${selDenom.value}_${this.value}`;
+                selFilter.disabled = false;
                 renderMap(currentPlateId);
             });
 
+            // Re-render quando se altera o Botão de Fiabilidade ou o Menu de Categoria
             document.getElementById('chk-show-all').addEventListener('change', function() {
+                if (currentPlateId) renderMap(currentPlateId);
+            });
+            document.getElementById('sel-filter').addEventListener('change', function() {
                 if (currentPlateId) renderMap(currentPlateId);
             });
         }
@@ -344,6 +372,7 @@
 
             const baseHex = denomColors[data.denomination] || "#333333";
             const showAll = document.getElementById('chk-show-all').checked;
+            const activeFilter = document.getElementById('sel-filter').value;
             
             document.getElementById('main-title').style.color = baseHex;
             document.getElementById('plate-profile').style.borderTopColor = baseHex;
@@ -373,7 +402,13 @@
                     const cData = data.countries[d.properties.name];
                     if(cData) {
                         const conf = getCountryConfidence(cData);
-                        if(conf.level === "High" || showAll) {
+                        const catCode = getLqCategoryCode(cData.lq);
+                        
+                        // Aplicar filtro de categoria de Dispersão e de Fiabilidade em simultâneo
+                        const passesCatFilter = (activeFilter === "all" || activeFilter === catCode);
+                        const passesConfFilter = (conf.level === "High" || showAll);
+                        
+                        if(passesCatFilter && passesConfFilter) {
                             return colorScale(cData.lq);
                         }
                     }
@@ -390,7 +425,11 @@
                     const cData = data.countries[d.properties.name];
                     if(!cData) return "none";
                     const conf = getCountryConfidence(cData);
-                    if(conf.level !== "High" && showAll) {
+                    const catCode = getLqCategoryCode(cData.lq);
+                    
+                    const passesCatFilter = (activeFilter === "all" || activeFilter === catCode);
+                    
+                    if(conf.level !== "High" && showAll && passesCatFilter) {
                         return conf.pattern;
                     }
                     return "none";
@@ -403,22 +442,21 @@
                     if(!cData) return;
                     
                     const cConfData = getCountryConfidence(cData);
+                    const catCode = getLqCategoryCode(cData.lq);
+                    
+                    // Se o país estiver oculto por algum dos filtros, não mostramos tooltip
                     if(cConfData.level !== "High" && !showAll) return; 
+                    if(activeFilter !== "all" && activeFilter !== catCode) return;
 
                     d3.select(this).attr("stroke", "#1e293b").attr("stroke-width", 1.5 / currentZoomK).raise();
                     gOverlays.raise();
                     gPins.raise();
 
-                    let hint = "Normal";
-                    if (cData.lq < 0.3) hint = "Rare";
-                    else if (cData.lq < 0.8) hint = "Under-represented";
-                    else if (cData.lq <= 1.2) hint = "Normal";
-                    else if (cData.lq <= 4.0) hint = "Over-represented";
-                    else hint = "Extreme Concentration";
+                    const hintLabel = getLqCategoryLabel(catCode);
 
                     tooltip.html(`
                         <div class="tt-country" style="border-bottom: 2px solid ${baseHex}; color: ${baseHex};">${d.properties.name}</div>
-                        <div><strong>LQ:</strong> ${cData.lq.toFixed(2)} <i>(${hint})</i></div>
+                        <div><strong>LQ:</strong> ${cData.lq.toFixed(2)} <i>(${hintLabel})</i></div>
                         <div><strong>Notes Found:</strong> ${cData.notes.toLocaleString()} <span style="color:#64748b; font-size:0.8rem;">(out of ${cData.baseline.toLocaleString()})</span></div>
                         <div style="margin-top:4px; font-size:0.8rem;">Data Reliability: <strong style="color:${cConfData.color}">${cConfData.level}</strong></div>
                     `);
@@ -451,7 +489,12 @@
                 const msData = data.countries[ms.id];
                 if(msData) {
                     const conf = getCountryConfidence(msData);
-                    if(conf.level !== "High" && !showAll) return; 
+                    const catCode = getLqCategoryCode(msData.lq);
+                    
+                    const passesCatFilter = (activeFilter === "all" || activeFilter === catCode);
+                    const passesConfFilter = (conf.level === "High" || showAll);
+                    
+                    if(!passesCatFilter || !passesConfFilter) return;
 
                     const coords = projection([ms.lon, ms.lat]);
                     if(coords) {
@@ -467,16 +510,10 @@
                                 d3.select(this).attr("r", 8 / currentZoomK).attr("stroke-width", 2 / currentZoomK).raise();
                                 cGroup.selectAll(".microstate-overlay").attr("r", 8 / currentZoomK).raise();
                                 
-                                let hint = "Normal";
-                                if (msData.lq < 0.3) hint = "Rare";
-                                else if (msData.lq < 0.8) hint = "Under-represented";
-                                else if (msData.lq <= 1.2) hint = "Normal";
-                                else if (msData.lq <= 4.0) hint = "Over-represented";
-                                else hint = "Extreme Concentration";
-
+                                const hintLabel = getLqCategoryLabel(catCode);
                                 tooltip.html(`
                                     <div class="tt-country" style="border-bottom: 2px solid ${baseHex}; color: ${baseHex};">${ms.id}</div>
-                                    <div><strong>LQ:</strong> ${msData.lq.toFixed(2)} <i>(${hint})</i></div>
+                                    <div><strong>LQ:</strong> ${msData.lq.toFixed(2)} <i>(${hintLabel})</i></div>
                                     <div><strong>Notes Found:</strong> ${msData.notes.toLocaleString()} <span style="color:#64748b; font-size:0.8rem;">(out of ${msData.baseline.toLocaleString()})</span></div>
                                     <div style="margin-top:4px; font-size:0.8rem;">Data Reliability: <strong style="color:${conf.color}">${conf.level}</strong></div>
                                 `);
