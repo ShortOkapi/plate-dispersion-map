@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EUR - Europa Plates Dispersion</title>
     
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💶</text></svg>">
+    
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://unpkg.com/topojson-client@3"></script>
 
@@ -188,7 +190,7 @@
 
         let masterData = null;
         let geoData = null;
-        let currentPlateId = null; // Guardar estado global da chapa ativa
+        let currentPlateId = null; 
         const container = document.querySelector('.map-container');
         const width = container.clientWidth;
         const height = container.clientHeight;
@@ -323,7 +325,6 @@
                 renderMap(currentPlateId);
             });
 
-            // Listener do Item d) para re-renderizar imediatamente na mudança do toggle
             document.getElementById('chk-show-all').addEventListener('change', function() {
                 if (currentPlateId) renderMap(currentPlateId);
             });
@@ -356,7 +357,6 @@
             document.getElementById('val-conf').innerHTML = `<span style="color:${confColor}">${data.confidence}</span>`;
             document.getElementById('val-dispersion').innerText = data.dispersion;
 
-            // Item b) Filtrar scaleMax APENAS pelos países com reliability = High
             const highConfCountries = Object.values(data.countries).filter(d => getCountryConfidence(d).level === "High");
             const maxLq = highConfCountries.length > 0 ? d3.max(highConfCountries, d => d.lq) : (d3.max(Object.values(data.countries), d => d.lq) || 2);
             const scaleMax = maxLq <= 1.0 ? 2.0 : maxLq;
@@ -367,7 +367,6 @@
                 .domain([0, d_step_low, d_step_low * 2, 1.0, 1.0 + d_step_high, 1.0 + d_step_high * 2, scaleMax])
                 .range(lqColors);
 
-            // 1. Camada de Base Dinâmica (Oculta dados provisórios se showAll = false)
             gCountries.selectAll(".country-path")
                 .transition().duration(500)
                 .attr("fill", function(d) {
@@ -381,7 +380,6 @@
                     return EMPTY_COLOR;
                 });
 
-            // 2. Camada Sobreposta de Texturas (Só renderiza se showAll = true)
             gOverlays.selectAll(".overlay-path").remove();
             gOverlays.selectAll(".overlay-path")
                 .data(geoData)
@@ -405,16 +403,15 @@
                     if(!cData) return;
                     
                     const cConfData = getCountryConfidence(cData);
-                    if(cConfData.level !== "High" && !showAll) return; // Bloquear hover em dados ocultos
+                    if(cConfData.level !== "High" && !showAll) return; 
 
                     d3.select(this).attr("stroke", "#1e293b").attr("stroke-width", 1.5 / currentZoomK).raise();
                     gOverlays.raise();
                     gPins.raise();
 
-                    // Item c) Aumento de granularidade para 5 categorias analíticas nas Tooltips
                     let hint = "Normal";
                     if (cData.lq < 0.3) hint = "Rare";
-                    else if (cData.lq < 0.8) hint = "Sub-represented";
+                    else if (cData.lq < 0.8) hint = "Under-represented";
                     else if (cData.lq <= 1.2) hint = "Normal";
                     else if (cData.lq <= 4.0) hint = "Over-represented";
                     else hint = "Extreme Concentration";
@@ -441,7 +438,6 @@
                     tooltip.style("opacity", 0);
                 });
 
-            // MICROSTATES
             const microstates = [
                 { id: "Malta", lon: 14.3754, lat: 35.9375 },
                 { id: "Andorra", lon: 1.5218, lat: 42.5063 },
@@ -455,7 +451,7 @@
                 const msData = data.countries[ms.id];
                 if(msData) {
                     const conf = getCountryConfidence(msData);
-                    if(conf.level !== "High" && !showAll) return; // Esconder microestado se não for fiável
+                    if(conf.level !== "High" && !showAll) return; 
 
                     const coords = projection([ms.lon, ms.lat]);
                     if(coords) {
@@ -473,7 +469,7 @@
                                 
                                 let hint = "Normal";
                                 if (msData.lq < 0.3) hint = "Rare";
-                                else if (msData.lq < 0.8) hint = "Sub-represented";
+                                else if (msData.lq < 0.8) hint = "Under-represented";
                                 else if (msData.lq <= 1.2) hint = "Normal";
                                 else if (msData.lq <= 4.0) hint = "Over-represented";
                                 else hint = "Extreme Concentration";
@@ -523,7 +519,6 @@
 
             document.getElementById('legend-box').style.display = 'block';
             
-            // Item a) Arredondar para baixo o valor máximo de exibição da legenda (.floor)
             const displayMax = (Math.floor(scaleMax * 10) / 10).toFixed(1);
             document.getElementById('legend-max').innerText = `Extreme (LQ = ${displayMax}+)`;
             
