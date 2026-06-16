@@ -30,10 +30,9 @@
             gap: 20px;
             height: 100vh;
             box-sizing: border-box;
-            overflow: hidden; /* O mapa não faz scroll, fica preso ao ecrã */
+            overflow: hidden; 
         }
 
-        /* O scroll interno e suave da barra lateral */
         .sidebar { 
             display: flex; 
             flex-direction: column; 
@@ -53,7 +52,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             border: 1px solid var(--border-color);
             transition: border-color 0.5s ease;
-            flex-shrink: 0; /* Impede os painéis de se esmagarem */
+            flex-shrink: 0; 
         }
 
         h1 { margin-top: 0; font-size: 1.4rem; color: #1a365d; transition: color 0.5s ease;}
@@ -100,7 +99,7 @@
             background-color: #eff6ff; border-left: 4px solid #3b82f6;
             padding: 15px; font-size: 0.85rem; line-height: 1.5; color: #1e3a8a;
             border-radius: 8px;
-            flex-shrink: 0; /* Impede a caixa de se esmagar no scroll */
+            flex-shrink: 0; 
         }
 
         .instruction-overlay {
@@ -209,6 +208,15 @@
     </div>
 
     <script>
+        // O núcleo matemático da Zona Euro expandida (Para calibração da Escala de Cor)
+        const CORE_COUNTRIES = [
+            "Austria", "Belgium", "Croatia", "Cyprus", "Estonia", "Finland", 
+            "France", "Germany", "Greece", "Ireland", "Italy", "Latvia", 
+            "Lithuania", "Luxembourg", "Malta", "Netherlands", "Portugal", 
+            "Slovakia", "Slovenia", "Spain", "Andorra", "Monaco", "San Marino", 
+            "Vatican City", "Kosovo", "Montenegro", "Switzerland"
+        ];
+
         const denomColors = {
             "5": "#8C92AC", "10": "#DA2131", "20": "#004494", 
             "50": "#F29527", "100": "#3C7D22", "200": "#FBC11D", "500": "#8D3C8E"
@@ -413,15 +421,25 @@
             document.getElementById('val-conf').innerHTML = `<span style="color:${confColor}">${data.confidence}</span>`;
             document.getElementById('val-dispersion').innerText = data.dispersion;
 
-            const highConfCountries = Object.values(data.countries).filter(d => getCountryConfidence(d).level === "High");
-            const maxLq = highConfCountries.length > 0 ? d3.max(highConfCountries, d => d.lq) : (d3.max(Object.values(data.countries), d => d.lq) || 2);
+            // 1. ISOLAR O CORE: O máximo da escala ignora países como Cuba e Albânia
+            const coreHighConfCountries = Object.entries(data.countries)
+                .filter(([name, d]) => CORE_COUNTRIES.includes(name) && getCountryConfidence(d).level === "High")
+                .map(([name, d]) => d);
+                
+            const maxLq = coreHighConfCountries.length > 0 ? 
+                d3.max(coreHighConfCountries, d => d.lq) : 
+                (d3.max(Object.entries(data.countries).filter(([name, d]) => CORE_COUNTRIES.includes(name)).map(([name, d]) => d), d => d.lq) || 2);
+                
             const scaleMax = maxLq <= 1.0 ? 2.0 : maxLq;
 
             const d_step_low = 1.0 / 3;
             const d_step_high = (scaleMax - 1.0) / 3;
+            
+            // 2. Trava de Extrapolação (Clamp): Cuba ficará no vermelho máximo, em vez de gerar cores erradas
             const colorScale = d3.scaleLinear()
                 .domain([0, d_step_low, d_step_low * 2, 1.0, 1.0 + d_step_high, 1.0 + d_step_high * 2, scaleMax])
-                .range(lqColors);
+                .range(lqColors)
+                .clamp(true); 
 
             gCountries.selectAll(".country-path")
                 .transition().duration(500)
@@ -581,8 +599,12 @@
 
             document.getElementById('legend-box').style.display = 'block';
             
+            // 3. Legenda Dinâmica e Honesta
             const displayMax = (Math.floor(scaleMax * 10) / 10).toFixed(1);
-            document.getElementById('legend-max').innerText = `Extreme (LQ = ${displayMax}+)`;
+            const maxCatCode = getLqCategoryCode(scaleMax);
+            const maxCatLabel = getLqCategoryLabel(maxCatCode);
+            
+            document.getElementById('legend-max').innerText = `${maxCatLabel} (LQ = ${displayMax}+)`;
             
             drawLegendCanvas(colorScale, scaleMax);
         }
