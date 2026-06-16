@@ -77,7 +77,7 @@ def determine_taxonomy(high_data, origin_country, total_plate_notes):
     if origin_country in leaders:
         return f"Endemic Leakage (Origin + {', '.join([c for c in leaders if c != origin_country])})"
     else:
-        return f"Regional Cluster ({', '.join(leaders)})"
+        return f"Multi-Hub Concentration ({', '.join(leaders)})"
 
 # ==========================================
 # 1. PARSE GUY SOHIER CATALOG (WEB SCRAPING)
