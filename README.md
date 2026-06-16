@@ -3,7 +3,7 @@ Euro banknotes - Europa plates - Dispersion Map per combo denomination+plate
 
 An interactive, auto-updating dashboard to explore the real geographic dispersion of Euro banknotes (Europa Series). 
 
-Access the live dashboard here: **[Plates Dispersion Map](https://shortokapi.github.io/plate-dispersion-map)**
+Access the live dashboard here: **[Plate Dispersion Map](https://shortokapi.github.io/plate-dispersion-map)**
 
 ---
 
