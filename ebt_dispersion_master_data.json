@@ -35,7 +35,7 @@
         "Belgium": {
           "lq": 0.62,
           "notes": 46876,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 1.09,
@@ -80,17 +80,17 @@
         "Finland": {
           "lq": 0.1,
           "notes": 2679,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 2.61,
           "notes": 88739,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.17,
           "notes": 302085,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.19,
@@ -155,7 +155,7 @@
         "Netherlands": {
           "lq": 0.69,
           "notes": 17200,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.57,
@@ -165,7 +165,7 @@
         "Portugal": {
           "lq": 0.78,
           "notes": 9518,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.92,
@@ -240,7 +240,7 @@
         "Belgium": {
           "lq": 0.23,
           "notes": 874,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Estonia": {
           "lq": 0.5,
@@ -250,17 +250,17 @@
         "Finland": {
           "lq": 0.28,
           "notes": 383,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.28,
           "notes": 477,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.57,
           "notes": 7410,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.16,
@@ -300,7 +300,7 @@
         "Netherlands": {
           "lq": 2.69,
           "notes": 3365,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 1.65,
@@ -310,7 +310,7 @@
         "Portugal": {
           "lq": 24.73,
           "notes": 15260,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Slovakia": {
           "lq": 0.18,
@@ -360,7 +360,7 @@
         "Belgium": {
           "lq": 0.21,
           "notes": 5629,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Canada": {
           "lq": 3.97,
@@ -395,17 +395,17 @@
         "Finland": {
           "lq": 0.3,
           "notes": 2876,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.27,
           "notes": 3306,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.99,
           "notes": 91101,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.26,
@@ -455,7 +455,7 @@
         "Netherlands": {
           "lq": 0.73,
           "notes": 6449,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.84,
@@ -465,7 +465,7 @@
         "Portugal": {
           "lq": 17.56,
           "notes": 76800,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.64,
@@ -545,7 +545,7 @@
         "Belgium": {
           "lq": 0.23,
           "notes": 5839,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Canada": {
           "lq": 1.83,
@@ -580,17 +580,17 @@
         "Finland": {
           "lq": 0.79,
           "notes": 7373,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.24,
           "notes": 2780,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.95,
           "notes": 83618,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.38,
@@ -635,7 +635,7 @@
         "Netherlands": {
           "lq": 0.81,
           "notes": 6808,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 1.14,
@@ -643,9 +643,9 @@
           "baseline": 15979
         },
         "Portugal": {
-          "lq": 10.49,
+          "lq": 10.48,
           "notes": 43717,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.8,
@@ -735,7 +735,7 @@
         "Belgium": {
           "lq": 0.21,
           "notes": 18445,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Brazil": {
           "lq": 1.63,
@@ -790,17 +790,17 @@
         "Finland": {
           "lq": 0.2,
           "notes": 6413,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.21,
           "notes": 8560,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.37,
           "notes": 418351,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 2.77,
@@ -860,7 +860,7 @@
         "Netherlands": {
           "lq": 0.89,
           "notes": 26132,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.67,
@@ -870,7 +870,7 @@
         "Portugal": {
           "lq": 4.19,
           "notes": 60367,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.65,
@@ -970,7 +970,7 @@
         "Belgium": {
           "lq": 0.23,
           "notes": 21848,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Brazil": {
           "lq": 2.19,
@@ -1025,17 +1025,17 @@
         "Finland": {
           "lq": 0.33,
           "notes": 11323,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 2.38,
           "notes": 100440,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.16,
           "notes": 372701,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.94,
@@ -1110,7 +1110,7 @@
         "Netherlands": {
           "lq": 0.5,
           "notes": 15511,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Nigeria": {
           "lq": 22.96,
@@ -1125,7 +1125,7 @@
         "Portugal": {
           "lq": 2.84,
           "notes": 43247,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.01,
@@ -1220,7 +1220,7 @@
         "Belgium": {
           "lq": 0.23,
           "notes": 15379,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 1.22,
@@ -1260,17 +1260,17 @@
         "Finland": {
           "lq": 0.13,
           "notes": 3152,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.37,
           "notes": 11132,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.26,
           "notes": 286398,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.28,
@@ -1330,7 +1330,7 @@
         "Netherlands": {
           "lq": 0.68,
           "notes": 14808,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.62,
@@ -1340,7 +1340,7 @@
         "Portugal": {
           "lq": 1.62,
           "notes": 17418,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.87,
@@ -1425,7 +1425,7 @@
         "Belgium": {
           "lq": 0.31,
           "notes": 7128,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 0.81,
@@ -1455,17 +1455,17 @@
         "Finland": {
           "lq": 0.13,
           "notes": 1062,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.42,
           "notes": 4344,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.97,
           "notes": 76370,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.22,
@@ -1515,7 +1515,7 @@
         "Netherlands": {
           "lq": 0.74,
           "notes": 5625,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.81,
@@ -1525,7 +1525,7 @@
         "Portugal": {
           "lq": 5.38,
           "notes": 20143,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.88,
@@ -1600,7 +1600,7 @@
         "Belgium": {
           "lq": 0.14,
           "notes": 17686,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 0.42,
@@ -1655,17 +1655,17 @@
         "Finland": {
           "lq": 0.09,
           "notes": 4209,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.38,
           "notes": 21708,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.71,
           "notes": 750562,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.25,
@@ -1745,7 +1745,7 @@
         "Netherlands": {
           "lq": 0.79,
           "notes": 33342,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Nigeria": {
           "lq": 35.29,
@@ -1765,7 +1765,7 @@
         "Portugal": {
           "lq": 0.45,
           "notes": 9337,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.8,
@@ -1855,7 +1855,7 @@
         "Belgium": {
           "lq": 0.16,
           "notes": 10342,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Brazil": {
           "lq": 1.82,
@@ -1900,17 +1900,17 @@
         "Finland": {
           "lq": 0.14,
           "notes": 3377,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.42,
           "notes": 12479,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.48,
           "notes": 336687,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.22,
@@ -1970,7 +1970,7 @@
         "Netherlands": {
           "lq": 2.49,
           "notes": 54417,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.55,
@@ -1980,7 +1980,7 @@
         "Portugal": {
           "lq": 0.53,
           "notes": 5667,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 2.11,
@@ -2055,7 +2055,7 @@
         "Belgium": {
           "lq": 0.09,
           "notes": 4086,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 0.7,
@@ -2100,17 +2100,17 @@
         "Finland": {
           "lq": 0.23,
           "notes": 3624,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.4,
           "notes": 7959,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.11,
           "notes": 169614,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.25,
@@ -2160,7 +2160,7 @@
         "Netherlands": {
           "lq": 0.51,
           "notes": 7519,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.5,
@@ -2170,7 +2170,7 @@
         "Portugal": {
           "lq": 7.57,
           "notes": 54634,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.08,
@@ -2250,7 +2250,7 @@
         "Belgium": {
           "lq": 0.16,
           "notes": 10216,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 2.71,
@@ -2285,17 +2285,17 @@
         "Finland": {
           "lq": 0.38,
           "notes": 9091,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.11,
           "notes": 3164,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.29,
           "notes": 66163,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.41,
@@ -2360,7 +2360,7 @@
         "Netherlands": {
           "lq": 0.39,
           "notes": 8354,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 4.98,
@@ -2375,7 +2375,7 @@
         "Portugal": {
           "lq": 0.12,
           "notes": 1270,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.49,
@@ -2455,7 +2455,7 @@
         "Belgium": {
           "lq": 0.24,
           "notes": 3882,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 2.48,
@@ -2485,17 +2485,17 @@
         "Finland": {
           "lq": 0.57,
           "notes": 3430,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.16,
           "notes": 1211,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.53,
           "notes": 30007,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.55,
@@ -2555,7 +2555,7 @@
         "Netherlands": {
           "lq": 0.48,
           "notes": 2635,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.55,
@@ -2565,7 +2565,7 @@
         "Portugal": {
           "lq": 0.19,
           "notes": 506,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Serbia": {
           "lq": 0.82,
@@ -2620,7 +2620,7 @@
         "Belgium": {
           "lq": 0.36,
           "notes": 1309,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Cyprus": {
           "lq": 6.62,
@@ -2640,17 +2640,17 @@
         "Finland": {
           "lq": 1.42,
           "notes": 1855,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.26,
           "notes": 416,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.65,
           "notes": 8072,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.99,
@@ -2700,12 +2700,12 @@
         "Netherlands": {
           "lq": 0.79,
           "notes": 936,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Portugal": {
           "lq": 0.26,
           "notes": 151,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Slovakia": {
           "lq": 0.94,
@@ -2765,7 +2765,7 @@
         "Belgium": {
           "lq": 0.21,
           "notes": 9141,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 6.28,
@@ -2795,17 +2795,17 @@
         "Finland": {
           "lq": 0.6,
           "notes": 9355,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.18,
           "notes": 3483,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.37,
           "notes": 55648,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.81,
@@ -2865,7 +2865,7 @@
         "Netherlands": {
           "lq": 0.43,
           "notes": 6142,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 6.9,
@@ -2880,7 +2880,7 @@
         "Portugal": {
           "lq": 0.19,
           "notes": 1359,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.55,
@@ -2955,7 +2955,7 @@
         "Belgium": {
           "lq": 0.08,
           "notes": 243,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Estonia": {
           "lq": 0.12,
@@ -2965,17 +2965,17 @@
         "Finland": {
           "lq": 0.14,
           "notes": 155,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.06,
           "notes": 77,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.18,
           "notes": 1880,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.25,
@@ -2995,12 +2995,12 @@
         "Netherlands": {
           "lq": 0.18,
           "notes": 177,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Portugal": {
           "lq": 0.06,
           "notes": 28,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Slovakia": {
           "lq": 0.97,
@@ -3040,7 +3040,7 @@
         "Belgium": {
           "lq": 0.16,
           "notes": 2067,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Croatia": {
           "lq": 0.43,
@@ -3065,17 +3065,17 @@
         "Finland": {
           "lq": 0.37,
           "notes": 1711,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.1,
           "notes": 587,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.36,
           "notes": 15743,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.34,
@@ -3125,7 +3125,7 @@
         "Netherlands": {
           "lq": 0.44,
           "notes": 1859,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.55,
@@ -3135,7 +3135,7 @@
         "Portugal": {
           "lq": 0.98,
           "notes": 2030,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.07,
@@ -3200,7 +3200,7 @@
         "Belgium": {
           "lq": 0.91,
           "notes": 27036,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Croatia": {
           "lq": 0.31,
@@ -3235,17 +3235,17 @@
         "Finland": {
           "lq": 3.09,
           "notes": 33589,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.13,
           "notes": 1752,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.47,
           "notes": 48401,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.26,
@@ -3290,7 +3290,7 @@
         "Netherlands": {
           "lq": 0.5,
           "notes": 4913,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 1.0,
@@ -3300,7 +3300,7 @@
         "Portugal": {
           "lq": 2.38,
           "notes": 11625,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.49,
@@ -3400,7 +3400,7 @@
         "Belgium": {
           "lq": 0.46,
           "notes": 83828,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 1.38,
@@ -3465,17 +3465,17 @@
         "Finland": {
           "lq": 1.06,
           "notes": 70707,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.18,
           "notes": 15225,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.01,
           "notes": 638073,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.54,
@@ -3570,7 +3570,7 @@
         "Netherlands": {
           "lq": 1.42,
           "notes": 86746,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 1.84,
@@ -3590,7 +3590,7 @@
         "Portugal": {
           "lq": 0.72,
           "notes": 21629,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.75,
@@ -3685,7 +3685,7 @@
         "Belgium": {
           "lq": 0.36,
           "notes": 900,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Estonia": {
           "lq": 0.58,
@@ -3695,17 +3695,17 @@
         "Finland": {
           "lq": 0.67,
           "notes": 606,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.22,
           "notes": 248,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.45,
           "notes": 12426,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.58,
@@ -3745,12 +3745,12 @@
         "Netherlands": {
           "lq": 1.16,
           "notes": 955,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Portugal": {
           "lq": 0.29,
           "notes": 116,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Slovakia": {
           "lq": 0.98,
@@ -3795,7 +3795,7 @@
         "Belgium": {
           "lq": 0.4,
           "notes": 522,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Estonia": {
           "lq": 0.3,
@@ -3805,17 +3805,17 @@
         "Finland": {
           "lq": 0.39,
           "notes": 185,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.22,
           "notes": 130,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.51,
           "notes": 6824,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Ireland": {
           "lq": 0.27,
@@ -3840,12 +3840,12 @@
         "Netherlands": {
           "lq": 1.09,
           "notes": 473,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Portugal": {
           "lq": 0.27,
           "notes": 58,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Slovakia": {
           "lq": 0.61,
@@ -3900,7 +3900,7 @@
         "Belgium": {
           "lq": 0.82,
           "notes": 70708,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 1.56,
@@ -3945,17 +3945,17 @@
         "Finland": {
           "lq": 0.26,
           "notes": 8043,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.16,
           "notes": 6336,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.6,
           "notes": 178446,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.36,
@@ -4020,7 +4020,7 @@
         "Netherlands": {
           "lq": 5.94,
           "notes": 170081,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 1.72,
@@ -4040,7 +4040,7 @@
         "Portugal": {
           "lq": 0.14,
           "notes": 2037,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.68,
@@ -4130,7 +4130,7 @@
         "Belgium": {
           "lq": 0.16,
           "notes": 9067,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 0.62,
@@ -4165,17 +4165,17 @@
         "Finland": {
           "lq": 0.46,
           "notes": 9335,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.31,
           "notes": 7981,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.35,
           "notes": 67960,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.4,
@@ -4240,7 +4240,7 @@
         "Netherlands": {
           "lq": 0.37,
           "notes": 6822,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.31,
@@ -4250,7 +4250,7 @@
         "Portugal": {
           "lq": 0.51,
           "notes": 4667,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.45,
@@ -4335,7 +4335,7 @@
         "Belgium": {
           "lq": 0.04,
           "notes": 359,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Croatia": {
           "lq": 2.85,
@@ -4355,17 +4355,17 @@
         "Finland": {
           "lq": 0.05,
           "notes": 164,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.17,
           "notes": 748,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.21,
           "notes": 6974,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.18,
@@ -4400,12 +4400,12 @@
         "Netherlands": {
           "lq": 0.14,
           "notes": 439,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Portugal": {
           "lq": 0.17,
           "notes": 264,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Serbia": {
           "lq": 1.68,
@@ -4470,7 +4470,7 @@
         "Belgium": {
           "lq": 0.19,
           "notes": 25355,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 0.37,
@@ -4525,17 +4525,17 @@
         "Finland": {
           "lq": 0.09,
           "notes": 4561,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.35,
           "notes": 21260,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.27,
           "notes": 583898,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 2.73,
@@ -4620,7 +4620,7 @@
         "Netherlands": {
           "lq": 0.55,
           "notes": 24337,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 2.43,
@@ -4640,7 +4640,7 @@
         "Portugal": {
           "lq": 0.34,
           "notes": 7380,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.69,
@@ -4735,7 +4735,7 @@
         "Belgium": {
           "lq": 0.39,
           "notes": 32692,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Brazil": {
           "lq": 1.45,
@@ -4790,17 +4790,17 @@
         "Finland": {
           "lq": 0.09,
           "notes": 2772,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 1.24,
           "notes": 46280,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.05,
           "notes": 300062,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.89,
@@ -4865,7 +4865,7 @@
         "Netherlands": {
           "lq": 0.53,
           "notes": 14561,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Norway": {
           "lq": 1.54,
@@ -4880,7 +4880,7 @@
         "Portugal": {
           "lq": 5.06,
           "notes": 68469,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.62,
@@ -4975,7 +4975,7 @@
         "Belgium": {
           "lq": 1.21,
           "notes": 58915,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 0.63,
@@ -5015,17 +5015,17 @@
         "Finland": {
           "lq": 0.1,
           "notes": 1750,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 5.28,
           "notes": 116032,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.47,
           "notes": 78095,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.23,
@@ -5080,7 +5080,7 @@
         "Netherlands": {
           "lq": 0.45,
           "notes": 7287,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.27,
@@ -5090,7 +5090,7 @@
         "Portugal": {
           "lq": 0.56,
           "notes": 4466,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.58,
@@ -5170,7 +5170,7 @@
         "Belgium": {
           "lq": 1.14,
           "notes": 66028,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 5.6,
@@ -5200,17 +5200,17 @@
         "Finland": {
           "lq": 0.07,
           "notes": 1555,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 3.04,
           "notes": 79964,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.19,
           "notes": 37206,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.25,
@@ -5270,7 +5270,7 @@
         "Netherlands": {
           "lq": 0.25,
           "notes": 4778,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Norway": {
           "lq": 3.51,
@@ -5285,7 +5285,7 @@
         "Portugal": {
           "lq": 0.33,
           "notes": 3144,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.53,
@@ -5360,7 +5360,7 @@
         "Belgium": {
           "lq": 0.07,
           "notes": 6948,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 0.69,
@@ -5395,17 +5395,17 @@
         "Finland": {
           "lq": 0.09,
           "notes": 3033,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.58,
           "notes": 24978,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.23,
           "notes": 76564,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.29,
@@ -5465,7 +5465,7 @@
         "Netherlands": {
           "lq": 0.19,
           "notes": 5900,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 2.12,
@@ -5480,7 +5480,7 @@
         "Portugal": {
           "lq": 0.41,
           "notes": 6360,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.54,
@@ -5585,7 +5585,7 @@
         "Belgium": {
           "lq": 0.43,
           "notes": 74643,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 1.81,
@@ -5650,12 +5650,12 @@
         "Finland": {
           "lq": 0.53,
           "notes": 33868,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.32,
           "notes": 25012,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Georgia": {
           "lq": 12.12,
@@ -5665,7 +5665,7 @@
         "Germany": {
           "lq": 1.31,
           "notes": 786421,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.68,
@@ -5770,7 +5770,7 @@
         "Netherlands": {
           "lq": 1.23,
           "notes": 71029,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 2.01,
@@ -5790,7 +5790,7 @@
         "Portugal": {
           "lq": 0.3,
           "notes": 8458,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.1,
@@ -5920,7 +5920,7 @@
         "Belgium": {
           "lq": 0.34,
           "notes": 30518,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 3.43,
@@ -5975,12 +5975,12 @@
         "Finland": {
           "lq": 0.57,
           "notes": 18336,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.36,
           "notes": 14261,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Georgia": {
           "lq": 15.57,
@@ -5990,7 +5990,7 @@
         "Germany": {
           "lq": 0.56,
           "notes": 170936,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 20.53,
@@ -6080,7 +6080,7 @@
         "Netherlands": {
           "lq": 0.87,
           "notes": 25570,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 6.25,
@@ -6100,7 +6100,7 @@
         "Portugal": {
           "lq": 0.33,
           "notes": 4835,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.08,
@@ -6205,7 +6205,7 @@
         "Belgium": {
           "lq": 0.34,
           "notes": 18710,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 1.64,
@@ -6255,17 +6255,17 @@
         "Finland": {
           "lq": 0.72,
           "notes": 14381,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.3,
           "notes": 7550,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.75,
           "notes": 141202,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 2.4,
@@ -6335,7 +6335,7 @@
         "Netherlands": {
           "lq": 0.89,
           "notes": 16230,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 1.17,
@@ -6345,7 +6345,7 @@
         "Portugal": {
           "lq": 0.33,
           "notes": 2986,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.37,
@@ -6440,7 +6440,7 @@
         "Belgium": {
           "lq": 0.34,
           "notes": 26593,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 3.02,
@@ -6495,17 +6495,17 @@
         "Finland": {
           "lq": 0.45,
           "notes": 12734,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.37,
           "notes": 12950,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.38,
           "notes": 101943,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 1.05,
@@ -6585,7 +6585,7 @@
         "Netherlands": {
           "lq": 0.75,
           "notes": 19237,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 2.79,
@@ -6600,7 +6600,7 @@
         "Portugal": {
           "lq": 0.27,
           "notes": 3470,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.09,
@@ -6695,7 +6695,7 @@
         "Belgium": {
           "lq": 0.26,
           "notes": 2607,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Croatia": {
           "lq": 0.55,
@@ -6715,17 +6715,17 @@
         "Finland": {
           "lq": 0.35,
           "notes": 1260,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.22,
           "notes": 969,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.29,
           "notes": 9835,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.42,
@@ -6770,7 +6770,7 @@
         "Netherlands": {
           "lq": 1.54,
           "notes": 5039,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.67,
@@ -6780,7 +6780,7 @@
         "Portugal": {
           "lq": 0.36,
           "notes": 578,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Serbia": {
           "lq": 2.22,
@@ -6835,7 +6835,7 @@
         "Belgium": {
           "lq": 0.24,
           "notes": 1211,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Cyprus": {
           "lq": 2.24,
@@ -6855,17 +6855,17 @@
         "Finland": {
           "lq": 0.79,
           "notes": 1447,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.21,
           "notes": 477,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.31,
           "notes": 5336,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.7,
@@ -6900,12 +6900,12 @@
         "Netherlands": {
           "lq": 0.74,
           "notes": 1223,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Portugal": {
           "lq": 0.45,
           "notes": 366,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Serbia": {
           "lq": 1.68,
@@ -6970,7 +6970,7 @@
         "Belgium": {
           "lq": 0.29,
           "notes": 18778,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 0.7,
@@ -7015,17 +7015,17 @@
         "Finland": {
           "lq": 0.41,
           "notes": 9618,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.21,
           "notes": 6119,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.83,
           "notes": 183135,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.45,
@@ -7100,7 +7100,7 @@
         "Netherlands": {
           "lq": 0.96,
           "notes": 20370,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.95,
@@ -7110,7 +7110,7 @@
         "Portugal": {
           "lq": 0.44,
           "notes": 4555,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.13,
@@ -7195,7 +7195,7 @@
         "Belgium": {
           "lq": 0.34,
           "notes": 5801,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Croatia": {
           "lq": 0.58,
@@ -7220,17 +7220,17 @@
         "Finland": {
           "lq": 0.36,
           "notes": 2251,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.21,
           "notes": 1621,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.54,
           "notes": 91595,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.4,
@@ -7270,7 +7270,7 @@
         "Netherlands": {
           "lq": 1.29,
           "notes": 7384,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 1.27,
@@ -7280,7 +7280,7 @@
         "Portugal": {
           "lq": 0.36,
           "notes": 1015,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.71,
@@ -7355,7 +7355,7 @@
         "Belgium": {
           "lq": 0.21,
           "notes": 13435,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 0.95,
@@ -7400,17 +7400,17 @@
         "Finland": {
           "lq": 0.61,
           "notes": 14375,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.22,
           "notes": 6377,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.94,
           "notes": 210906,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.21,
@@ -7470,7 +7470,7 @@
         "Netherlands": {
           "lq": 0.99,
           "notes": 21320,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.58,
@@ -7480,7 +7480,7 @@
         "Portugal": {
           "lq": 0.49,
           "notes": 5188,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.44,
@@ -7585,7 +7585,7 @@
         "Belgium": {
           "lq": 0.3,
           "notes": 63075,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 1.1,
@@ -7650,17 +7650,17 @@
         "Finland": {
           "lq": 0.63,
           "notes": 47449,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.19,
           "notes": 17619,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.73,
           "notes": 1243653,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.38,
@@ -7765,7 +7765,7 @@
         "Netherlands": {
           "lq": 1.17,
           "notes": 80558,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 1.55,
@@ -7785,7 +7785,7 @@
         "Portugal": {
           "lq": 0.15,
           "notes": 5006,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.88,
@@ -7885,7 +7885,7 @@
         "Belgium": {
           "lq": 0.27,
           "notes": 54967,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 0.36,
@@ -7945,17 +7945,17 @@
         "Finland": {
           "lq": 13.3,
           "notes": 989494,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 2.28,
           "notes": 210937,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.19,
           "notes": 131003,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.2,
@@ -8025,7 +8025,7 @@
         "Netherlands": {
           "lq": 0.36,
           "notes": 24708,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Norway": {
           "lq": 1.99,
@@ -8040,7 +8040,7 @@
         "Portugal": {
           "lq": 3.59,
           "notes": 120016,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.31,
@@ -8145,7 +8145,7 @@
         "Belgium": {
           "lq": 0.29,
           "notes": 54511,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 1.14,
@@ -8215,17 +8215,17 @@
         "Finland": {
           "lq": 1.36,
           "notes": 92405,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.94,
           "notes": 79645,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.34,
           "notes": 863752,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.34,
@@ -8310,7 +8310,7 @@
         "Netherlands": {
           "lq": 0.85,
           "notes": 52509,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 1.15,
@@ -8330,7 +8330,7 @@
         "Portugal": {
           "lq": 1.51,
           "notes": 46253,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.81,
@@ -8430,7 +8430,7 @@
         "Belgium": {
           "lq": 0.6,
           "notes": 89349,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 1.29,
@@ -8490,17 +8490,17 @@
         "Finland": {
           "lq": 0.6,
           "notes": 32651,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 3.2,
           "notes": 215430,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.22,
           "notes": 625665,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.47,
@@ -8595,7 +8595,7 @@
         "Netherlands": {
           "lq": 0.93,
           "notes": 45898,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 1.45,
@@ -8615,7 +8615,7 @@
         "Portugal": {
           "lq": 0.41,
           "notes": 9970,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.85,
@@ -8720,7 +8720,7 @@
         "Belgium": {
           "lq": 0.39,
           "notes": 69824,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 1.35,
@@ -8780,17 +8780,17 @@
         "Finland": {
           "lq": 4.64,
           "notes": 302682,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 1.99,
           "notes": 161265,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.92,
           "notes": 571966,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.35,
@@ -8890,7 +8890,7 @@
         "Netherlands": {
           "lq": 0.78,
           "notes": 46213,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 1.28,
@@ -8910,7 +8910,7 @@
         "Portugal": {
           "lq": 0.27,
           "notes": 7883,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.61,
@@ -9010,7 +9010,7 @@
         "Belgium": {
           "lq": 0.48,
           "notes": 41121,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 1.14,
@@ -9055,17 +9055,17 @@
         "Finland": {
           "lq": 1.24,
           "notes": 38895,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 1.07,
           "notes": 41790,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.5,
           "notes": 445737,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.5,
@@ -9125,7 +9125,7 @@
         "Netherlands": {
           "lq": 1.26,
           "notes": 35906,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 1.88,
@@ -9140,7 +9140,7 @@
         "Portugal": {
           "lq": 0.23,
           "notes": 3268,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.06,
@@ -9230,7 +9230,7 @@
         "Belgium": {
           "lq": 0.48,
           "notes": 33122,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 3.18,
@@ -9280,17 +9280,17 @@
         "Finland": {
           "lq": 0.63,
           "notes": 15946,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 3.82,
           "notes": 120513,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.32,
           "notes": 77953,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.64,
@@ -9365,7 +9365,7 @@
         "Netherlands": {
           "lq": 0.71,
           "notes": 16289,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 2.13,
@@ -9380,7 +9380,7 @@
         "Portugal": {
           "lq": 0.56,
           "notes": 6339,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.55,
@@ -9475,7 +9475,7 @@
         "Belgium": {
           "lq": 0.27,
           "notes": 14795,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 3.99,
@@ -9525,17 +9525,17 @@
         "Finland": {
           "lq": 0.14,
           "notes": 2642,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 1.37,
           "notes": 33322,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.47,
           "notes": 273133,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.34,
@@ -9595,7 +9595,7 @@
         "Netherlands": {
           "lq": 0.58,
           "notes": 10378,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Norway": {
           "lq": 2.37,
@@ -9610,7 +9610,7 @@
         "Portugal": {
           "lq": 0.77,
           "notes": 6784,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.39,
@@ -9685,22 +9685,22 @@
         "Belgium": {
           "lq": 0.19,
           "notes": 104,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Finland": {
           "lq": 0.59,
           "notes": 120,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 14.65,
           "notes": 3705,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.05,
           "notes": 90,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Ireland": {
           "lq": 0.33,
@@ -9715,12 +9715,12 @@
         "Netherlands": {
           "lq": 0.17,
           "notes": 32,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Portugal": {
           "lq": 0.49,
           "notes": 45,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Spain": {
           "lq": 0.31,
@@ -9765,7 +9765,7 @@
         "Belgium": {
           "lq": 1.23,
           "notes": 94893,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 0.65,
@@ -9800,17 +9800,17 @@
         "Finland": {
           "lq": 0.04,
           "notes": 990,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 11.4,
           "notes": 397261,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.29,
           "notes": 77904,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.07,
@@ -9870,7 +9870,7 @@
         "Netherlands": {
           "lq": 0.41,
           "notes": 10411,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.15,
@@ -9880,7 +9880,7 @@
         "Portugal": {
           "lq": 0.41,
           "notes": 5210,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.43,
@@ -9945,7 +9945,7 @@
         "Belgium": {
           "lq": 0.64,
           "notes": 8727,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Croatia": {
           "lq": 0.67,
@@ -9960,17 +9960,17 @@
         "Finland": {
           "lq": 0.03,
           "notes": 148,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 14.2,
           "notes": 87616,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.15,
           "notes": 7230,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.07,
@@ -10005,12 +10005,12 @@
         "Netherlands": {
           "lq": 0.19,
           "notes": 879,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Portugal": {
           "lq": 0.49,
           "notes": 1086,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Slovakia": {
           "lq": 0.09,
@@ -10036,6 +10036,51 @@
           "lq": 0.19,
           "notes": 12,
           "baseline": 30378
+        }
+      }
+    },
+    "5_U013": {
+      "denomination": 5,
+      "plate": "U013",
+      "origin": "U - Banque de France",
+      "origin_coords": {
+        "lon": 3.0729,
+        "lat": 45.7748
+      },
+      "print_run": "Unknown",
+      "total_ebt": 219,
+      "confidence": "Undetermined",
+      "dispersion": "Undetermined (Insufficient Data)",
+      "countries": {
+        "Belgium": {
+          "lq": 0.85,
+          "notes": 23,
+          "baseline": 6617829
+        },
+        "Finland": {
+          "lq": 2.55,
+          "notes": 25,
+          "baseline": 2405751
+        },
+        "France": {
+          "lq": 3.36,
+          "notes": 41,
+          "baseline": 2994144
+        },
+        "Germany": {
+          "lq": 0.81,
+          "notes": 75,
+          "baseline": 22831907
+        },
+        "Netherlands": {
+          "lq": 1.34,
+          "notes": 12,
+          "baseline": 2191959
+        },
+        "Portugal": {
+          "lq": 4.08,
+          "notes": 18,
+          "baseline": 1081183
         }
       }
     },
@@ -10075,7 +10120,7 @@
         "Belgium": {
           "lq": 0.42,
           "notes": 93108,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 1.11,
@@ -10150,12 +10195,12 @@
         "Finland": {
           "lq": 0.34,
           "notes": 27318,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.19,
           "notes": 19184,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Georgia": {
           "lq": 4.99,
@@ -10165,7 +10210,7 @@
         "Germany": {
           "lq": 1.64,
           "notes": 1253286,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.39,
@@ -10265,7 +10310,7 @@
         "Netherlands": {
           "lq": 1.42,
           "notes": 104016,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 1.96,
@@ -10285,7 +10330,7 @@
         "Portugal": {
           "lq": 0.19,
           "notes": 6937,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.04,
@@ -10390,7 +10435,7 @@
         "Belgium": {
           "lq": 0.34,
           "notes": 69856,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 0.75,
@@ -10455,12 +10500,12 @@
         "Finland": {
           "lq": 0.34,
           "notes": 26010,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.18,
           "notes": 16985,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Georgia": {
           "lq": 4.41,
@@ -10470,7 +10515,7 @@
         "Germany": {
           "lq": 1.15,
           "notes": 826708,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.33,
@@ -10555,7 +10600,7 @@
         "Netherlands": {
           "lq": 1.05,
           "notes": 72721,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 1.04,
@@ -10575,7 +10620,7 @@
         "Portugal": {
           "lq": 0.25,
           "notes": 8671,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.73,
@@ -10685,7 +10730,7 @@
         "Belgium": {
           "lq": 0.52,
           "notes": 48280,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 1.33,
@@ -10745,17 +10790,17 @@
         "Finland": {
           "lq": 0.66,
           "notes": 22112,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.41,
           "notes": 17364,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.2,
           "notes": 384975,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.73,
@@ -10850,7 +10895,7 @@
         "Netherlands": {
           "lq": 1.28,
           "notes": 39295,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Norway": {
           "lq": 1.37,
@@ -10865,7 +10910,7 @@
         "Portugal": {
           "lq": 0.75,
           "notes": 11402,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.04,
@@ -10980,7 +11025,7 @@
         "Belgium": {
           "lq": 0.42,
           "notes": 60577,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 1.63,
@@ -11035,17 +11080,17 @@
         "Finland": {
           "lq": 0.78,
           "notes": 40702,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.35,
           "notes": 22953,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.28,
           "notes": 635571,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.58,
@@ -11140,7 +11185,7 @@
         "Netherlands": {
           "lq": 1.02,
           "notes": 48760,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "New Zealand": {
           "lq": 23.03,
@@ -11165,7 +11210,7 @@
         "Portugal": {
           "lq": 0.48,
           "notes": 11218,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.91,
@@ -11275,7 +11320,7 @@
         "Belgium": {
           "lq": 0.45,
           "notes": 73405,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 1.1,
@@ -11335,17 +11380,17 @@
         "Finland": {
           "lq": 0.43,
           "notes": 25723,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.24,
           "notes": 17880,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.51,
           "notes": 852721,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.51,
@@ -11445,7 +11490,7 @@
         "Netherlands": {
           "lq": 1.13,
           "notes": 61678,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 1.32,
@@ -11465,7 +11510,7 @@
         "Portugal": {
           "lq": 0.2,
           "notes": 5431,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.35,
@@ -11585,7 +11630,7 @@
         "Belgium": {
           "lq": 0.41,
           "notes": 49467,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 1.64,
@@ -11645,17 +11690,17 @@
         "Finland": {
           "lq": 0.73,
           "notes": 31751,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.34,
           "notes": 18594,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.2,
           "notes": 497512,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.72,
@@ -11740,7 +11785,7 @@
         "Netherlands": {
           "lq": 1.09,
           "notes": 43045,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 1.24,
@@ -11760,7 +11805,7 @@
         "Portugal": {
           "lq": 0.33,
           "notes": 6377,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.2,
@@ -11875,7 +11920,7 @@
         "Belgium": {
           "lq": 0.64,
           "notes": 28281,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 0.24,
@@ -11920,17 +11965,17 @@
         "Finland": {
           "lq": 0.55,
           "notes": 8763,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 2.66,
           "notes": 53128,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.85,
           "notes": 129015,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.45,
@@ -12000,7 +12045,7 @@
         "Netherlands": {
           "lq": 1.53,
           "notes": 22430,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.79,
@@ -12010,7 +12055,7 @@
         "Portugal": {
           "lq": 1.04,
           "notes": 7507,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.87,
@@ -12105,7 +12150,7 @@
         "Belgium": {
           "lq": 0.54,
           "notes": 62868,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 0.74,
@@ -12170,17 +12215,17 @@
         "Finland": {
           "lq": 3.37,
           "notes": 143420,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.33,
           "notes": 17265,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.05,
           "notes": 425820,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.38,
@@ -12255,7 +12300,7 @@
         "Netherlands": {
           "lq": 1.06,
           "notes": 41276,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 1.05,
@@ -12265,7 +12310,7 @@
         "Portugal": {
           "lq": 0.6,
           "notes": 11454,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.19,
@@ -12360,7 +12405,7 @@
         "Belgium": {
           "lq": 3.2,
           "notes": 159625,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 3.54,
@@ -12405,17 +12450,17 @@
         "Finland": {
           "lq": 0.29,
           "notes": 5284,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 4.52,
           "notes": 101954,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.27,
           "notes": 46087,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.15,
@@ -12480,7 +12525,7 @@
         "Netherlands": {
           "lq": 1.31,
           "notes": 21560,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.56,
@@ -12490,7 +12535,7 @@
         "Portugal": {
           "lq": 0.84,
           "notes": 6803,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.41,
@@ -12575,7 +12620,7 @@
         "Belgium": {
           "lq": 2.26,
           "notes": 311039,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 2.56,
@@ -12640,17 +12685,17 @@
         "Finland": {
           "lq": 0.29,
           "notes": 14604,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.37,
           "notes": 23228,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.93,
           "notes": 441442,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.25,
@@ -12730,7 +12775,7 @@
         "Netherlands": {
           "lq": 1.13,
           "notes": 51538,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Norway": {
           "lq": 3.15,
@@ -12745,7 +12790,7 @@
         "Portugal": {
           "lq": 0.43,
           "notes": 9582,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.25,
@@ -12855,7 +12900,7 @@
         "Belgium": {
           "lq": 0.43,
           "notes": 22778,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Brazil": {
           "lq": 3.63,
@@ -12900,17 +12945,17 @@
         "Finland": {
           "lq": 0.47,
           "notes": 9056,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.88,
           "notes": 21183,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.02,
           "notes": 186830,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.29,
@@ -12980,7 +13025,7 @@
         "Netherlands": {
           "lq": 1.04,
           "notes": 18241,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 1.07,
@@ -12990,7 +13035,7 @@
         "Portugal": {
           "lq": 1.58,
           "notes": 13679,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.33,
@@ -13080,7 +13125,7 @@
         "Belgium": {
           "lq": 0.2,
           "notes": 18824,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 0.82,
@@ -13125,17 +13170,17 @@
         "Finland": {
           "lq": 0.15,
           "notes": 4943,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.24,
           "notes": 9950,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.67,
           "notes": 537598,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.24,
@@ -13200,7 +13245,7 @@
         "Netherlands": {
           "lq": 0.73,
           "notes": 22653,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 1.44,
@@ -13220,7 +13265,7 @@
         "Portugal": {
           "lq": 0.48,
           "notes": 7327,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 2.04,
@@ -13305,7 +13350,7 @@
         "Belgium": {
           "lq": 0.56,
           "notes": 10007,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 6.78,
@@ -13335,17 +13380,17 @@
         "Finland": {
           "lq": 0.35,
           "notes": 2243,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.68,
           "notes": 5499,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.52,
           "notes": 31886,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.24,
@@ -13390,7 +13435,7 @@
         "Netherlands": {
           "lq": 0.59,
           "notes": 3486,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.49,
@@ -13400,7 +13445,7 @@
         "Portugal": {
           "lq": 3.35,
           "notes": 9757,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.7,
@@ -13480,7 +13525,7 @@
         "Belgium": {
           "lq": 0.64,
           "notes": 34338,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 2.24,
@@ -13515,17 +13560,17 @@
         "Finland": {
           "lq": 0.24,
           "notes": 4576,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.71,
           "notes": 17203,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.77,
           "notes": 142471,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.17,
@@ -13585,7 +13630,7 @@
         "Netherlands": {
           "lq": 0.36,
           "notes": 6378,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 3.28,
@@ -13600,7 +13645,7 @@
         "Portugal": {
           "lq": 1.72,
           "notes": 15091,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.38,
@@ -13680,7 +13725,7 @@
         "Belgium": {
           "lq": 0.66,
           "notes": 46560,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 2.03,
@@ -13735,17 +13780,17 @@
         "Finland": {
           "lq": 0.11,
           "notes": 2843,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.68,
           "notes": 21685,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.72,
           "notes": 175220,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.18,
@@ -13810,7 +13855,7 @@
         "Netherlands": {
           "lq": 0.33,
           "notes": 7714,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 1.92,
@@ -13825,7 +13870,7 @@
         "Portugal": {
           "lq": 1.53,
           "notes": 17554,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.34,
@@ -13905,7 +13950,7 @@
         "Belgium": {
           "lq": 0.26,
           "notes": 1137,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Croatia": {
           "lq": 1.37,
@@ -13920,17 +13965,17 @@
         "Finland": {
           "lq": 0.11,
           "notes": 184,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.91,
           "notes": 1817,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.52,
           "notes": 7893,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Ireland": {
           "lq": 0.27,
@@ -13960,12 +14005,12 @@
         "Netherlands": {
           "lq": 0.26,
           "notes": 374,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Portugal": {
           "lq": 1.66,
           "notes": 1195,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Slovakia": {
           "lq": 2.0,
@@ -14010,7 +14055,7 @@
         "Belgium": {
           "lq": 0.06,
           "notes": 643,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 30.54,
@@ -14045,17 +14090,17 @@
         "Finland": {
           "lq": 0.11,
           "notes": 440,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 1.03,
           "notes": 5138,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.1,
           "notes": 41533,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.23,
@@ -14100,7 +14145,7 @@
         "Netherlands": {
           "lq": 0.29,
           "notes": 1041,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.6,
@@ -14110,7 +14155,7 @@
         "Portugal": {
           "lq": 6.8,
           "notes": 12188,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.04,
@@ -14165,7 +14210,7 @@
         "Belgium": {
           "lq": 0.08,
           "notes": 349,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 201.24,
@@ -14195,17 +14240,17 @@
         "Finland": {
           "lq": 0.18,
           "notes": 269,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 1.66,
           "notes": 3100,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.88,
           "notes": 12434,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.73,
@@ -14250,12 +14295,12 @@
         "Netherlands": {
           "lq": 0.32,
           "notes": 438,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Portugal": {
           "lq": 1.63,
           "notes": 1096,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Slovakia": {
           "lq": 0.37,
@@ -14305,7 +14350,7 @@
         "Belgium": {
           "lq": 0.07,
           "notes": 151,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 4.45,
@@ -14315,17 +14360,17 @@
         "Finland": {
           "lq": 0.11,
           "notes": 88,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.69,
           "notes": 710,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.39,
           "notes": 3059,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Ireland": {
           "lq": 0.33,
@@ -14350,12 +14395,12 @@
         "Netherlands": {
           "lq": 0.16,
           "notes": 123,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Portugal": {
           "lq": 0.83,
           "notes": 309,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Slovakia": {
           "lq": 0.22,
@@ -14400,7 +14445,7 @@
         "Belgium": {
           "lq": 0.04,
           "notes": 314,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 2.35,
@@ -14425,17 +14470,17 @@
         "Finland": {
           "lq": 0.08,
           "notes": 228,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.59,
           "notes": 2042,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.96,
           "notes": 51498,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.21,
@@ -14470,12 +14515,12 @@
         "Netherlands": {
           "lq": 0.21,
           "notes": 517,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Portugal": {
           "lq": 0.45,
           "notes": 557,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Slovakia": {
           "lq": 0.16,
@@ -14530,7 +14575,7 @@
         "Belgium": {
           "lq": 0.03,
           "notes": 111,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 35.78,
@@ -14545,17 +14590,17 @@
         "Finland": {
           "lq": 0.02,
           "notes": 39,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 1.12,
           "notes": 2186,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.92,
           "notes": 28651,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.15,
@@ -14585,12 +14630,12 @@
         "Netherlands": {
           "lq": 0.18,
           "notes": 258,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Portugal": {
           "lq": 0.22,
           "notes": 156,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Slovakia": {
           "lq": 0.15,
@@ -14635,7 +14680,7 @@
         "Belgium": {
           "lq": 0.11,
           "notes": 48,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 2964.36,
@@ -14645,17 +14690,17 @@
         "Finland": {
           "lq": 0.08,
           "notes": 14,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.36,
           "notes": 75,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.19,
           "notes": 298,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Italy": {
           "lq": 2.27,
@@ -14670,12 +14715,12 @@
         "Netherlands": {
           "lq": 0.24,
           "notes": 36,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Portugal": {
           "lq": 0.4,
           "notes": 30,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Slovakia": {
           "lq": 0.27,
@@ -14720,17 +14765,17 @@
         "France": {
           "lq": 0.06,
           "notes": 17,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.02,
           "notes": 49,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Portugal": {
           "lq": 0.15,
           "notes": 15,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Spain": {
           "lq": 44.71,
@@ -14755,7 +14800,7 @@
         "Belgium": {
           "lq": 0.86,
           "notes": 13,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Italy": {
           "lq": 7.19,
@@ -14805,7 +14850,7 @@
         "Belgium": {
           "lq": 0.26,
           "notes": 24584,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 0.43,
@@ -14860,17 +14905,17 @@
         "Finland": {
           "lq": 0.35,
           "notes": 11992,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.27,
           "notes": 11737,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.53,
           "notes": 502472,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.28,
@@ -14945,7 +14990,7 @@
         "Netherlands": {
           "lq": 0.91,
           "notes": 28520,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "New Zealand": {
           "lq": 34.8,
@@ -14960,7 +15005,7 @@
         "Portugal": {
           "lq": 0.56,
           "notes": 8688,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.67,
@@ -15060,7 +15105,7 @@
         "Belgium": {
           "lq": 0.43,
           "notes": 48296,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 0.37,
@@ -15115,17 +15160,17 @@
         "Finland": {
           "lq": 0.18,
           "notes": 7215,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 1.28,
           "notes": 64840,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.43,
           "notes": 550161,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.21,
@@ -15190,7 +15235,7 @@
         "Netherlands": {
           "lq": 0.85,
           "notes": 31389,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Norway": {
           "lq": 1.6,
@@ -15205,7 +15250,7 @@
         "Portugal": {
           "lq": 0.43,
           "notes": 7842,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.86,
@@ -15300,7 +15345,7 @@
         "Belgium": {
           "lq": 0.35,
           "notes": 16854,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 0.94,
@@ -15345,17 +15390,17 @@
         "Finland": {
           "lq": 0.51,
           "notes": 9008,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 1.39,
           "notes": 30389,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.31,
           "notes": 51893,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 6.82,
@@ -15425,7 +15470,7 @@
         "Netherlands": {
           "lq": 0.68,
           "notes": 10920,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.49,
@@ -15435,7 +15480,7 @@
         "Portugal": {
           "lq": 0.44,
           "notes": 3482,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.82,
@@ -15535,7 +15580,7 @@
         "Belgium": {
           "lq": 0.44,
           "notes": 14779,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Brazil": {
           "lq": 3.95,
@@ -15575,17 +15620,17 @@
         "Finland": {
           "lq": 0.34,
           "notes": 4149,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 4.36,
           "notes": 65881,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.35,
           "notes": 40592,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 28.45,
@@ -15645,7 +15690,7 @@
         "Netherlands": {
           "lq": 0.79,
           "notes": 8695,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 4.44,
@@ -15660,7 +15705,7 @@
         "Portugal": {
           "lq": 6.17,
           "notes": 33705,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.29,
@@ -15745,7 +15790,7 @@
         "Belgium": {
           "lq": 0.28,
           "notes": 24790,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 0.94,
@@ -15805,17 +15850,17 @@
         "Finland": {
           "lq": 0.52,
           "notes": 16463,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.25,
           "notes": 9699,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.14,
           "notes": 344451,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 1.59,
@@ -15890,7 +15935,7 @@
         "Netherlands": {
           "lq": 0.96,
           "notes": 27617,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 1.7,
@@ -15910,7 +15955,7 @@
         "Portugal": {
           "lq": 0.94,
           "notes": 13328,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.55,
@@ -16000,7 +16045,7 @@
         "Belgium": {
           "lq": 1.02,
           "notes": 38366,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 1.09,
@@ -16050,17 +16095,17 @@
         "Finland": {
           "lq": 0.35,
           "notes": 4830,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 1.57,
           "notes": 26675,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.29,
           "notes": 37430,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.75,
@@ -16115,7 +16160,7 @@
         "Netherlands": {
           "lq": 0.64,
           "notes": 7955,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.33,
@@ -16125,7 +16170,7 @@
         "Portugal": {
           "lq": 9.36,
           "notes": 57591,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.18,
@@ -16205,7 +16250,7 @@
         "Belgium": {
           "lq": 0.72,
           "notes": 23107,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 1.93,
@@ -16245,17 +16290,17 @@
         "Finland": {
           "lq": 0.93,
           "notes": 10748,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 3.4,
           "notes": 49188,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.45,
           "notes": 49568,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 3.11,
@@ -16310,7 +16355,7 @@
         "Netherlands": {
           "lq": 0.86,
           "notes": 9056,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.49,
@@ -16320,7 +16365,7 @@
         "Portugal": {
           "lq": 0.95,
           "notes": 4960,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.14,
@@ -16405,7 +16450,7 @@
         "Belgium": {
           "lq": 0.24,
           "notes": 14190,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 0.76,
@@ -16455,17 +16500,17 @@
         "Finland": {
           "lq": 0.53,
           "notes": 11558,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.32,
           "notes": 8659,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.04,
           "notes": 214925,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 2.2,
@@ -16525,7 +16570,7 @@
         "Netherlands": {
           "lq": 0.75,
           "notes": 14856,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 1.9,
@@ -16535,7 +16580,7 @@
         "Portugal": {
           "lq": 0.36,
           "notes": 3533,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.75,
@@ -16630,7 +16675,7 @@
         "Belgium": {
           "lq": 0.36,
           "notes": 5628,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 2.98,
@@ -16655,17 +16700,17 @@
         "Finland": {
           "lq": 1.33,
           "notes": 7633,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.42,
           "notes": 3039,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.46,
           "notes": 25259,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 5.61,
@@ -16710,7 +16755,7 @@
         "Netherlands": {
           "lq": 0.61,
           "notes": 3212,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.5,
@@ -16720,7 +16765,7 @@
         "Portugal": {
           "lq": 2.06,
           "notes": 5332,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.22,
@@ -16795,7 +16840,7 @@
         "Belgium": {
           "lq": 1.35,
           "notes": 23824,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 6.02,
@@ -16830,17 +16875,17 @@
         "Finland": {
           "lq": 0.08,
           "notes": 519,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.73,
           "notes": 5831,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.23,
           "notes": 14243,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 2.44,
@@ -16890,12 +16935,12 @@
         "Netherlands": {
           "lq": 0.29,
           "notes": 1719,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Portugal": {
           "lq": 0.76,
           "notes": 2177,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "San Marino": {
           "lq": 35.03,
@@ -16960,7 +17005,7 @@
         "Belgium": {
           "lq": 0.18,
           "notes": 1995,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 4.14,
@@ -16990,17 +17035,17 @@
         "Finland": {
           "lq": 0.08,
           "notes": 322,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 3.99,
           "notes": 19765,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.13,
           "notes": 42686,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 1.64,
@@ -17045,7 +17090,7 @@
         "Netherlands": {
           "lq": 0.3,
           "notes": 1088,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.68,
@@ -17055,7 +17100,7 @@
         "Portugal": {
           "lq": 2.67,
           "notes": 4775,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Slovakia": {
           "lq": 0.24,
@@ -17100,7 +17145,7 @@
         "Belgium": {
           "lq": 0.08,
           "notes": 86,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 37.24,
@@ -17120,17 +17165,17 @@
         "Finland": {
           "lq": 0.18,
           "notes": 73,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 5.67,
           "notes": 2917,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.28,
           "notes": 1086,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 21.9,
@@ -17160,12 +17205,12 @@
         "Netherlands": {
           "lq": 0.24,
           "notes": 92,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Portugal": {
           "lq": 0.31,
           "notes": 57,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Slovakia": {
           "lq": 0.54,
@@ -17205,7 +17250,7 @@
         "Belgium": {
           "lq": 4.95,
           "notes": 19377,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 8.22,
@@ -17220,17 +17265,17 @@
         "Finland": {
           "lq": 0.03,
           "notes": 36,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.24,
           "notes": 425,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.77,
           "notes": 10448,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 2.73,
@@ -17260,12 +17305,12 @@
         "Netherlands": {
           "lq": 0.1,
           "notes": 131,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Portugal": {
           "lq": 0.1,
           "notes": 65,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Slovakia": {
           "lq": 0.08,
@@ -17310,12 +17355,12 @@
         "Belgium": {
           "lq": 1.72,
           "notes": 32,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Germany": {
           "lq": 0.73,
           "notes": 47,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Italy": {
           "lq": 6.85,
@@ -17345,7 +17390,7 @@
         "Belgium": {
           "lq": 0.55,
           "notes": 499,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Estonia": {
           "lq": 0.15,
@@ -17355,17 +17400,17 @@
         "Finland": {
           "lq": 0.31,
           "notes": 101,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.19,
           "notes": 79,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.6,
           "notes": 4970,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Italy": {
           "lq": 0.34,
@@ -17385,12 +17430,12 @@
         "Netherlands": {
           "lq": 3.78,
           "notes": 1128,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Portugal": {
           "lq": 0.43,
           "notes": 64,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Slovakia": {
           "lq": 0.29,
@@ -17455,7 +17500,7 @@
         "Belgium": {
           "lq": 5.53,
           "notes": 2569594,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 1.57,
@@ -17535,17 +17580,17 @@
         "Finland": {
           "lq": 0.15,
           "notes": 25805,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.18,
           "notes": 38065,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.45,
           "notes": 719841,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.19,
@@ -17640,7 +17685,7 @@
         "Netherlands": {
           "lq": 1.28,
           "notes": 196983,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 0.44,
@@ -17660,7 +17705,7 @@
         "Portugal": {
           "lq": 0.12,
           "notes": 9059,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.31,
@@ -17780,7 +17825,7 @@
         "Belgium": {
           "lq": 0.93,
           "notes": 195658,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 0.91,
@@ -17855,12 +17900,12 @@
         "Finland": {
           "lq": 0.85,
           "notes": 65035,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.57,
           "notes": 54469,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Georgia": {
           "lq": 5.23,
@@ -17870,7 +17915,7 @@
         "Germany": {
           "lq": 1.43,
           "notes": 1037539,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.34,
@@ -17970,7 +18015,7 @@
         "Netherlands": {
           "lq": 1.33,
           "notes": 92600,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 0.77,
@@ -17990,7 +18035,7 @@
         "Portugal": {
           "lq": 0.28,
           "notes": 9516,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.09,
@@ -18080,7 +18125,7 @@
         "Belgium": {
           "lq": 1.12,
           "notes": 47258,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 0.97,
@@ -18115,17 +18160,17 @@
         "Finland": {
           "lq": 0.31,
           "notes": 4785,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.2,
           "notes": 3873,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.51,
           "notes": 219600,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.33,
@@ -18180,7 +18225,7 @@
         "Netherlands": {
           "lq": 1.28,
           "notes": 17895,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 2.37,
@@ -18190,7 +18235,7 @@
         "Portugal": {
           "lq": 0.22,
           "notes": 1494,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.24,
@@ -18265,7 +18310,7 @@
         "Belgium": {
           "lq": 4.38,
           "notes": 387425,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 1.53,
@@ -18305,17 +18350,17 @@
         "Finland": {
           "lq": 0.17,
           "notes": 5623,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 2.59,
           "notes": 103794,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.42,
           "notes": 126988,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.17,
@@ -18380,7 +18425,7 @@
         "Netherlands": {
           "lq": 1.12,
           "notes": 32812,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.67,
@@ -18390,7 +18435,7 @@
         "Portugal": {
           "lq": 0.29,
           "notes": 4239,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.45,
@@ -18465,7 +18510,7 @@
         "Belgium": {
           "lq": 4.55,
           "notes": 116607,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 0.56,
@@ -18490,17 +18535,17 @@
         "Finland": {
           "lq": 0.24,
           "notes": 2200,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 1.26,
           "notes": 14648,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.51,
           "notes": 44813,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.25,
@@ -18550,7 +18595,7 @@
         "Netherlands": {
           "lq": 1.26,
           "notes": 10722,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 1.39,
@@ -18560,7 +18605,7 @@
         "Portugal": {
           "lq": 0.33,
           "notes": 1365,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.62,
@@ -18645,7 +18690,7 @@
         "Belgium": {
           "lq": 2.24,
           "notes": 472547,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bosnia-Herzegovina": {
           "lq": 0.21,
@@ -18705,17 +18750,17 @@
         "Finland": {
           "lq": 0.08,
           "notes": 6391,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.33,
           "notes": 31404,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 1.26,
           "notes": 916734,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.17,
@@ -18790,7 +18835,7 @@
         "Netherlands": {
           "lq": 0.95,
           "notes": 66214,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "North Macedonia": {
           "lq": 0.83,
@@ -18810,7 +18855,7 @@
         "Portugal": {
           "lq": 0.27,
           "notes": 9176,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 1.42,
@@ -18895,7 +18940,7 @@
         "Belgium": {
           "lq": 5.77,
           "notes": 200399,
-          "baseline": 6617806
+          "baseline": 6617829
         },
         "Bulgaria": {
           "lq": 0.53,
@@ -18920,17 +18965,17 @@
         "Finland": {
           "lq": 0.05,
           "notes": 570,
-          "baseline": 2405726
+          "baseline": 2405751
         },
         "France": {
           "lq": 0.85,
           "notes": 13351,
-          "baseline": 2994103
+          "baseline": 2994144
         },
         "Germany": {
           "lq": 0.31,
           "notes": 36795,
-          "baseline": 22831832
+          "baseline": 22831907
         },
         "Greece": {
           "lq": 0.13,
@@ -18975,7 +19020,7 @@
         "Netherlands": {
           "lq": 0.96,
           "notes": 11011,
-          "baseline": 2191947
+          "baseline": 2191959
         },
         "Poland": {
           "lq": 0.13,
@@ -18985,7 +19030,7 @@
         "Portugal": {
           "lq": 0.25,
           "notes": 1403,
-          "baseline": 1081165
+          "baseline": 1081183
         },
         "Romania": {
           "lq": 0.75,
@@ -34032,9 +34077,9 @@
         "lon": -3.61894,
         "lat": 40.40927
       },
-      "print_run": "Unknown",
+      "print_run": "21.6M notes",
       "total_ebt": 539,
-      "confidence": "Undetermined",
+      "confidence": "Low",
       "dispersion": "Displaced Concentration (Belgium)",
       "countries": {
         "Belgium": {
@@ -115691,7 +115736,8 @@
         "U009",
         "U010",
         "U011",
-        "U012"
+        "U012",
+        "U013"
       ],
       "V - IMBISA (Spain)": [
         "V001",
