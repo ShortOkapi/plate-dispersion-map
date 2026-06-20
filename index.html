@@ -213,7 +213,7 @@
     </div>
 
     <script>
-        // O núcleo matemático da Zona Euro expandida (Para calibração da Escala de Cor)
+        // The mathematical core of the expanded Eurozone (For Color Scale calibration)
         const CORE_COUNTRIES = [
             "Austria", "Belgium", "Croatia", "Cyprus", "Estonia", "Finland", 
             "France", "Germany", "Greece", "Ireland", "Italy", "Latvia", 
@@ -426,7 +426,7 @@
             document.getElementById('val-conf').innerHTML = `<span style="color:${confColor}">${data.confidence}</span>`;
             document.getElementById('val-dispersion').innerText = data.dispersion;
 
-            // 1. ISOLAR O CORE: O máximo da escala ignora países como Cuba e Albânia
+            // 1. ISOLATE THE CORE: The top of the scale ignores countries like Cuba and Albania
             const coreHighConfCountries = Object.entries(data.countries)
                 .filter(([name, d]) => CORE_COUNTRIES.includes(name) && getCountryConfidence(d).level === "High")
                 .map(([name, d]) => d);
@@ -440,7 +440,7 @@
             const d_step_low = 1.0 / 3;
             const d_step_high = (scaleMax - 1.0) / 3;
             
-            // 2. Trava de Extrapolação (Clamp): Cuba ficará no vermelho máximo, em vez de gerar cores erradas
+            // 2. Extrapolation Clamp: Off-Core countries will cap at maximum red, instead of generating incorrect colors
             const colorScale = d3.scaleLinear()
                 .domain([0, d_step_low, d_step_low * 2, 1.0, 1.0 + d_step_high, 1.0 + d_step_high * 2, scaleMax])
                 .range(lqColors)
@@ -604,7 +604,7 @@
 
             document.getElementById('legend-box').style.display = 'block';
             
-            // 3. Legenda Dinâmica e Honesta
+            // 3. Dynamic and Honest Legend
             const displayMax = (Math.floor(scaleMax * 10) / 10).toFixed(1);
             const maxCatCode = getLqCategoryCode(scaleMax);
             const maxCatLabel = getLqCategoryLabel(maxCatCode);
