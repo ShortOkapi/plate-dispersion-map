@@ -15,7 +15,7 @@ print(f"=== STARTING EBT MAP AUTO-UPDATE v{VERSION} ===")
 # 0. CORE DEFINITIONS & TAXONOMY ENGINE
 # ==========================================
 
-# Utilizar os nomes completos exatos como vêm no EBT Dump
+# Use the exact full names as they appear in the EBT Dump
 CORE_COUNTRIES = {
     "Austria", "Belgium", "Croatia", "Cyprus", "Estonia", "Finland", 
     "France", "Germany", "Greece", "Ireland", "Italy", "Latvia", 
@@ -25,7 +25,7 @@ CORE_COUNTRIES = {
 }
 
 def get_reliability(notes, baseline):
-    """Calcula a fiabilidade estatística dos dados do país."""
+    """Calculates the statistical reliability of the country's data."""
     if baseline == 0: return "Low"
     ratio = notes / baseline
     if notes >= 100 or (notes >= 20 and ratio >= 0.05): return "High"
@@ -34,16 +34,16 @@ def get_reliability(notes, baseline):
 
 def determine_taxonomy(high_data, origin_country, total_plate_notes):
     """
-    O Cérebro do Motor: Avalia a topografia dos LQs fiáveis e atribui
-    a categoria correta baseada nas nossas regras geográficas.
+    The Engine's Brain: Evaluates the topography of reliable LQs and
+    assigns the correct category based on our geographical rules.
     """
     if len(high_data) == 0 or total_plate_notes < 150:
         return "Undetermined (Insufficient Data)"
         
-    # Ordenar do maior LQ para o menor
+    # Sort from highest LQ to lowest
     high_data.sort(key=lambda x: x[1], reverse=True)
     
-    # Se só há 1 país fiável
+    # If there is only 1 reliable country
     if len(high_data) == 1:
         top1_c = high_data[0][0]
         if top1_c == origin_country:
@@ -53,22 +53,22 @@ def determine_taxonomy(high_data, origin_country, total_plate_notes):
     top1_c, top1_lq = high_data[0]
     top2_c, top2_lq = high_data[1]
     
-    # 1. Teste de Dispersão Pandémica
+    # 1. Pandemic Dispersion Test
     lqs = [x[1] for x in high_data]
     if len(high_data) >= 4 and np.std(lqs) < 0.6:
         return "Pandemic Dispersion"
         
-    # 2. Teste do Rácio de Isolamento (O abismo entre o 1º e o 2º)
+    # 2. Isolation Ratio Test (The gap between 1st and 2nd)
     ratio = top1_lq / top2_lq if top2_lq > 0 else 99
     if ratio >= 1.8:
         if top1_c == origin_country:
             return "Domestic Concentration"
         return f"Displaced Concentration ({top1_c})"
     
-    # 3. Teste de Co-Liderança (Empate Técnico)
+    # 3. Co-Leadership Test (Technical Tie)
     leaders = [top1_c, top2_c]
     
-    # Verificar se há um 3º país colado ao 2º
+    # Check if there is a 3rd country glued to the 2nd
     if len(high_data) >= 3:
         top3_c, top3_lq = high_data[2]
         if (top2_lq / top3_lq) < 1.4:
@@ -306,7 +306,7 @@ for name, group in grouped_plates:
     row_notes = 0
     row_baseline = 0
     
-    # Preencher dados dos países e separar a periferia
+    # Populate country data and separate the periphery
     for _, row in group.iterrows():
         c_code = row['country']
         n_found = int(row['plate_notes_in_country'])
@@ -323,7 +323,7 @@ for name, group in grouped_plates:
             row_notes += n_found
             row_baseline += c_base
             
-    # Calcular matriz de LQs de alta fiabilidade para a Taxonomia
+    # Calculate high-reliability LQ matrix for the Taxonomy
     high_data_for_taxonomy = []
     for c_code, c_data in countries_data.items():
         if c_code in CORE_COUNTRIES:
@@ -331,7 +331,7 @@ for name, group in grouped_plates:
             if rel == "High":
                 high_data_for_taxonomy.append((c_code, c_data["lq"]))
                 
-    # Adicionar o Rest of World se for estatisticamente fiável
+    # Add Rest of World if it is statistically reliable
     if row_baseline > 0:
         rel_row = get_reliability(row_notes, row_baseline)
         if rel_row == "High":
@@ -340,7 +340,7 @@ for name, group in grouped_plates:
             row_lq = row_pct / row_base_pct if row_base_pct > 0 else 0
             high_data_for_taxonomy.append(("Rest of World", row_lq))
 
-    # Obter a nova categoria de dispersão geográfica
+    # Get the new geographical dispersion category
     dispersion = determine_taxonomy(high_data_for_taxonomy, p_info["country"], total_ebt)
 
     master_data["plates"][f"{denom}_{plate}"] = {
