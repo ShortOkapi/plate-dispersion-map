@@ -2,10 +2,10 @@ name: Auto-Update EBT Map Data
 
 on:
   schedule:
-    # Corre automaticamente todas as segundas-feiras às 04:00 da manhã (hora UTC)
+    # Runs automatically every Monday at 04:00 AM (UTC)
     - cron: '0 4 * * 1'
   workflow_dispatch:
-    # Este comando permite-te correr a atualização à mão sempre que quiseres!
+    # Allows you to trigger the update manually whenever you want
 
 jobs:
   update-data:
