@@ -8,7 +8,7 @@ import re
 from collections import defaultdict
 from datetime import datetime, timedelta
 
-VERSION = "2.0.0"
+VERSION = "2.1.0"
 print(f"=== STARTING EBT MAP AUTO-UPDATE v{VERSION} ===")
 
 # ==========================================
@@ -276,6 +276,9 @@ for denom in results_df['denomination'].unique(): master_data["hierarchy"][str(d
 
 grouped_plates = results_df.groupby(['denomination', 'shortcode_detailed'])
 
+# NOVO: Dicionário para armazenar a agregação por impressora
+agg_store = {}
+
 for name, group in grouped_plates:
     denom, plate = int(name[0]), name[1]
     printer_letter = plate[0]
@@ -288,6 +291,18 @@ for name, group in grouped_plates:
     wl_row = wl[(wl['denomination'] == denom) & (wl['shortcode_detailed'] == plate)]
     print_run = float(wl_row['Print_Run_Millions'].sum()) if not wl_row.empty else 0.0
     total_ebt = int(group['plate_global_total'].iloc[0])
+
+    # NOVO: Acumular dados para o "All Plates"
+    agg_key = (denom, p_info["name"])
+    if agg_key not in agg_store:
+        agg_store[agg_key] = {
+            "print_run": 0.0,
+            "total_ebt": 0,
+            "countries": {},
+            "p_info": p_info
+        }
+    agg_store[agg_key]["print_run"] += print_run
+    agg_store[agg_key]["total_ebt"] += total_ebt
     
     if print_run > 0:
         print_run_str = f"{round(print_run, 3)}M notes"
@@ -318,6 +333,11 @@ for name, group in grouped_plates:
             "notes": n_found, 
             "baseline": c_base
         }
+
+        # NOVO: Acumular notas no país para o "All Plates"
+        if c_code not in agg_store[agg_key]["countries"]:
+            agg_store[agg_key]["countries"][c_code] = {"notes": 0, "baseline": c_base}
+        agg_store[agg_key]["countries"][c_code]["notes"] += n_found
         
         if c_code not in CORE_COUNTRIES:
             row_notes += n_found
@@ -350,7 +370,75 @@ for name, group in grouped_plates:
         "dispersion": dispersion, "countries": countries_data
     }
 
+# NOVO: Gerar as chapas virtuais "All Plates"
+for (denom, printer_name), agg_data in agg_store.items():
+    print_run = agg_data["print_run"]
+    total_ebt = agg_data["total_ebt"]
+    p_info = agg_data["p_info"]
+    
+    if print_run > 0:
+        print_run_str = f"{round(print_run, 3)}M notes"
+        capture_rate = total_ebt / print_run 
+        avg_rate = avg_capture_rate.get(denom, 500)
+        
+        if capture_rate > (avg_rate * 10.0): confidence = "Low (Anomalous Data)"
+        elif capture_rate > (avg_rate * 0.4): confidence = "High"
+        elif capture_rate > (avg_rate * 0.1): confidence = "Medium"
+        else: confidence = "Low"
+    else:
+        print_run_str = "Unknown"
+        confidence = "Undetermined"
+        
+    countries_data = {}
+    row_notes = 0
+    row_baseline = 0
+    
+    for c_code, c_data in agg_data["countries"].items():
+        n_found = c_data["notes"]
+        c_base = c_data["baseline"]
+        
+        if c_base > 0 and total_ebt > 0:
+            plate_pct = n_found / total_ebt
+            baseline_pct = c_base / denom_ebt_totals[denom]
+            c_lq = plate_pct / baseline_pct if baseline_pct > 0 else 0
+        else:
+            c_lq = 0.0
+            
+        countries_data[c_code] = {
+            "lq": round(c_lq, 2), 
+            "notes": n_found, 
+            "baseline": c_base
+        }
+        
+        if c_code not in CORE_COUNTRIES:
+            row_notes += n_found
+            row_baseline += c_base
+            
+    high_data_for_taxonomy = []
+    for c_code, c_data_dict in countries_data.items():
+        if c_code in CORE_COUNTRIES:
+            rel = get_reliability(c_data_dict["notes"], c_data_dict["baseline"])
+            if rel == "High":
+                high_data_for_taxonomy.append((c_code, c_data_dict["lq"]))
+                
+    if row_baseline > 0:
+        rel_row = get_reliability(row_notes, row_baseline)
+        if rel_row == "High":
+            row_pct = row_notes / total_ebt
+            row_base_pct = row_baseline / denom_ebt_totals[denom]
+            row_lq = row_pct / row_base_pct if row_base_pct > 0 else 0
+            high_data_for_taxonomy.append(("Rest of World", row_lq))
+
+    dispersion = determine_taxonomy(high_data_for_taxonomy, p_info["country"], total_ebt)
+
+    master_data["plates"][f"{denom}_{printer_name}_all"] = {
+        "denomination": denom, "plate": "All Plates", "origin": p_info["name"],
+        "origin_coords": {"lon": p_info["lon"], "lat": p_info["lat"]},
+        "print_run": print_run_str, "total_ebt": total_ebt, "confidence": confidence,
+        "dispersion": dispersion, "countries": countries_data
+    }
+
 with open('ebt_dispersion_master_data.json', 'w', encoding='utf-8') as f:
     json.dump(master_data, f, ensure_ascii=False, indent=2)
 
-print("SUCCESS! JSON File generated and saved with Analytical Engine v2.0.")
+print(f"SUCCESS! JSON File generated and saved with Analytical Engine v{VERSION}.")
