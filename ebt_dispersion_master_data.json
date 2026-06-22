@@ -1,7 +1,7 @@
 {
   "metadata": {
     "last_updated": "2026-06-22 01:39:09 UTC",
-    "version": "2.1.3"
+    "version": "2.1.4"
   },
   "plates": {
     "5_E001": {
@@ -940,7 +940,7 @@
       "print_run": "164.0M notes",
       "total_ebt": 759000,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Latvia, France, Croatia, Luxembourg, Estonia, Germany, Spain, Austria, Greece, Lithuania, Slovakia, Switzerland, Italy, Rest of World)",
+      "dispersion": "Endemic Leakage (Origin + Latvia, France, Croatia, Luxembourg, Estonia, Germany, Spain, Austria, Greece, Lithuania, Slovakia, Switzerland, Bulgaria, Italy, Rest of World)",
       "countries": {
         "Albania": {
           "lq": 2.21,
@@ -5155,7 +5155,7 @@
       "print_run": "106.0M notes",
       "total_ebt": 474813,
       "confidence": "High",
-      "dispersion": "Displaced Concentration (Slovakia)",
+      "dispersion": "Multi-Hub (Slovakia)",
       "countries": {
         "Albania": {
           "lq": 2.53,
@@ -14055,7 +14055,7 @@
       "print_run": "80.0M notes",
       "total_ebt": 90059,
       "confidence": "Medium",
-      "dispersion": "Displaced Concentration (Andorra)",
+      "dispersion": "Multi-Hub (Andorra, Bulgaria)",
       "countries": {
         "Andorra": {
           "lq": 36.35,
@@ -14215,7 +14215,7 @@
       "print_run": "71.0M notes",
       "total_ebt": 34188,
       "confidence": "Low",
-      "dispersion": "Displaced Concentration (Rest of World)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 0.66,
@@ -14590,7 +14590,7 @@
       "print_run": "Unknown",
       "total_ebt": 36808,
       "confidence": "Undetermined",
-      "dispersion": "Displaced Concentration (Rest of World)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 0.2,
@@ -14695,7 +14695,7 @@
       "print_run": "Unknown",
       "total_ebt": 3915,
       "confidence": "Undetermined",
-      "dispersion": "Displaced Concentration (Rest of World)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 0.24,
@@ -14775,7 +14775,7 @@
       "print_run": "Unknown",
       "total_ebt": 4867,
       "confidence": "Undetermined",
-      "dispersion": "Displaced Concentration (Rest of World)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 0.03,
@@ -17275,7 +17275,7 @@
       "print_run": "50.0M notes",
       "total_ebt": 32844,
       "confidence": "Medium",
-      "dispersion": "Multi-Hub (Rest of World)",
+      "dispersion": "Multi-Hub (Belgium)",
       "countries": {
         "Austria": {
           "lq": 0.1,
@@ -21945,7 +21945,7 @@
       "print_run": "23.0M notes",
       "total_ebt": 22766,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Portugal, Spain)",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 0.37,
@@ -24325,7 +24325,7 @@
       "print_run": "86.0M notes",
       "total_ebt": 34238,
       "confidence": "Medium",
-      "dispersion": "Displaced Concentration (Slovakia)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 1.7,
@@ -24485,7 +24485,7 @@
       "print_run": "32.0M notes",
       "total_ebt": 12412,
       "confidence": "Medium",
-      "dispersion": "Displaced Concentration (Rest of World)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 2.7,
@@ -33100,7 +33100,7 @@
       "print_run": "173.0M notes",
       "total_ebt": 171776,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Ireland, Slovakia, Italy)",
+      "dispersion": "Endemic Leakage (Origin + Ireland, Slovakia, Bulgaria, Italy)",
       "countries": {
         "Andorra": {
           "lq": 3.6,
@@ -33260,7 +33260,7 @@
       "print_run": "157.0M notes",
       "total_ebt": 107399,
       "confidence": "Medium",
-      "dispersion": "Domestic Concentration",
+      "dispersion": "Endemic Leakage (Origin + Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 1.05,
@@ -34005,7 +34005,7 @@
       "print_run": "Unknown",
       "total_ebt": 5073,
       "confidence": "Undetermined",
-      "dispersion": "Displaced Concentration (Rest of World)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 0.09,
@@ -34075,7 +34075,7 @@
       "print_run": "Unknown",
       "total_ebt": 8998,
       "confidence": "Undetermined",
-      "dispersion": "Displaced Concentration (Rest of World)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 0.13,
@@ -34405,7 +34405,7 @@
       "print_run": "138.0M notes",
       "total_ebt": 380169,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Slovakia, Latvia, Lithuania, Portugal)",
+      "dispersion": "Multi-Hub (Slovakia, Latvia, Lithuania, Portugal, Rest of World)",
       "countries": {
         "Austria": {
           "lq": 1.94,
@@ -36325,7 +36325,7 @@
       "print_run": "208.0M notes",
       "total_ebt": 98657,
       "confidence": "Medium",
-      "dispersion": "Multi-Hub (Italy)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 0.43,
@@ -41720,7 +41720,7 @@
       "print_run": "160.0M notes",
       "total_ebt": 112833,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Rest of World, Italy)",
+      "dispersion": "Multi-Hub (Rest of World)",
       "countries": {
         "Albania": {
           "lq": 9.51,
@@ -42950,7 +42950,7 @@
       "print_run": "148.0M notes",
       "total_ebt": 106058,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Italy, Rest of World, Spain, Slovenia, Ireland, Croatia, Austria, Slovakia)",
+      "dispersion": "Multi-Hub (Rest of World, Italy, Spain, Slovenia, Ireland, Croatia, Austria, Slovakia)",
       "countries": {
         "Austria": {
           "lq": 1.8,
@@ -43485,7 +43485,7 @@
       "print_run": "156.0M notes",
       "total_ebt": 170069,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Greece, Malta)",
+      "dispersion": "Endemic Leakage (Origin + Greece, Malta, Rest of World)",
       "countries": {
         "Andorra": {
           "lq": 1.77,
@@ -45925,7 +45925,7 @@
       "print_run": "2.75M notes",
       "total_ebt": 1749,
       "confidence": "High",
-      "dispersion": "Displaced Concentration (Rest of World)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 3.58,
@@ -46100,7 +46100,7 @@
       "print_run": "74.0M notes",
       "total_ebt": 19985,
       "confidence": "Medium",
-      "dispersion": "Displaced Concentration (Rest of World)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 2.11,
@@ -46405,7 +46405,7 @@
       "print_run": "59.0M notes",
       "total_ebt": 12421,
       "confidence": "Medium",
-      "dispersion": "Displaced Concentration (Rest of World)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 2.15,
@@ -50575,7 +50575,7 @@
       "print_run": "Unknown",
       "total_ebt": 23018,
       "confidence": "Undetermined",
-      "dispersion": "Multi-Hub (Switzerland, Rest of World)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 1.29,
@@ -50755,7 +50755,7 @@
       "print_run": "Unknown",
       "total_ebt": 29726,
       "confidence": "Undetermined",
-      "dispersion": "Displaced Concentration (Rest of World)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 0.39,
@@ -50865,7 +50865,7 @@
       "print_run": "Unknown",
       "total_ebt": 13959,
       "confidence": "Undetermined",
-      "dispersion": "Displaced Concentration (Rest of World)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 0.12,
@@ -61365,7 +61365,7 @@
       "print_run": "128.0M notes",
       "total_ebt": 107535,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Greece, Italy, Croatia, Austria, Luxembourg, Slovenia, Belgium, Netherlands, Slovakia, Spain, Rest of World, Germany, Lithuania, Portugal, Latvia, Malta)",
+      "dispersion": "Endemic Leakage (Origin + Greece, Italy, Croatia, Austria, Luxembourg, Slovenia, Belgium, Netherlands, Slovakia, Rest of World, Spain, Germany, Lithuania, Portugal, Latvia, Malta)",
       "countries": {
         "Algeria": {
           "lq": 23.61,
@@ -62660,7 +62660,7 @@
       "print_run": "55.0M notes",
       "total_ebt": 42249,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Slovakia, Ireland, Belgium, Greece, Luxembourg, Rest of World, Croatia, Austria)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 1.34,
@@ -66390,7 +66390,7 @@
       "print_run": "165.0M notes",
       "total_ebt": 42900,
       "confidence": "Medium",
-      "dispersion": "Multi-Hub (Switzerland, Rest of World)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 0.86,
@@ -66535,7 +66535,7 @@
       "print_run": "117.0M notes",
       "total_ebt": 26365,
       "confidence": "Medium",
-      "dispersion": "Displaced Concentration (Switzerland)",
+      "dispersion": "Multi-Hub (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 0.83,
@@ -70320,7 +70320,7 @@
       "print_run": "86.3M notes",
       "total_ebt": 44692,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Rest of World, Slovakia)",
+      "dispersion": "Multi-Hub (Rest of World)",
       "countries": {
         "Austria": {
           "lq": 1.41,
@@ -70810,7 +70810,7 @@
       "print_run": "94.0M notes",
       "total_ebt": 7254,
       "confidence": "Medium",
-      "dispersion": "Displaced Concentration (Latvia)",
+      "dispersion": "Displaced Concentration (Rest of World)",
       "countries": {
         "Austria": {
           "lq": 0.52,
@@ -70915,7 +70915,7 @@
       "print_run": "47.0M notes",
       "total_ebt": 8347,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Rest of World)",
+      "dispersion": "Multi-Hub (Switzerland)",
       "countries": {
         "Austria": {
           "lq": 0.98,
@@ -71500,7 +71500,7 @@
       "print_run": "78.0M notes",
       "total_ebt": 13264,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Greece, Netherlands, Rest of World)",
+      "dispersion": "Multi-Hub (Greece, Netherlands)",
       "countries": {
         "Austria": {
           "lq": 0.79,
@@ -79445,7 +79445,7 @@
       "print_run": "110.0M notes",
       "total_ebt": 32232,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Bulgaria, Croatia)",
       "countries": {
         "Albania": {
           "lq": 3.21,
@@ -79750,7 +79750,7 @@
       "print_run": "114.0M notes",
       "total_ebt": 43905,
       "confidence": "High",
-      "dispersion": "Domestic Concentration",
+      "dispersion": "Endemic Leakage (Origin + Bulgaria, Croatia)",
       "countries": {
         "Argentina": {
           "lq": 6.17,
@@ -79915,7 +79915,7 @@
       "print_run": "79.0M notes",
       "total_ebt": 27043,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Rest of World, Croatia)",
+      "dispersion": "Endemic Leakage (Origin + Rest of World)",
       "countries": {
         "Austria": {
           "lq": 0.69,
@@ -89025,7 +89025,7 @@
       "print_run": "114.0M notes",
       "total_ebt": 51855,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Finland, Portugal)",
+      "dispersion": "Endemic Leakage (Origin + Finland, Portugal, Rest of World)",
       "countries": {
         "Austria": {
           "lq": 0.86,
@@ -94295,7 +94295,7 @@
       "print_run": "30.4M notes",
       "total_ebt": 12314,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Rest of World, Belgium)",
+      "dispersion": "Multi-Hub (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 0.77,
@@ -98890,7 +98890,7 @@
       "print_run": "101.6M notes",
       "total_ebt": 21926,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Greece, Estonia, Rest of World, Netherlands, Belgium, Switzerland)",
+      "dispersion": "Endemic Leakage (Origin + Greece, Estonia, Bulgaria, Rest of World, Netherlands, Belgium, Switzerland)",
       "countries": {
         "Albania": {
           "lq": 3.93,
@@ -99615,7 +99615,7 @@
       "print_run": "113.0M notes",
       "total_ebt": 26725,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Switzerland, Croatia, Rest of World, Ireland, Germany)",
+      "dispersion": "Multi-Hub (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 1.07,
@@ -100685,7 +100685,7 @@
       "print_run": "110.0M notes",
       "total_ebt": 6557,
       "confidence": "Medium",
-      "dispersion": "Domestic Concentration",
+      "dispersion": "Displaced Concentration (Rest of World)",
       "countries": {
         "Austria": {
           "lq": 0.39,
@@ -100780,7 +100780,7 @@
       "print_run": "102.0M notes",
       "total_ebt": 9839,
       "confidence": "Medium",
-      "dispersion": "Displaced Concentration (Ireland)",
+      "dispersion": "Displaced Concentration (Rest of World)",
       "countries": {
         "Austria": {
           "lq": 0.48,
@@ -100965,7 +100965,7 @@
       "print_run": "Unknown",
       "total_ebt": 1073,
       "confidence": "Undetermined",
-      "dispersion": "Displaced Concentration (Rest of World)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 0.34,
@@ -107370,7 +107370,7 @@
       "print_run": "34.0M notes",
       "total_ebt": 7833,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Rest of World)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 2.0,
@@ -110365,7 +110365,7 @@
       "print_run": "104.0M notes",
       "total_ebt": 12953,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Slovakia, Rest of World)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 0.77,
@@ -111275,7 +111275,7 @@
       "print_run": "49.0M notes",
       "total_ebt": 7473,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Belgium, Rest of World, Slovakia)",
+      "dispersion": "Endemic Leakage (Origin + Belgium)",
       "countries": {
         "Andorra": {
           "lq": 29.22,
@@ -113800,7 +113800,7 @@
       "print_run": "150.0M notes",
       "total_ebt": 11264,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Rest of World)",
+      "dispersion": "Multi-Hub (Bulgaria, Rest of World)",
       "countries": {
         "Austria": {
           "lq": 0.86,
@@ -113915,7 +113915,7 @@
       "print_run": "112.0M notes",
       "total_ebt": 5726,
       "confidence": "Medium",
-      "dispersion": "Multi-Hub (Switzerland)",
+      "dispersion": "Displaced Concentration (Switzerland)",
       "countries": {
         "Austria": {
           "lq": 0.41,
@@ -114005,7 +114005,7 @@
       "print_run": "89.0M notes",
       "total_ebt": 4725,
       "confidence": "Medium",
-      "dispersion": "Displaced Concentration (Rest of World)",
+      "dispersion": "Pandemic Dispersion",
       "countries": {
         "Austria": {
           "lq": 1.47,
@@ -117710,7 +117710,7 @@
       "print_run": "2565.5M notes",
       "total_ebt": 13169886,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Andorra, Lithuania, Latvia, Vatican City, Rest of World, Germany, Netherlands, Switzerland, Cyprus, Slovakia, Kosovo, Montenegro, Austria, Slovenia, Luxembourg, Malta, Belgium, Finland, Croatia, Portugal, Estonia, France, Italy, San Marino, Monaco, Greece, Ireland)",
+      "dispersion": "Endemic Leakage (Origin + Andorra, Lithuania, Bulgaria, Latvia, Vatican City)",
       "countries": {
         "Andorra": {
           "lq": 3.18,
@@ -121370,7 +121370,7 @@
       "print_run": "1765.1M notes",
       "total_ebt": 1979978,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Andorra)",
+      "dispersion": "Endemic Leakage (Origin + Bulgaria, Andorra)",
       "countries": {
         "Andorra": {
           "lq": 4.93,
@@ -122795,7 +122795,7 @@
       "print_run": "334.0M notes",
       "total_ebt": 232518,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Italy, Switzerland, Greece, Croatia, Rest of World, Austria, Spain, Slovenia, Ireland, Slovakia, Germany, Luxembourg, Lithuania, Netherlands)",
+      "dispersion": "Endemic Leakage (Origin + Italy, Switzerland, Greece, Rest of World, Croatia, Austria, Spain, Slovenia, Ireland, Slovakia, Germany, Luxembourg, Lithuania, Netherlands)",
       "countries": {
         "Albania": {
           "lq": 5.0,
@@ -123460,7 +123460,7 @@
       "print_run": "2185.2M notes",
       "total_ebt": 2567087,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Switzerland, Kosovo, Rest of World, Cyprus, Netherlands, Croatia, Austria, Spain, Portugal, Greece, Montenegro, Slovenia, Italy, Slovakia, Belgium, Luxembourg, Ireland, Malta, Lithuania, Estonia, Latvia)",
+      "dispersion": "Endemic Leakage (Origin + Bulgaria, Switzerland, Kosovo, Cyprus, Netherlands, Rest of World, Croatia, Austria, Spain, Portugal, Greece, Montenegro, Slovenia, Italy, Slovakia, Belgium, Luxembourg, Ireland, Malta, Lithuania, Estonia, Latvia)",
       "countries": {
         "Austria": {
           "lq": 0.99,
@@ -124675,7 +124675,7 @@
       "print_run": "504.0M notes",
       "total_ebt": 477324,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Switzerland, Rest of World)",
+      "dispersion": "Displaced Concentration (Bulgaria)",
       "countries": {
         "Albania": {
           "lq": 1.87,
@@ -129690,7 +129690,7 @@
       "print_run": "377.7M notes",
       "total_ebt": 93502,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Estonia, Lithuania, Finland, Latvia, Luxembourg, Spain, Belgium, Netherlands, Portugal, Rest of World, Greece, Germany, Slovakia, Croatia, Italy, Slovenia, Austria)",
+      "dispersion": "Endemic Leakage (Origin + Estonia, Lithuania, Finland, Latvia, Luxembourg, Spain, Belgium, Netherlands, Portugal, Rest of World, Greece, Germany, Slovakia, Croatia, Italy, Slovenia, Bulgaria, Austria)",
       "countries": {
         "Austria": {
           "lq": 0.7,
