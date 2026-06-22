@@ -8,7 +8,7 @@ import re
 from collections import defaultdict
 from datetime import datetime, timedelta
 
-VERSION = "2.1.0"
+VERSION = "2.1.2"
 print(f"=== STARTING EBT MAP AUTO-UPDATE v{VERSION} ===")
 
 # ==========================================
@@ -158,10 +158,58 @@ ebt_df = ebt_df[ebt_df['year'].astype(str).str.strip() != 'year']
 ebt_df['year'] = pd.to_numeric(ebt_df['year'], errors='coerce')
 ebt_df['denomination'] = pd.to_numeric(ebt_df['denomination'], errors='coerce')
 ebt_df['count'] = pd.to_numeric(ebt_df['count'], errors='coerce')
-ebt_df['country'] = ebt_df['country'].str.strip()
-ebt_df['country'] = ebt_df['country'].replace({'Bosnia and Herz.': 'Bosnia and Herzegovina'})
+ebt_df['country'] = ebt_df['country'].astype(str).str.strip()
+
+    # ---------------------------------------------------------
+    # NEW: COUNTRY TRANSLATION DICTIONARY (EBT -> Map)
+    # ---------------------------------------------------------
+COUNTRY_MAPPING = {
+    "Czech Republic": "Czechia",
+    "Bosnia-Herzegovina": "Bosnia and Herzegovina", # Handled in index.html as well
+    "North Macedonia": "Macedonia", 
+    "Moldova": "Moldova", 
+    "Serbia and Montenegro": "Serbia", # Historical data accommodation
+    "Antigua and Barbuda": "Antigua and Barb.",
+    "Cape Verde": "Cabo Verde",
+    "Central African Republic": "Central African Rep.",
+    "Congo, Democratic Republic": "Dem. Rep. Congo",
+    "Dominican Republic": "Dominican Rep.",
+    "Equatorial Guinea": "Eq. Guinea",
+    "United States": "United States of America"
+}
+ebt_df['country'] = ebt_df['country'].replace(COUNTRY_MAPPING)
+
 ebt_df['shortcode_detailed'] = ebt_df['shortcode_detailed'].astype(str).str.strip().str[:4]
 ebt_df = ebt_df.dropna(subset=['year', 'denomination', 'count'])
+
+    # ---------------------------------------------------------
+    # NEW: DYNAMIC ORPHAN COUNTRY CHECKER
+    # ---------------------------------------------------------
+print("  > Validating EBT country names against TopoJSON map...")
+try:
+    map_req = requests.get("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json")
+    map_data = map_req.json()
+    valid_map_countries = {geom['properties']['name'] for geom in map_data['objects']['countries']['geometries']}
+    
+    # Exclude microstates (dynamically drawn via coordinates in index.html)
+    valid_map_countries.update(["Vatican City", "San Marino", "Monaco", "Andorra", "Liechtenstein", "Malta", "Tuvalu"])
+    # Exclude specific exception handled in index.html
+    valid_map_countries.add("Bosnia and Herzegovina")
+    
+    ebt_active_countries = set(ebt_df['country'].unique())
+    orphans = ebt_active_countries - valid_map_countries
+    
+    if orphans:
+        print("\n" + "!"*60)
+        print("WARNING: THE FOLLOWING COUNTRIES HAVE NO MAP ASSOCIATION")
+        for o in sorted(orphans):
+            print(f" - {o}")
+        print("Please add them to the COUNTRY_MAPPING dictionary in Python.")
+        print("!"*60 + "\n")
+    else:
+        print("  > Perfect Match: All EBT countries are recognized by the map!")
+except Exception as e:
+    print(f"  > Notice: Map validation skipped ({e}).")
 
 europa_df = ebt_df[ebt_df['year'] > 2002].copy()
 valid_europa_df = pd.merge(europa_df, wl, on=['denomination', 'shortcode_detailed'], how='inner')
