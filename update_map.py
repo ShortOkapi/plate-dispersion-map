@@ -8,7 +8,7 @@ import re
 from collections import defaultdict
 from datetime import datetime, timedelta
 
-VERSION = "2.1.2"
+VERSION = "2.1.3"
 print(f"=== STARTING EBT MAP AUTO-UPDATE v{VERSION} ===")
 
 # ==========================================
@@ -35,7 +35,7 @@ def get_reliability(notes, baseline):
 def determine_taxonomy(high_data, origin_country, total_plate_notes):
     """
     The Engine's Brain: Evaluates the topography of reliable LQs and
-    assigns the correct category based on our geographical rules.
+    assigns the correct category dynamically based on natural breaks.
     """
     if len(high_data) == 0 or total_plate_notes < 150:
         return "Undetermined (Insufficient Data)"
@@ -49,35 +49,48 @@ def determine_taxonomy(high_data, origin_country, total_plate_notes):
         if top1_c == origin_country:
             return "Domestic Concentration"
         return f"Displaced Concentration ({top1_c})"
-        
-    top1_c, top1_lq = high_data[0]
-    top2_c, top2_lq = high_data[1]
-    
+
     # 1. Pandemic Dispersion Test
     lqs = [x[1] for x in high_data]
     if len(high_data) >= 4 and np.std(lqs) < 0.6:
         return "Pandemic Dispersion"
         
-    # 2. Isolation Ratio Test (The gap between 1st and 2nd)
-    ratio = top1_lq / top2_lq if top2_lq > 0 else 99
-    if ratio >= 1.8:
-        if top1_c == origin_country:
-            return "Domestic Concentration"
-        return f"Displaced Concentration ({top1_c})"
+    # 2. Dynamic Cluster Detection (The "Natural Break" Algorithm)
+    leaders = [high_data[0][0]]
     
-    # 3. Co-Leadership Test (Technical Tie)
-    leaders = [top1_c, top2_c]
-    
-    # Check if there is a 3rd country glued to the 2nd
-    if len(high_data) >= 3:
-        top3_c, top3_lq = high_data[2]
-        if (top2_lq / top3_lq) < 1.4:
-            leaders.append(top3_c)
+    for i in range(1, len(high_data)):
+        current_lq = high_data[i-1][1]
+        next_lq = high_data[i][1]
+        
+        # Calculate the drop ratio between current and next position
+        drop_ratio = current_lq / next_lq if next_lq > 0 else 99
+        
+        # 4/3 (1.333...) is the natural cliff threshold. If the drop is smaller, add to cluster.
+        if drop_ratio < 4 / 3:
+            leaders.append(high_data[i][0])
+        else:
+            # We hit a cliff! Stop expanding the cluster.
+            break
             
+    # 3. Assess the isolation of the newly formed cluster
+    if len(leaders) == 1:
+        top1_c, top1_lq = high_data[0]
+        top2_lq = high_data[1][1]
+        ratio = top1_lq / top2_lq if top2_lq > 0 else 99
+        if ratio >= 1.8:
+            if top1_c == origin_country:
+                return "Domestic Concentration"
+            return f"Displaced Concentration ({top1_c})"
+            
+    # 4. Final Classification
     if origin_country in leaders:
-        return f"Endemic Leakage (Origin + {', '.join([c for c in leaders if c != origin_country])})"
+        other_leaders = [c for c in leaders if c != origin_country]
+        if other_leaders:
+            return f"Endemic Leakage (Origin + {', '.join(other_leaders)})"
+        else:
+            return "Domestic Concentration"
     else:
-        return f"Multi-Hub Concentration ({', '.join(leaders)})"
+        return f"Multi-Hub ({', '.join(leaders)})"
 
 # ==========================================
 # 1. PARSE GUY SOHIER CATALOG (WEB SCRAPING)
