@@ -518,10 +518,15 @@
                 .on("mousemove", function(event) {
                     let ttWidth = tooltip.node().offsetWidth;
                     let ttHeight = tooltip.node().offsetHeight;
-                    let x = event.pageX + 15;
-                    let y = event.pageY - 28;
-                    if (x + ttWidth > window.innerWidth) x = event.pageX - ttWidth - 15;
-                    if (y + ttHeight > window.innerHeight) y = event.pageY - ttHeight - 15;
+                    
+                    // Posição ideal: muito mais perto do cursor
+                    let x = event.pageX + 8;
+                    let y = event.pageY - 12;
+                    
+                    // Proteção contra as bordas do ecrã (inverte a posição se bater)
+                    if (x + ttWidth > window.innerWidth) x = event.pageX - ttWidth - 8;
+                    if (y + ttHeight > window.innerHeight) y = event.pageY - ttHeight - 12;
+                    
                     tooltip.style("left", x + "px").style("top", y + "px");
                 })
                 .on("mouseout", function() {
