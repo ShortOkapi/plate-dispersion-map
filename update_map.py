@@ -8,7 +8,7 @@ import re
 from collections import defaultdict
 from datetime import datetime, timedelta
 
-VERSION = "2.1.4"
+VERSION = "2.1.5"
 print(f"=== STARTING EBT MAP AUTO-UPDATE v{VERSION} ===")
 
 # ==========================================
@@ -35,7 +35,7 @@ def get_reliability(notes, baseline):
 def determine_taxonomy(high_data, origin_country, total_plate_notes):
     """
     The Engine's Brain: Evaluates the topography of reliable LQs and
-    assigns the correct category dynamically based on natural breaks.
+    assigns the correct category dynamically based on natural breaks and thresholds.
     """
     if len(high_data) == 0 or total_plate_notes < 150:
         return "Undetermined (Insufficient Data)"
@@ -65,22 +65,26 @@ def determine_taxonomy(high_data, origin_country, total_plate_notes):
         # Calculate the drop ratio between current and next position
         drop_ratio = current_lq / next_lq if next_lq > 0 else 99
         
-        # 4/3 (1.333...) is the natural cliff threshold. If the drop is smaller, add to cluster.
-        if drop_ratio < 4 / 3:
+        # FIX: Cliff check threshold (4/3) AND next country must be at least Over-represented (>= 1.25)
+        if drop_ratio < 4 / 3 and next_lq >= 1.25:
             leaders.append(high_data[i][0])
         else:
-            # We hit a cliff! Stop expanding the cluster.
+            # We hit a cliff or dropped out of the over-represented zone
             break
             
-    # 3. Assess the isolation of the newly formed cluster
+    # 3. FIX: Assess the isolation of a single leader
     if len(leaders) == 1:
         top1_c, top1_lq = high_data[0]
-        top2_lq = high_data[1][1]
+        top2_c, top2_lq = high_data[1]
         ratio = top1_lq / top2_lq if top2_lq > 0 else 99
         if ratio >= 1.8:
             if top1_c == origin_country:
                 return "Domestic Concentration"
             return f"Displaced Concentration ({top1_c})"
+        else:
+            # Not isolated enough to be a single concentration.
+            # The second country joins the core group to prevent "Multi-Hub (1 country)"
+            leaders.append(top2_c)
             
     # 4. Final Classification
     if origin_country in leaders:
