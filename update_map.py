@@ -8,7 +8,7 @@ import re
 from collections import defaultdict
 from datetime import datetime, timedelta
 
-VERSION = "2.1.3"
+VERSION = "2.1.4"
 print(f"=== STARTING EBT MAP AUTO-UPDATE v{VERSION} ===")
 
 # ==========================================
@@ -17,7 +17,7 @@ print(f"=== STARTING EBT MAP AUTO-UPDATE v{VERSION} ===")
 
 # Use the exact full names as they appear in the EBT Dump
 CORE_COUNTRIES = {
-    "Austria", "Belgium", "Croatia", "Cyprus", "Estonia", "Finland", 
+    "Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Estonia", "Finland", 
     "France", "Germany", "Greece", "Ireland", "Italy", "Latvia", 
     "Lithuania", "Luxembourg", "Malta", "Netherlands", "Portugal", 
     "Slovakia", "Slovenia", "Spain", "Andorra", "Monaco", "San Marino", 
