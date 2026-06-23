@@ -513,24 +513,36 @@
                         <div><strong>Notes Found:</strong> ${cData.notes.toLocaleString()} <span style="color:#64748b; font-size:0.8rem;">(out of ${cData.baseline.toLocaleString()})</span></div>
                         <div style="margin-top:4px; font-size:0.8rem;">Data Reliability: <strong style="color:${cConfData.color}">${cConfData.level}</strong></div>
                     `);
+                    
+                    // Change cursor to a precision crosshair when hovering over a country with data
+                    d3.select(this).style("cursor", "crosshair");
                     tooltip.style("opacity", 1);
                 })
                 .on("mousemove", function(event) {
                     let ttWidth = tooltip.node().offsetWidth;
                     let ttHeight = tooltip.node().offsetHeight;
                     
-                    // Posição ideal: muito mais perto do cursor
-                    let x = event.pageX + 8;
-                    let y = event.pageY - 12;
+                    // Use clientX/Y to get absolute viewport coordinates, ignoring side panels
+                    let x = event.clientX + 8;
+                    let y = event.clientY - 12;
                     
-                    // Proteção contra as bordas do ecrã (inverte a posição se bater)
-                    if (x + ttWidth > window.innerWidth) x = event.pageX - ttWidth - 8;
-                    if (y + ttHeight > window.innerHeight) y = event.pageY - ttHeight - 12;
+                    // Screen edge collision protection (invert position if hitting edges)
+                    if (x + ttWidth > window.innerWidth) x = event.clientX - ttWidth - 8;
+                    if (y + ttHeight > window.innerHeight) y = event.clientY - ttHeight - 12;
                     
-                    tooltip.style("left", x + "px").style("top", y + "px");
+                    // Force fixed position to escape any relative container boundaries
+                    tooltip.style("position", "fixed")
+                           .style("left", x + "px")
+                           .style("top", y + "px");
                 })
                 .on("mouseout", function() {
-                    d3.select(this).attr("stroke", "#cbd5e1").attr("stroke-width", 0.5 / currentZoomK);
+                    // Reset country border stroke and remove the crosshair cursor
+                    d3.select(this)
+                      .attr("stroke", "#cbd5e1")
+                      .attr("stroke-width", 0.5 / currentZoomK)
+                      .style("cursor", "default");
+                      
+                    // Hide the tooltip smoothly
                     tooltip.style("opacity", 0);
                 });
 
@@ -576,11 +588,17 @@
                                     <div><strong>Notes Found:</strong> ${msData.notes.toLocaleString()} <span style="color:#64748b; font-size:0.8rem;">(out of ${msData.baseline.toLocaleString()})</span></div>
                                     <div style="margin-top:4px; font-size:0.8rem;">Data Reliability: <strong style="color:${conf.color}">${conf.level}</strong></div>
                                 `);
+                                
+                                // Change cursor to a precision crosshair
+                                d3.select(this).style("cursor", "crosshair");
                                 tooltip.style("opacity", 1);
                             })
                             .on("mouseout", function() {
                                 d3.select(this).attr("r", 5 / currentZoomK).attr("stroke-width", 1 / currentZoomK);
                                 cGroup.selectAll(".microstate-overlay").attr("r", 5 / currentZoomK);
+                                
+                                // Reset cursor back to default
+                                d3.select(this).style("cursor", "default");
                                 tooltip.style("opacity", 0);
                             });
 
