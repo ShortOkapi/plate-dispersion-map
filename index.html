@@ -522,15 +522,16 @@
                     let ttWidth = tooltip.node().offsetWidth;
                     let ttHeight = tooltip.node().offsetHeight;
                     
-                    // Use clientX/Y to get absolute viewport coordinates, ignoring side panels
-                    let x = event.clientX + 8;
+                    // Use clientX/Y to get absolute viewport coordinates
+                    // +26 clears the right arm of the crosshair cursor
+                    let x = event.clientX + 26;
                     let y = event.clientY - 12;
                     
-                    // Screen edge collision protection (invert position if hitting edges)
-                    if (x + ttWidth > window.innerWidth) x = event.clientX - ttWidth - 8;
+                    // Screen edge collision protection
+                    if (x + ttWidth > window.innerWidth) x = event.clientX - ttWidth - 26;
                     if (y + ttHeight > window.innerHeight) y = event.clientY - ttHeight - 12;
                     
-                    // Force fixed position to escape any relative container boundaries
+                    // Force fixed position
                     tooltip.style("position", "fixed")
                            .style("left", x + "px")
                            .style("top", y + "px");
@@ -592,6 +593,20 @@
                                 // Change cursor to a precision crosshair
                                 d3.select(this).style("cursor", "crosshair");
                                 tooltip.style("opacity", 1);
+                            })
+                            .on("mousemove", function(event) {
+                                let ttWidth = tooltip.node().offsetWidth;
+                                let ttHeight = tooltip.node().offsetHeight;
+                                
+                                let x = event.clientX + 26;
+                                let y = event.clientY - 12;
+                                
+                                if (x + ttWidth > window.innerWidth) x = event.clientX - ttWidth - 26;
+                                if (y + ttHeight > window.innerHeight) y = event.clientY - ttHeight - 12;
+                                
+                                tooltip.style("position", "fixed")
+                                       .style("left", x + "px")
+                                       .style("top", y + "px");
                             })
                             .on("mouseout", function() {
                                 d3.select(this).attr("r", 5 / currentZoomK).attr("stroke-width", 1 / currentZoomK);
