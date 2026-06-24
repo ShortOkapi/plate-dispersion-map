@@ -8,7 +8,7 @@ import re
 from collections import defaultdict
 from datetime import datetime, timedelta
 
-VERSION = "2.1.5"
+VERSION = "2.2.0"
 print(f"=== STARTING EBT MAP AUTO-UPDATE v{VERSION} ===")
 
 # ==========================================
@@ -35,7 +35,7 @@ def get_reliability(notes, baseline):
 def determine_taxonomy(high_data, origin_country, total_plate_notes):
     """
     The Engine's Brain: Evaluates the topography of reliable LQs and
-    assigns the correct category dynamically based on natural breaks and thresholds.
+    assigns the correct category dynamically based on geometric natural breaks.
     """
     if len(high_data) == 0 or total_plate_notes < 150:
         return "Undetermined (Insufficient Data)"
@@ -62,27 +62,27 @@ def determine_taxonomy(high_data, origin_country, total_plate_notes):
         current_lq = high_data[i-1][1]
         next_lq = high_data[i][1]
         
-        # Calculate the drop ratio between current and next position
         drop_ratio = current_lq / next_lq if next_lq > 0 else 99
         
-        # FIX: Cliff check threshold (4/3) AND next country must be at least Over-represented (>= 1.25)
-        if drop_ratio < 4 / 3 and next_lq >= 1.25:
+        # FIX: Cliff check threshold (4/3) AND next country must be at least Over-represented (>= 1.58)
+        if drop_ratio < 4 / 3 and next_lq >= 1.58:
             leaders.append(high_data[i][0])
         else:
             # We hit a cliff or dropped out of the over-represented zone
             break
             
-    # 3. FIX: Assess the isolation of a single leader
+    # 3. Assess the isolation of a single leader
     if len(leaders) == 1:
         top1_c, top1_lq = high_data[0]
         top2_c, top2_lq = high_data[1]
         ratio = top1_lq / top2_lq if top2_lq > 0 else 99
-        if ratio >= 1.8:
+        
+        # Upgraded to 2.0 to reflect logarithmic reality
+        if ratio >= 2.0:
             if top1_c == origin_country:
                 return "Domestic Concentration"
             return f"Displaced Concentration ({top1_c})"
         else:
-            # Not isolated enough to be a single concentration.
             # The second country joins the core group to prevent "Multi-Hub (1 country)"
             leaders.append(top2_c)
             
@@ -104,7 +104,7 @@ print("Step 1: Fetching Guy Sohier's catalog...")
 url_sohier = "http://liste.eurobillets.free.fr/index_fichiers/sheet001.htm"
 headers = {'User-Agent': 'Mozilla/5.0'}
 r_sohier = requests.get(url_sohier, headers=headers)
-r_sohier.encoding = 'windows-1252' # Excel standard encoding
+r_sohier.encoding = 'windows-1252'
 soup = BeautifulSoup(r_sohier.text, 'html.parser')
 
 def parse_qty(qty_str):
@@ -119,6 +119,7 @@ def parse_qty(qty_str):
         num_str = re.sub(r'[^\d,]', '', qty_str).replace(',', '.')
         try: return float(num_str) / 1000000.0
         except ValueError: return 0.0
+    
     num_str = qty_str.replace(' ', '').replace(',', '.')
     try: return float(num_str)
     except ValueError: return 0.0
@@ -149,7 +150,7 @@ for row in soup.find_all('tr'):
             if current_denomination > 0:
                 for plate in plates:
                     whitelist[(current_denomination, plate)] += qty
-                    processed_lines += 1
+            processed_lines += 1
 
 wl_data = []
 for (denom, plate), qty in whitelist.items():
@@ -177,15 +178,12 @@ ebt_df['denomination'] = pd.to_numeric(ebt_df['denomination'], errors='coerce')
 ebt_df['count'] = pd.to_numeric(ebt_df['count'], errors='coerce')
 ebt_df['country'] = ebt_df['country'].astype(str).str.strip()
 
-    # ---------------------------------------------------------
-    # NEW: COUNTRY TRANSLATION DICTIONARY (EBT -> Map)
-    # ---------------------------------------------------------
 COUNTRY_MAPPING = {
     "Czech Republic": "Czechia",
-    "Bosnia-Herzegovina": "Bosnia and Herzegovina", # Handled in index.html as well
+    "Bosnia-Herzegovina": "Bosnia and Herzegovina",
     "North Macedonia": "Macedonia", 
     "Moldova": "Moldova", 
-    "Serbia and Montenegro": "Serbia", # Historical data accommodation
+    "Serbia and Montenegro": "Serbia", 
     "Antigua and Barbuda": "Antigua and Barb.",
     "Cape Verde": "Cabo Verde",
     "Central African Republic": "Central African Rep.",
@@ -195,22 +193,15 @@ COUNTRY_MAPPING = {
     "United States": "United States of America"
 }
 ebt_df['country'] = ebt_df['country'].replace(COUNTRY_MAPPING)
-
 ebt_df['shortcode_detailed'] = ebt_df['shortcode_detailed'].astype(str).str.strip().str[:4]
 ebt_df = ebt_df.dropna(subset=['year', 'denomination', 'count'])
 
-    # ---------------------------------------------------------
-    # NEW: DYNAMIC ORPHAN COUNTRY CHECKER
-    # ---------------------------------------------------------
 print("  > Validating EBT country names against TopoJSON map...")
 try:
     map_req = requests.get("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json")
     map_data = map_req.json()
     valid_map_countries = {geom['properties']['name'] for geom in map_data['objects']['countries']['geometries']}
-    
-    # Exclude microstates (dynamically drawn via coordinates in index.html)
     valid_map_countries.update(["Vatican City", "San Marino", "Monaco", "Andorra", "Liechtenstein", "Malta", "Tuvalu"])
-    # Exclude specific exception handled in index.html
     valid_map_countries.add("Bosnia and Herzegovina")
     
     ebt_active_countries = set(ebt_df['country'].unique())
@@ -340,8 +331,6 @@ master_data = {
 for denom in results_df['denomination'].unique(): master_data["hierarchy"][str(denom)] = {}
 
 grouped_plates = results_df.groupby(['denomination', 'shortcode_detailed'])
-
-# NOVO: Dicionário para armazenar a agregação por impressora
 agg_store = {}
 
 for name, group in grouped_plates:
@@ -357,7 +346,6 @@ for name, group in grouped_plates:
     print_run = float(wl_row['Print_Run_Millions'].sum()) if not wl_row.empty else 0.0
     total_ebt = int(group['plate_global_total'].iloc[0])
 
-    # NOVO: Acumular dados para o "All Plates"
     agg_key = (denom, p_info["name"])
     if agg_key not in agg_store:
         agg_store[agg_key] = {
@@ -386,7 +374,6 @@ for name, group in grouped_plates:
     row_notes = 0
     row_baseline = 0
     
-    # Populate country data and separate the periphery
     for _, row in group.iterrows():
         c_code = row['country']
         n_found = int(row['plate_notes_in_country'])
@@ -399,7 +386,6 @@ for name, group in grouped_plates:
             "baseline": c_base
         }
 
-        # NOVO: Acumular notas no país para o "All Plates"
         if c_code not in agg_store[agg_key]["countries"]:
             agg_store[agg_key]["countries"][c_code] = {"notes": 0, "baseline": c_base}
         agg_store[agg_key]["countries"][c_code]["notes"] += n_found
@@ -408,7 +394,6 @@ for name, group in grouped_plates:
             row_notes += n_found
             row_baseline += c_base
             
-    # Calculate high-reliability LQ matrix for the Taxonomy
     high_data_for_taxonomy = []
     for c_code, c_data in countries_data.items():
         if c_code in CORE_COUNTRIES:
@@ -416,7 +401,6 @@ for name, group in grouped_plates:
             if rel == "High":
                 high_data_for_taxonomy.append((c_code, c_data["lq"]))
                 
-    # Add Rest of World if it is statistically reliable
     if row_baseline > 0:
         rel_row = get_reliability(row_notes, row_baseline)
         if rel_row == "High":
@@ -425,7 +409,6 @@ for name, group in grouped_plates:
             row_lq = row_pct / row_base_pct if row_base_pct > 0 else 0
             high_data_for_taxonomy.append(("Rest of World", row_lq))
 
-    # Get the new geographical dispersion category
     dispersion = determine_taxonomy(high_data_for_taxonomy, p_info["country"], total_ebt)
 
     master_data["plates"][f"{denom}_{plate}"] = {
@@ -435,7 +418,6 @@ for name, group in grouped_plates:
         "dispersion": dispersion, "countries": countries_data
     }
 
-# NOVO: Gerar as chapas virtuais "All Plates"
 for (denom, printer_name), agg_data in agg_store.items():
     print_run = agg_data["print_run"]
     total_ebt = agg_data["total_ebt"]
