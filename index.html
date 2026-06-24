@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EUR - Europa Plates Dispersion</title>
     
-    <!-- Custom favicons (preliminary v1, by Gemini) -->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -39,7 +38,7 @@
         }
 
         .sidebar { 
-            display: flex; 
+            display: flex;
             flex-direction: column; 
             gap: 20px; 
             z-index: 10;
@@ -57,7 +56,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             border: 1px solid var(--border-color);
             transition: border-color 0.5s ease;
-            flex-shrink: 0; 
+            flex-shrink: 0;
         }
 
         h1 { margin-top: 0; font-size: 1.4rem; color: #1a365d; transition: color 0.5s ease;}
@@ -66,7 +65,8 @@
         .form-group { margin-bottom: 15px; }
         label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem;}
         select {
-            width: 100%; padding: 10px; border-radius: 6px;
+            width: 100%;
+            padding: 10px; border-radius: 6px;
             border: 1px solid #cbd5e1; font-size: 1rem;
             background-color: #f8fafc; cursor: pointer;
         }
@@ -78,7 +78,8 @@
         .stat-value { font-family: monospace; font-size: 1rem; font-weight: bold;}
 
         .map-container {
-            background-color: var(--panel-bg); border-radius: 12px;
+            background-color: var(--panel-bg);
+            border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid var(--border-color);
             position: relative; overflow: hidden; cursor: grab;
         }
@@ -87,7 +88,8 @@
         svg { width: 100%; height: 100%; }
 
         .tooltip {
-            position: absolute; background: rgba(255, 255, 255, 0.95);
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
             padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             pointer-events: none; opacity: 0; font-size: 0.9rem; z-index: 100;
@@ -95,29 +97,35 @@
         .tt-country { font-weight: bold; font-size: 1.1rem; border-bottom: 1px solid #e2e8f0; margin-bottom: 5px; padding-bottom: 3px; transition: border-color 0.3s, color 0.3s;}
 
         .legend-container {
-            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+            position: absolute;
+            bottom: 30px; left: 50%; transform: translateX(-50%);
             width: 70%; background: rgba(255,255,255,0.95); padding: 15px 20px;
-            border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid #cbd5e1; pointer-events: none;
+            border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #cbd5e1; pointer-events: none;
         }
         
         .help-box {
-            background-color: #eff6ff; border-left: 4px solid #3b82f6;
+            background-color: #eff6ff;
+            border-left: 4px solid #3b82f6;
             padding: 15px; font-size: 0.85rem; line-height: 1.5; color: #1e3a8a;
             border-radius: 8px;
-            flex-shrink: 0; 
+            flex-shrink: 0;
         }
 
         .instruction-overlay {
-            position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.8);
+            position: absolute;
+            top: 10px; right: 10px; background: rgba(255,255,255,0.8);
             padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; color: #64748b;
             pointer-events: none;
         }
 
         .conf-legend-item {
-            display: inline-flex; align-items: center; margin: 0 10px; font-size: 0.75rem; color: #475569;
+            display: inline-flex;
+            align-items: center; margin: 0 10px; font-size: 0.75rem; color: #475569;
         }
         .conf-box {
-            width: 24px; height: 14px; margin-right: 6px; border: 1px solid #cbd5e1; border-radius: 2px; vertical-align: middle;
+            width: 24px;
+            height: 14px; margin-right: 6px; border: 1px solid #cbd5e1; border-radius: 2px; vertical-align: middle;
         }
     </style>
 </head>
@@ -127,7 +135,7 @@
         <div class="panel" id="main-panel">
             <h1 id="main-title">🌍 EUR Plates Dispersion</h1>
             <p style="font-size: 0.85rem; color: #64748b;">Explore the real journey of Euro notes using the Location Quotient algorithm.</p>
-            <p id="data-timestamp" style="font-size: 0.75rem; color: #94a3b8; font-style: italic; margin-top: -10px; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">Data loading...</p>            
+            <p id="data-timestamp" style="font-size: 0.75rem; color: #94a3b8; font-style: italic; margin-top: -10px; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">Data loading...</p>        
             
             <div class="form-group">
                 <label>1. Denomination</label>
@@ -197,9 +205,9 @@
         
         <div class="legend-container" id="legend-box" style="display: none;">
             <div style="display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: bold; margin-bottom: 8px;">
-                <span style="color: #0000FF; width: 33.3%;">Rare (LQ &lt; 1.0)</span>
-                <span style="color: #800080; width: 33.3%; text-align: center;">Normal (LQ = 1.0)</span>
-                <span id="legend-max" style="color: #FF0000; width: 33.3%; text-align: right;">Extreme</span>
+                <span style="color: #003f5b; width: 33.3%;">Rare (LQ &lt; 0.1)</span>
+                <span style="color: #c34c95; width: 33.3%; text-align: center;">Normal (LQ = 1.0)</span>
+                <span id="legend-max" style="color: #ff9913; width: 33.3%; text-align: right;">Extreme (LQ = 10.0+)</span>
             </div>
             <canvas id="legend-canvas" width="400" height="15" style="width: 100%; border-radius: 4px; border: 1px solid #e2e8f0;"></canvas>
             
@@ -221,20 +229,20 @@
             "Slovakia", "Slovenia", "Spain", "Andorra", "Monaco", "San Marino", 
             "Vatican City", "Kosovo", "Montenegro", "Switzerland"
         ];
-
+        
         const denomColors = {
             "5": "#8C92AC", "10": "#DA2131", "20": "#004494", 
             "50": "#F29527", "100": "#3C7D22", "200": "#FBC11D", "500": "#8D3C8E"
         };
-
+        
         const EMPTY_COLOR = "#e2e8f0";
-        const lqColors = ["#0000FF", "#2A00D5", "#5500AA", "#800080", "#AA0055", "#D5002B", "#FF0000"];
+        const lqColors = ["#003f5b", "#384d85", "#7e519c", "#c34c95", "#f55572", "#ff7e3d", "#ff9913"];
 
         function getLqCategoryCode(lq) {
-            if (lq < 0.3) return "rare";
-            if (lq < 0.8) return "under";
-            if (lq <= 1.2) return "normal";
-            if (lq <= 4.0) return "over";
+            if (lq < 0.2512) return "rare";
+            if (lq < 0.6310) return "under";
+            if (lq <= 1.5849) return "normal";
+            if (lq <= 3.9811) return "over";
             return "extreme";
         }
         
@@ -252,15 +260,14 @@
         let masterData = null;
         let geoData = null;
         let currentPlateId = null; 
+        
         const container = document.querySelector('.map-container');
         const width = container.clientWidth;
         const height = container.clientHeight;
-
         const projection = d3.geoAzimuthalEqualArea()
             .rotate([-10, -52])
             .scale(800)
             .translate([width / 2, height / 2]);
-
         const path = d3.geoPath().projection(projection);
         const svg = d3.select("#europe-map");
         const tooltip = d3.select("#tooltip");
@@ -281,7 +288,7 @@
                 p.append('rect').attr('width', 2).attr('height', 2).attr('fill', EMPTY_COLOR);
                 p.append('rect').attr('x', 2).attr('y', 2).attr('width', 2).attr('height', 2).attr('fill', EMPTY_COLOR);
             });
-
+            
         defs.append('pattern')
             .attr('id', 'empty-low-25')
             .attr('patternUnits', 'userSpaceOnUse')
@@ -291,7 +298,7 @@
                 p.append('rect').attr('y', 2).attr('width', 2).attr('height', 2).attr('fill', EMPTY_COLOR);
             });
 
-        let currentZoomK = 1; 
+        let currentZoomK = 1;
         const zoom = d3.zoom()
             .scaleExtent([0.5, 8])
             .on("zoom", (event) => {
@@ -313,7 +320,7 @@
                     });
             });
         svg.call(zoom);
-
+        
         Promise.all([
             d3.json("ebt_dispersion_master_data.json"),
             d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json")
@@ -322,6 +329,7 @@
             if(masterData.metadata) {
                 document.getElementById('data-timestamp').innerText = `Data updated: ${masterData.metadata.last_updated} | Engine v${masterData.metadata.version}`;
             }
+            
             const world = files[1];
             geoData = topojson.feature(world, world.objects.countries).features;
             
@@ -343,17 +351,17 @@
             console.error("Error loading data:", err);
             document.getElementById('sel-denom').innerHTML = `<option>Error loading data.</option>`;
         });
-
+        
         function initCascadingDropdowns() {
             const denoms = Object.keys(masterData.hierarchy).sort((a,b) => parseInt(a)-parseInt(b));
             const selDenom = document.getElementById('sel-denom');
             const selPrinter = document.getElementById('sel-printer');
             const selPlate = document.getElementById('sel-plate');
             const selFilter = document.getElementById('sel-filter');
-
+            
             selDenom.innerHTML = `<option value="">-- Choose Denom --</option>` + 
                 denoms.map(d => `<option value="${d}">${d}€</option>`).join("");
-
+                
             selDenom.addEventListener('change', function() {
                 selPlate.innerHTML = `<option value="">Select Printer first</option>`;
                 selPlate.disabled = true;
@@ -368,7 +376,7 @@
                     printers.map(p => `<option value="${p}">${p}</option>`).join("");
                 selPrinter.disabled = false;
             });
-
+            
             selPrinter.addEventListener('change', function() {
                 if(!this.value) {
                     selPlate.innerHTML = `<option value="">Select Printer first</option>`;
@@ -383,7 +391,7 @@
                     plates.map(p => `<option value="${p}">${p}</option>`).join("");
                 selPlate.disabled = false;
             });
-
+            
             selPlate.addEventListener('change', function() {
                 if(!this.value) return;
                 if(this.value === "all") {
@@ -394,10 +402,11 @@
                 selFilter.disabled = false;
                 renderMap(currentPlateId);
             });
-
+            
             document.getElementById('chk-show-all').addEventListener('change', function() {
                 if (currentPlateId) renderMap(currentPlateId);
             });
+            
             document.getElementById('sel-filter').addEventListener('change', function() {
                 if (currentPlateId) renderMap(currentPlateId);
             });
@@ -426,28 +435,16 @@
             document.getElementById('val-origin').innerText = data.origin;
             document.getElementById('val-print').innerText = data.print_run;
             document.getElementById('val-notes').innerText = data.total_ebt.toLocaleString();
-            
             let confColor = data.confidence.includes("High") ? "green" : (data.confidence.includes("Low") ? "red" : "orange");
             document.getElementById('val-conf').innerHTML = `<span style="color:${confColor}">${data.confidence}</span>`;
             document.getElementById('val-dispersion').innerText = data.dispersion;
-
-            // 1. ISOLATE THE CORE: The top of the scale ignores countries like Cuba and Albania
-            const coreHighConfCountries = Object.entries(data.countries)
-                .filter(([name, d]) => CORE_COUNTRIES.includes(name) && getCountryConfidence(d).level === "High")
-                .map(([name, d]) => d);
-                
-            const maxLq = coreHighConfCountries.length > 0 ? 
-                d3.max(coreHighConfCountries, d => d.lq) : 
-                (d3.max(Object.entries(data.countries).filter(([name, d]) => CORE_COUNTRIES.includes(name)).map(([name, d]) => d), d => d.lq) || 2);
-                
-            const scaleMax = maxLq <= 1.0 ? 2.0 : maxLq;
-
-            const d_step_low = 1.0 / 3;
-            const d_step_high = (scaleMax - 1.0) / 3;
             
-            // 2. Extrapolation Clamp: Off-Core countries will cap at maximum red, instead of generating incorrect colors
-            const colorScale = d3.scaleLinear()
-                .domain([0, d_step_low, d_step_low * 2, 1.0, 1.0 + d_step_high, 1.0 + d_step_high * 2, scaleMax])
+            // 2. Fixed Logarithmic Color Scale (10^-1 to 10^1)
+            // We use the 7 exact geometric stops between 0.1 and 10.0
+            const logDomain = [0.1, 0.2154, 0.4642, 1.0, 2.1544, 4.6416, 10.0];
+
+            const colorScale = d3.scaleLog()
+                .domain(logDomain)
                 .range(lqColors)
                 .clamp(true); 
 
@@ -463,12 +460,13 @@
                         const passesConfFilter = (conf.level === "High" || showAll);
                         
                         if(passesCatFilter && passesConfFilter) {
-                            return colorScale(cData.lq);
+                            // D3 scaleLog crashes with 0. We force a minimum of 0.1
+                            return colorScale(Math.max(0.1, cData.lq));
                         }
                     }
                     return EMPTY_COLOR;
                 });
-
+                
             gOverlays.selectAll(".overlay-path").remove();
             gOverlays.selectAll(".overlay-path")
                 .data(geoData)
@@ -489,7 +487,7 @@
                     return "none";
                 })
                 .attr("stroke", "none");
-
+                
             gCountries.selectAll(".country-path")
                 .on("mouseover", function(event, d) {
                     const cData = data.countries[d.properties.name];
@@ -555,7 +553,7 @@
                 { id: "Liechtenstein", lon: 9.5209, lat: 47.1660 },
                 { id: "Vatican City", lon: 12.4534, lat: 41.9029 }
             ];
-
+            
             gMicrostates.selectAll("*").remove();
             microstates.forEach(ms => {
                 const msData = data.countries[ms.id];
@@ -576,7 +574,7 @@
                             .attr("class", "microstate-base")
                             .attr("cx", coords[0]).attr("cy", coords[1])
                             .attr("r", 5 / currentZoomK)
-                            .attr("fill", colorScale(msData.lq))
+                            .attr("fill", colorScale(Math.max(0.1, msData.lq)))
                             .attr("stroke", "#1e293b").attr("stroke-width", 1 / currentZoomK)
                             .on("mouseover", function(event) {
                                 d3.select(this).attr("r", 8 / currentZoomK).attr("stroke-width", 2 / currentZoomK).raise();
@@ -616,7 +614,7 @@
                                 d3.select(this).style("cursor", "default");
                                 tooltip.style("opacity", 0);
                             });
-
+                            
                         if(conf.pattern !== "none" && showAll) {
                             cGroup.append("circle")
                                 .attr("class", "microstate-overlay")
@@ -628,7 +626,7 @@
                     }
                 }
             });
-
+            
             gPins.selectAll(".origin-pin").remove();
             if (data.origin_coords && data.origin_coords.lon !== null) {
                 const coords = projection([data.origin_coords.lon, data.origin_coords.lat]);
@@ -648,30 +646,22 @@
 
             document.getElementById('legend-box').style.display = 'block';
             
-            // 3. Dynamic and Honest Legend
-            const displayMax = (Math.floor(scaleMax * 10) / 10).toFixed(1);
-            const maxCatCode = getLqCategoryCode(scaleMax);
-            const maxCatLabel = getLqCategoryLabel(maxCatCode);
-            
-            document.getElementById('legend-max').innerText = `${maxCatLabel} (LQ = ${displayMax}+)`;
-            
-            drawLegendCanvas(colorScale, scaleMax);
+            // 3. Static and Honest Legend
+            document.getElementById('legend-max').innerText = `Extreme (LQ = 10.0+)`;
+            drawLegendCanvas(colorScale);
         }
 
-        function drawLegendCanvas(colorScale, maxVal) {
+        function drawLegendCanvas(colorScale) {
             const canvas = document.getElementById('legend-canvas');
             const ctx = canvas.getContext('2d');
             const w = canvas.width;
-            const mid = w / 2;
-            
+
             for (let i = 0; i < w; i++) {
-                let lqValue;
-                if (i <= mid) {
-                    lqValue = (i / mid) * 1.0;
-                } else {
-                    lqValue = 1.0 + ((i - mid) / mid) * (maxVal - 1.0);
-                }
-                ctx.fillStyle = colorScale(lqValue);
+                // Map physical pixel (0 to width) to logarithmic power (-1 to 1)
+                let power = -1 + (i / w) * 2;
+                let logValue = Math.pow(10, power);
+
+                ctx.fillStyle = colorScale(logValue);
                 ctx.fillRect(i, 0, 1, canvas.height);
             }
         }
