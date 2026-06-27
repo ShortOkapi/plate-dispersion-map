@@ -34,7 +34,7 @@ def get_reliability(notes, baseline):
 
 def determine_taxonomy(high_data, origin_country, total_plate_notes):
     """
-    Taxonomic Engine v2.2 (Powered by Zipf's Law).
+    Taxonomic Engine v2.3 (Powered by Zipf's Law).
     Evaluates the LQs by looking for structural tears in the degradation curve.
     """
     if len(high_data) == 0 or total_plate_notes < 150:
@@ -54,7 +54,7 @@ def determine_taxonomy(high_data, origin_country, total_plate_notes):
         
     # 3. The Zipf's Law Descent
     leaders = [high_data[0][0]]
-    LOG_SLICE = 1.5849  # Our logarithmic geometry constant (the ceiling of normality)
+    LOG_SLICE = 10 ** 0.2  # Our logarithmic geometry constant for five categories (10^(1/5))
     
     for i in range(1, len(high_data)):
         k = i  # The rank of the previous country being evaluated (1st, 2nd, etc.)
@@ -381,7 +381,7 @@ for name, group in grouped_plates:
         c_lq = float(row['location_quotient'])
         
         countries_data[c_code] = {
-            "lq": round(c_lq, 2), 
+            "lq": round(c_lq, 5), 
             "notes": n_found, 
             "baseline": c_base
         }
@@ -452,7 +452,7 @@ for (denom, printer_name), agg_data in agg_store.items():
             c_lq = 0.0
             
         countries_data[c_code] = {
-            "lq": round(c_lq, 2), 
+            "lq": round(c_lq, 5), 
             "notes": n_found, 
             "baseline": c_base
         }
