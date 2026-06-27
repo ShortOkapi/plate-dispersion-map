@@ -34147,7 +34147,7 @@
         "lon": -3.61894,
         "lat": 40.40927
       },
-      "print_run": "21.6M notes",
+      "print_run": "27.0M notes",
       "total_ebt": 1981,
       "confidence": "Low",
       "dispersion": "Multi-Hub (Belgium, Netherlands)",
@@ -121397,7 +121397,7 @@
         "lon": -3.61894,
         "lat": 40.40927
       },
-      "print_run": "1765.1M notes",
+      "print_run": "1770.5M notes",
       "total_ebt": 1979978,
       "confidence": "High",
       "dispersion": "Endemic Leakage (Origin + Bulgaria, Andorra)",
