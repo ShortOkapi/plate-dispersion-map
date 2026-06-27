@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EBT Map - CSV Data Extractor</title>
+</head>
+<body style="font-family: sans-serif; padding: 40px; background-color: #f8fafc; color: #0f172a;">
+    <h2>A gerar a base de dados completa (CSV)...</h2>
+    <p>A extrair todas as denominações, chapas e países. <br>Se o download não começar em 3 segundos, verifique se o seu navegador bloqueou os pop-ups.</p>
+    <p id="status" style="color: #2563eb; font-weight: bold;"></p>
+
+    <script>
+        document.getElementById('status').innerText = "A ler o ebt_dispersion_master_data.json...";
+        
+        fetch('ebt_dispersion_master_data.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('status').innerText = "A calcular Taxonomias e Quocientes...";
+                
+                const CORE_COUNTRIES = ["Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Estonia", "Finland", "France", "Germany", "Greece", "Ireland", "Italy", "Latvia", "Lithuania", "Luxembourg", "Malta", "Netherlands", "Portugal", "Slovakia", "Slovenia", "Spain", "Andorra", "Monaco", "San Marino", "Vatican City", "Kosovo", "Montenegro", "Switzerland"];
+                
+                let csvContent = [];
+                
+                // Construir os cabeçalhos das colunas
+                let headers = ["Denom", "Origin", "Plate", "EBT_Notes"];
+                for (let i = 1; i <= 28; i++) { headers.push(`Cntry${i}`, `LQ${i}`); }
+                for (let i = 1; i < 28; i++) { headers.push(`r${i}`); }
+                csvContent.push(headers.join(","));
+
+                // Percorrer todas as chapas
+                for (const plateId in data.plates) {
+                    const plateData = data.plates[plateId];
+                    if (!plateData.confidence.includes("High")) continue;
+
+                    let validLQs = [];
+                    for (const country in plateData.countries) {
+                        if (CORE_COUNTRIES.includes(country)) {
+                            const cData = plateData.countries[country];
+                            const notes = cData.notes;
+                            const baseline = cData.baseline;
+                            const ratio = baseline > 0 ? notes / baseline : 0;
+                            const isHigh = notes >= 100 || (notes >= 20 && ratio >= 0.05);
+                            if (isHigh) {
+                                validLQs.push({ country: country, lq: cData.lq });
+                            }
+                        }
+                    }
+
+                    if (validLQs.length === 0) continue;
+                    
+                    // Ordenar os LQs do maior para o mais pequeno
+                    validLQs.sort((a, b) => b.lq - a.lq);
+
+                    let origin = plateData.origin;
+                    if (origin.includes(" - ")) origin = origin.split(" - ")[0];
+
+                    let row = [plateData.denomination, origin, plateData.plate, plateData.total_ebt];
+
+                    // Adicionar Países e LQs
+                    for (let i = 0; i < 28; i++) {
+                        if (i < validLQs.length) {
+                            row.push(validLQs[i].country, validLQs[i].lq);
+                        } else {
+                            row.push("", ""); // Células vazias se não houver mais países
+                        }
+                    }
+
+                    // Calcular a degradação (Quocientes r1, r2, etc.)
+                    for (let i = 1; i < 28; i++) {
+                        if (i < validLQs.length) {
+                            const prevLq = validLQs[i - 1].lq;
+                            const currLq = validLQs[i].lq;
+                            const r = currLq > 0 ? prevLq / currLq : 999;
+                            row.push(r.toFixed(3));
+                        } else {
+                            row.push("");
+                        }
+                    }
+                    csvContent.push(row.join(","));
+                }
+
+                // Forçar o download do CSV
+                document.getElementById('status').innerText = "Sucesso! O ficheiro deve estar na sua pasta de Transferências.";
+                const blob = new Blob([csvContent.join("\n")], { type: 'text/csv;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.setAttribute("href", url);
+                link.setAttribute("download", "all_denominations_lq_analysis.csv");
+                document.body.appendChild(link);
+                link.click();
+            })
+            .catch(err => {
+                document.getElementById('status').innerHTML = `<span style="color:red">Erro: ${err}</span>`;
+            });
+    </script>
+</body>
+</html>
