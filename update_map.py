@@ -8,7 +8,7 @@ import re
 from collections import defaultdict
 from datetime import datetime, timedelta
 
-VERSION = "2.2.0"
+VERSION = "2.3.0"
 print(f"=== STARTING EBT MAP AUTO-UPDATE v{VERSION} ===")
 
 # ==========================================
@@ -34,59 +34,59 @@ def get_reliability(notes, baseline):
 
 def determine_taxonomy(high_data, origin_country, total_plate_notes):
     """
-    The Engine's Brain: Evaluates the topography of reliable LQs and
-    assigns the correct category dynamically based on geometric natural breaks.
+    Taxonomic Engine v2.2 (Powered by Zipf's Law).
+    Evaluates the LQs by looking for structural tears in the degradation curve.
     """
     if len(high_data) == 0 or total_plate_notes < 150:
         return "Undetermined (Insufficient Data)"
         
-    # Sort from highest LQ to lowest
+    # 1. Sort by LQ (highest to lowest)
     high_data.sort(key=lambda x: x[1], reverse=True)
     
-    # If there is only 1 reliable country
     if len(high_data) == 1:
         top1_c = high_data[0][0]
-        if top1_c == origin_country:
-            return "Domestic Concentration"
-        return f"Displaced Concentration ({top1_c})"
+        return "Domestic Concentration" if top1_c == origin_country else f"Displaced Concentration ({top1_c})"
 
-    # 1. Pandemic Dispersion Test
+    # 2. Pandemic Dispersion Test (very flat LQs at the top)
     lqs = [x[1] for x in high_data]
     if len(high_data) >= 4 and np.std(lqs) < 0.6:
         return "Pandemic Dispersion"
         
-    # 2. Dynamic Cluster Detection (The "Natural Break" Algorithm)
+    # 3. The Zipf's Law Descent
     leaders = [high_data[0][0]]
+    LOG_SLICE = 1.5849  # Our logarithmic geometry constant (the ceiling of normality)
     
     for i in range(1, len(high_data)):
+        k = i  # The rank of the previous country being evaluated (1st, 2nd, etc.)
         current_lq = high_data[i-1][1]
         next_lq = high_data[i][1]
         
-        drop_ratio = current_lq / next_lq if next_lq > 0 else 99
+        r_k = current_lq / next_lq if next_lq > 0 else 999
         
-        # FIX: Cliff check threshold (4/3) AND next country must be at least Over-represented (>= 1.58)
-        if drop_ratio < 4 / 3 and next_lq >= 1.58:
-            leaders.append(high_data[i][0])
-        else:
-            # We hit a cliff or dropped out of the over-represented zone
+        # The strict Zipf's Law expectation for the current step
+        expected_zipf = (k + 1) / k 
+        
+        # The dynamic threshold for a structural tear (Zipf Tear Threshold)
+        tear_threshold = expected_zipf * LOG_SLICE
+        
+        # Safety Brake 1: The Floor
+        # If the next country hits the 1.58 barrier, it fell into Normal noise. We stop.
+        if next_lq < LOG_SLICE:
             break
             
-    # 3. Assess the isolation of a single leader
-    if len(leaders) == 1:
-        top1_c, top1_lq = high_data[0]
-        top2_c, top2_lq = high_data[1]
-        ratio = top1_lq / top2_lq if top2_lq > 0 else 99
-        
-        # Upgraded to 2.0 to reflect logarithmic reality
-        if ratio >= 2.0:
-            if top1_c == origin_country:
-                return "Domestic Concentration"
-            return f"Displaced Concentration ({top1_c})"
-        else:
-            # The second country joins the core group to prevent "Multi-Hub (1 country)"
-            leaders.append(top2_c)
+        # Safety Brake 2: The Tear
+        # If the drop is brutally higher than the step's tolerance, we stop.
+        if r_k > tear_threshold:
+            break
             
-    # 4. Final Classification
+        # If it survived both brakes, it slides smoothly with the leader group!
+        leaders.append(high_data[i][0])
+            
+    # 4. Final Title Assignment
+    if len(leaders) == 1:
+        top1_c = leaders[0]
+        return "Domestic Concentration" if top1_c == origin_country else f"Displaced Concentration ({top1_c})"
+        
     if origin_country in leaders:
         other_leaders = [c for c in leaders if c != origin_country]
         if other_leaders:
