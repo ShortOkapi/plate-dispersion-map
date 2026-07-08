@@ -59,23 +59,25 @@
             flex-shrink: 0;
         }
 
-        h1 { margin-top: 0; font-size: 1.4rem; color: #1a365d; transition: color 0.5s ease;}
-        h2 { font-size: 1.1rem; border-bottom: 2px solid var(--border-color); padding-bottom: 8px;}
+        h1 { margin-top: 0; font-size: 1.4rem; color: #1a365d; transition: color 0.5s ease; }
+        h2 { font-size: 1.1rem; border-bottom: 2px solid var(--border-color); padding-bottom: 8px; }
         
         .form-group { margin-bottom: 15px; }
-        label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem;}
+        label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem; }
+        
         select {
             width: 100%;
             padding: 10px; border-radius: 6px;
             border: 1px solid #cbd5e1; font-size: 1rem;
             background-color: #f8fafc; cursor: pointer;
         }
+        
         select:disabled { background-color: #e2e8f0; cursor: not-allowed; }
 
         .stat-grid { display: grid; grid-template-columns: 1fr; gap: 10px; font-size: 0.95rem; }
-        .stat-row { display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px;}
-        .stat-label { font-weight: 600; color: #64748b;}
-        .stat-value { font-family: monospace; font-size: 1rem; font-weight: bold;}
+        .stat-row { display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 5px; }
+        .stat-label { font-weight: 600; color: #64748b; }
+        .stat-value { font-family: monospace; font-size: 1rem; font-weight: bold; }
 
         .map-container {
             background-color: var(--panel-bg);
@@ -94,12 +96,13 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             pointer-events: none; opacity: 0; font-size: 0.9rem; z-index: 100;
         }
-        .tt-country { font-weight: bold; font-size: 1.1rem; border-bottom: 1px solid #e2e8f0; margin-bottom: 5px; padding-bottom: 3px; transition: border-color 0.3s, color 0.3s;}
+        .tt-country { font-weight: bold; font-size: 1.1rem; border-bottom: 1px solid #e2e8f0; margin-bottom: 5px; padding-bottom: 3px; transition: border-color 0.3s, color 0.3s; }
 
         .legend-container {
             position: absolute;
             bottom: 30px; left: 50%; transform: translateX(-50%);
-            width: 70%; background: rgba(255,255,255,0.95); padding: 15px 20px;
+            width: 90%; max-width: 850px; /* Expanded width for better label distribution */
+            background: rgba(255,255,255,0.95); padding: 15px 20px 10px 20px;
             border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             border: 1px solid #cbd5e1; pointer-events: none;
         }
@@ -204,12 +207,10 @@
         <div class="tooltip" id="tooltip"></div>
         
         <div class="legend-container" id="legend-box" style="display: none;">
-            <div style="display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: bold; margin-bottom: 8px;">
-                <span style="color: #003f5b; width: 33.3%;">Rare (LQ &lt; 0.1)</span>
-                <span style="color: #c34c95; width: 33.3%; text-align: center;">Normal (LQ = 1.0)</span>
-                <span id="legend-max" style="color: #ff9913; width: 33.3%; text-align: right;">Extreme (LQ = 10.0+)</span>
-            </div>
-            <canvas id="legend-canvas" width="400" height="15" style="width: 100%; border-radius: 4px; border: 1px solid #e2e8f0;"></canvas>
+            
+            <div id="legend-markers" style="position: relative; width: 100%; height: 36px; margin-bottom: 2px;"></div>
+            
+            <canvas id="legend-canvas" width="800" height="15" style="width: 100%; border-radius: 4px; border: 1px solid #e2e8f0;"></canvas>
             
             <div style="margin-top: 15px; font-size: 0.75rem; color: #475569; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 10px;">
                 <strong>Data Reliability:</strong> 
@@ -221,7 +222,7 @@
     </div>
 
     <script>
-        // The mathematical core of the expanded Eurozone (For Color Scale calibration)
+        // Mathematical core for map logic
         const CORE_COUNTRIES = [
             "Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Estonia", "Finland", 
             "France", "Germany", "Greece", "Ireland", "Italy", "Latvia", 
@@ -236,13 +237,16 @@
         };
         
         const EMPTY_COLOR = "#e2e8f0";
-        const lqColors = ["#003f5b", "#384d85", "#7e519c", "#c34c95", "#f55572", "#ff7e3d", "#ff9913"];
 
+        // 1. New Core Color Scale and Exact Boundaries (6 Stops)
+        const logDomain = [0.1, 0.2512, 0.6310, 1.5849, 3.9811, 10.0];
+        const lqColors = ["#003f5b", "#3a4d86", "#bc4d97", "#e64f80", "#ff7c41", "#ff9913"];
+        
         function getLqCategoryCode(lq) {
             if (lq < 0.2512) return "rare";
             if (lq < 0.6310) return "under";
-            if (lq <= 1.5849) return "normal";
-            if (lq <= 3.9811) return "over";
+            if (lq < 1.5849) return "normal";
+            if (lq < 3.9811) return "over";
             return "extreme";
         }
         
@@ -264,10 +268,12 @@
         const container = document.querySelector('.map-container');
         const width = container.clientWidth;
         const height = container.clientHeight;
+        
         const projection = d3.geoAzimuthalEqualArea()
             .rotate([-10, -52])
             .scale(800)
             .translate([width / 2, height / 2]);
+            
         const path = d3.geoPath().projection(projection);
         const svg = d3.select("#europe-map");
         const tooltip = d3.select("#tooltip");
@@ -280,6 +286,7 @@
 
         const defs = svg.append('defs');
         
+        // Stencils for uncertainty logic
         defs.append('pattern')
             .attr('id', 'empty-med-50')
             .attr('patternUnits', 'userSpaceOnUse')
@@ -298,7 +305,8 @@
                 p.append('rect').attr('y', 2).attr('width', 2).attr('height', 2).attr('fill', EMPTY_COLOR);
             });
 
-        let currentZoomK = 1;
+        // 2. Updated Default Zoom to target the Core immediately
+        let currentZoomK = 1.5; 
         const zoom = d3.zoom()
             .scaleExtent([0.5, 8])
             .on("zoom", (event) => {
@@ -319,8 +327,11 @@
                         return `translate(${cx}, ${cy}) scale(${1 / currentZoomK})`;
                     });
             });
+            
         svg.call(zoom);
-        
+        // Force the startup zoom coordinates discovered via DevTools
+        svg.call(zoom.transform, d3.zoomIdentity.translate(-370, -300).scale(1.5));
+
         Promise.all([
             d3.json("ebt_dispersion_master_data.json"),
             d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json")
@@ -345,15 +356,16 @@
                 .attr("fill", EMPTY_COLOR)
                 .attr("stroke", "#cbd5e1")
                 .attr("stroke-width", 0.5);
-
+                
             initCascadingDropdowns();
         }).catch(err => {
             console.error("Error loading data:", err);
             document.getElementById('sel-denom').innerHTML = `<option>Error loading data.</option>`;
         });
-        
+
         function initCascadingDropdowns() {
             const denoms = Object.keys(masterData.hierarchy).sort((a,b) => parseInt(a)-parseInt(b));
+            
             const selDenom = document.getElementById('sel-denom');
             const selPrinter = document.getElementById('sel-printer');
             const selPlate = document.getElementById('sel-plate');
@@ -435,19 +447,16 @@
             document.getElementById('val-origin').innerText = data.origin;
             document.getElementById('val-print').innerText = data.print_run;
             document.getElementById('val-notes').innerText = data.total_ebt.toLocaleString();
+            
             let confColor = data.confidence.includes("High") ? "green" : (data.confidence.includes("Low") ? "red" : "orange");
             document.getElementById('val-conf').innerHTML = `<span style="color:${confColor}">${data.confidence}</span>`;
             document.getElementById('val-dispersion').innerText = data.dispersion;
-            
-            // 2. Fixed Logarithmic Color Scale (10^-1 to 10^1)
-            // We use the 7 exact geometric stops between 0.1 and 10.0
-            const logDomain = [0.1, 0.2154, 0.4642, 1.0, 2.1544, 4.6416, 10.0];
 
             const colorScale = d3.scaleLog()
                 .domain(logDomain)
                 .range(lqColors)
-                .clamp(true); 
-
+                .clamp(true);
+                
             gCountries.selectAll(".country-path")
                 .transition().duration(500)
                 .attr("fill", function(d) {
@@ -460,7 +469,6 @@
                         const passesConfFilter = (conf.level === "High" || showAll);
                         
                         if(passesCatFilter && passesConfFilter) {
-                            // D3 scaleLog crashes with 0. We force a minimum of 0.1
                             return colorScale(Math.max(0.1, cData.lq));
                         }
                     }
@@ -505,14 +513,18 @@
 
                     const hintLabel = getLqCategoryLabel(catCode);
 
+                    // 3. The new "luckbox" analytical tooltip
+                    const shareOfPlate = data.total_ebt > 0 ? ((cData.notes / data.total_ebt) * 100).toFixed(1) : "0.0";
+                    const countryBaseline = cData.lq > 0 ? (shareOfPlate / cData.lq).toFixed(1) : "0.0";
+
                     tooltip.html(`
                         <div class="tt-country" style="border-bottom: 2px solid ${baseHex}; color: ${baseHex};">${d.properties.name}</div>
                         <div><strong>LQ:</strong> ${cData.lq.toFixed(2)} <i>(${hintLabel})</i></div>
-                        <div><strong>Notes Found:</strong> ${cData.notes.toLocaleString()} <span style="color:#64748b; font-size:0.8rem;">(out of ${cData.baseline.toLocaleString()})</span></div>
-                        <div style="margin-top:4px; font-size:0.8rem;">Data Reliability: <strong style="color:${cConfData.color}">${cConfData.level}</strong></div>
+                        <div style="margin-top: 8px;"><strong>Notes Found:</strong> ${cData.notes.toLocaleString()} <span style="color:#64748b; font-size:0.8rem;">(out of ${cData.baseline.toLocaleString()} ${data.denomination}€ notes)</span></div>
+                        <div><strong>Share:</strong> ${shareOfPlate}% of this plate / ${countryBaseline}% of all ${data.denomination}€ notes</div>
+                        <div style="margin-top: 8px; padding-top: 6px; border-top: 1px solid #e2e8f0; font-size:0.8rem;">Data Reliability: <strong style="color:${cConfData.color}">${cConfData.level}</strong></div>
                     `);
                     
-                    // Change cursor to a precision crosshair when hovering over a country with data
                     d3.select(this).style("cursor", "crosshair");
                     tooltip.style("opacity", 1);
                 })
@@ -520,37 +532,30 @@
                     let ttWidth = tooltip.node().offsetWidth;
                     let ttHeight = tooltip.node().offsetHeight;
                     
-                    // Use clientX/Y to get absolute viewport coordinates
-                    // +26 clears the right arm of the crosshair cursor
                     let x = event.clientX + 26;
                     let y = event.clientY - 12;
                     
-                    // Screen edge collision protection
                     if (x + ttWidth > window.innerWidth) x = event.clientX - ttWidth - 26;
                     if (y + ttHeight > window.innerHeight) y = event.clientY - ttHeight - 12;
                     
-                    // Force fixed position
                     tooltip.style("position", "fixed")
                            .style("left", x + "px")
                            .style("top", y + "px");
                 })
                 .on("mouseout", function() {
-                    // Reset country border stroke and remove the crosshair cursor
                     d3.select(this)
                       .attr("stroke", "#cbd5e1")
                       .attr("stroke-width", 0.5 / currentZoomK)
                       .style("cursor", "default");
-                      
-                    // Hide the tooltip smoothly
                     tooltip.style("opacity", 0);
                 });
-
+                
+            // Handle microstates map elements and tooltips
             const microstates = [
                 { id: "Malta", lon: 14.3754, lat: 35.9375 },
                 { id: "Andorra", lon: 1.5218, lat: 42.5063 },
                 { id: "Monaco", lon: 7.4200, lat: 43.7384 },
                 { id: "San Marino", lon: 12.4578, lat: 43.9424 },
-                { id: "Liechtenstein", lon: 9.5209, lat: 47.1660 },
                 { id: "Vatican City", lon: 12.4534, lat: 41.9029 }
             ];
             
@@ -581,14 +586,19 @@
                                 cGroup.selectAll(".microstate-overlay").attr("r", 8 / currentZoomK).raise();
                                 
                                 const hintLabel = getLqCategoryLabel(catCode);
+                                
+                                // Luckbox stats injected into Microstates too
+                                const shareOfPlate = data.total_ebt > 0 ? ((msData.notes / data.total_ebt) * 100).toFixed(1) : "0.0";
+                                const countryBaseline = msData.lq > 0 ? (shareOfPlate / msData.lq).toFixed(1) : "0.0";
+
                                 tooltip.html(`
                                     <div class="tt-country" style="border-bottom: 2px solid ${baseHex}; color: ${baseHex};">${ms.id}</div>
                                     <div><strong>LQ:</strong> ${msData.lq.toFixed(2)} <i>(${hintLabel})</i></div>
-                                    <div><strong>Notes Found:</strong> ${msData.notes.toLocaleString()} <span style="color:#64748b; font-size:0.8rem;">(out of ${msData.baseline.toLocaleString()})</span></div>
-                                    <div style="margin-top:4px; font-size:0.8rem;">Data Reliability: <strong style="color:${conf.color}">${conf.level}</strong></div>
+                                    <div style="margin-top: 8px;"><strong>Notes Found:</strong> ${msData.notes.toLocaleString()} <span style="color:#64748b; font-size:0.8rem;">(out of ${msData.baseline.toLocaleString()} ${data.denomination}€ notes)</span></div>
+                                    <div><strong>Share:</strong> ${shareOfPlate}% of this plate / ${countryBaseline}% of all ${data.denomination}€ notes</div>
+                                    <div style="margin-top: 8px; padding-top: 6px; border-top: 1px solid #e2e8f0; font-size:0.8rem;">Data Reliability: <strong style="color:${conf.color}">${conf.level}</strong></div>
                                 `);
                                 
-                                // Change cursor to a precision crosshair
                                 d3.select(this).style("cursor", "crosshair");
                                 tooltip.style("opacity", 1);
                             })
@@ -609,8 +619,6 @@
                             .on("mouseout", function() {
                                 d3.select(this).attr("r", 5 / currentZoomK).attr("stroke-width", 1 / currentZoomK);
                                 cGroup.selectAll(".microstate-overlay").attr("r", 5 / currentZoomK);
-                                
-                                // Reset cursor back to default
                                 d3.select(this).style("cursor", "default");
                                 tooltip.style("opacity", 0);
                             });
@@ -645,24 +653,64 @@
             }
 
             document.getElementById('legend-box').style.display = 'block';
-            
-            // 3. Static and Honest Legend
-            document.getElementById('legend-max').innerText = `Extreme (LQ = 10.0+)`;
             drawLegendCanvas(colorScale);
         }
 
+        // 4. Advanced Dynamic Legend Generator
         function drawLegendCanvas(colorScale) {
             const canvas = document.getElementById('legend-canvas');
             const ctx = canvas.getContext('2d');
             const w = canvas.width;
 
+            // Draw the smooth gradient mapping pixels to log space
             for (let i = 0; i < w; i++) {
-                // Map physical pixel (0 to width) to logarithmic power (-1 to 1)
                 let power = -1 + (i / w) * 2;
                 let logValue = Math.pow(10, power);
-
                 ctx.fillStyle = colorScale(logValue);
                 ctx.fillRect(i, 0, 1, canvas.height);
+            }
+            
+            const markersDiv = document.getElementById('legend-markers');
+            markersDiv.innerHTML = ""; 
+            
+            // Draw exact boundary ticks and text values (e.g. "0.10 or less")
+            logDomain.forEach((val, idx) => {
+                let percentPosition = ((Math.log10(val) + 1) / 2) * 100;
+                let displayVal = val.toFixed(2);
+                
+                // Add contextual hints for extremities
+                if (idx === 0) displayVal += " or less";
+                if (idx === logDomain.length - 1) displayVal += " or more";
+                
+                // Adjust text translation to prevent container overflow on the edges
+                let transform = "translateX(-50%)";
+                if (idx === 0) transform = "translateX(0%)";
+                if (idx === logDomain.length - 1) transform = "translateX(-100%)";
+
+                markersDiv.innerHTML += `
+                    <div style="position: absolute; left: ${percentPosition}%; bottom: 0; transform: ${transform}; display: flex; flex-direction: column; align-items: center; font-size: 0.7rem; color: #64748b;">
+                        <div style="margin-bottom: 2px;">${displayVal}</div>
+                        <div style="width: 1px; height: 6px; background-color: #94a3b8;"></div>
+                    </div>
+                `;
+            });
+            
+            // Draw the five category labels perfectly centered inside their interval
+            const cats = ["Rare", "Under-represented", "Normal", "Over-represented", "Extreme"];
+            
+            for (let i = 0; i < logDomain.length - 1; i++) {
+                let p1 = ((Math.log10(logDomain[i]) + 1) / 2) * 100;
+                let p2 = ((Math.log10(logDomain[i+1]) + 1) / 2) * 100;
+                let midPercent = (p1 + p2) / 2;
+                
+                let midLog = Math.pow(10, (Math.log10(logDomain[i]) + Math.log10(logDomain[i+1])) / 2);
+                let textColor = colorScale(midLog);
+
+                markersDiv.innerHTML += `
+                    <div style="position: absolute; left: ${midPercent}%; top: 0; transform: translateX(-50%); font-size: 0.75rem; font-weight: 800; color: ${textColor}; text-shadow: 0px 1px 1px rgba(255,255,255,0.9); white-space: nowrap;">
+                        ${cats[i]}
+                    </div>
+                `;
             }
         }
     </script>
