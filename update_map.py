@@ -36,6 +36,14 @@ HOST_MAP = {
     "Vatican City": ["Italy"],
 }
 
+def get_reliability(notes, baseline):
+    """Calculates the statistical reliability of the country's data."""
+    if baseline == 0: return "Low"
+    ratio = notes / baseline
+    if notes >= 100 or (notes >= 20 and ratio >= 0.05): return "High"
+    if notes >= 30 or (notes >= 5 and ratio >= 0.02): return "Medium"
+    return "Low"
+
 def determine_taxonomy(high_data, origin_country, total_plate_notes, microstates_data=None):
     """
     Taxonomic Engine v2.4.0 (Powered by Zipf's Law).
