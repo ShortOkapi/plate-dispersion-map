@@ -8,7 +8,7 @@ import re
 from collections import defaultdict
 from datetime import datetime, timedelta
 
-VERSION = "2.3.0"
+VERSION = "2.4.0"
 print(f"=== STARTING EBT MAP AUTO-UPDATE v{VERSION} ===")
 
 # ==========================================
@@ -24,6 +24,18 @@ CORE_COUNTRIES = {
     "Vatican City", "Kosovo", "Montenegro", "Switzerland"
 }
 
+# Define microstates separately so they can be excluded from the taxonomy engine.
+# This prevents tiny baselines from generating massive LQs and hijacking the dispersion profile.
+MICROSTATES = {"Andorra", "Monaco", "San Marino", "Vatican City"}
+
+# Maps microstates to their logistical host countries for the profile title
+HOST_MAP = {
+    "Andorra": ["Spain", "France"],
+    "Monaco": ["France"],
+    "San Marino": ["Italy"],
+    "Vatican City": ["Italy"],
+}
+
 def get_reliability(notes, baseline):
     """Calculates the statistical reliability of the country's data."""
     if baseline == 0: return "Low"
@@ -32,10 +44,11 @@ def get_reliability(notes, baseline):
     if notes >= 30 or (notes >= 5 and ratio >= 0.02): return "Medium"
     return "Low"
 
-def determine_taxonomy(high_data, origin_country, total_plate_notes):
+def determine_taxonomy(high_data, origin_country, total_plate_notes, microstates_data=None):
     """
-    Taxonomic Engine v2.3 (Powered by Zipf's Law).
+    Taxonomic Engine v2.4.0 (Powered by Zipf's Law).
     Evaluates the LQs by looking for structural tears in the degradation curve.
+    Now includes host-mapping for microstates.
     """
     if len(high_data) == 0 or total_plate_notes < 150:
         return "Undetermined (Insufficient Data)"
@@ -43,58 +56,87 @@ def determine_taxonomy(high_data, origin_country, total_plate_notes):
     # 1. Sort by LQ (highest to lowest)
     high_data.sort(key=lambda x: x[1], reverse=True)
     
-    if len(high_data) == 1:
-        top1_c = high_data[0][0]
-        return "Domestic Concentration" if top1_c == origin_country else f"Displaced Concentration ({top1_c})"
-
-    # 2. Pandemic Dispersion Test (very flat LQs at the top)
     lqs = [x[1] for x in high_data]
-    if len(high_data) >= 4 and np.std(lqs) < 0.6:
-        return "Pandemic Dispersion"
-        
-    # 3. The Zipf's Law Descent
-    leaders = [high_data[0][0]]
-    LOG_SLICE = 10 ** 0.2  # Our logarithmic geometry constant for five categories (10^(1/5))
-    
-    for i in range(1, len(high_data)):
-        k = i  # The rank of the previous country being evaluated (1st, 2nd, etc.)
-        current_lq = high_data[i-1][1]
-        next_lq = high_data[i][1]
-        
-        r_k = current_lq / next_lq if next_lq > 0 else 999
-        
-        # The strict Zipf's Law expectation for the current step
-        expected_zipf = (k + 1) / k 
-        
-        # The dynamic threshold for a structural tear (Zipf Tear Threshold)
-        tear_threshold = expected_zipf * LOG_SLICE
-        
-        # Safety Brake 1: The Floor
-        # If the next country hits the 1.58 barrier, it fell into Normal noise. We stop.
-        if next_lq < LOG_SLICE:
-            break
+    LOG_SLICE = 10 ** 0.2          # ~1.58489 (logarithmic geometry constant for five categories (10^(1/5)); also: Over-represented threshold)
+    EXTREME_THRESHOLD = 10 ** 0.6  # ~3.98107 (Extreme concentration threshold)
+
+    # 1. Zipf's Law Engine (Core Countries Only)
+    leaders = []
+    if len(high_data) > 0:
+        # 2. Pandemic Dispersion Test
+        # Brake: Only valid if the maximum LQ is strictly below the Over-represented threshold.
+        if len(high_data) >= 4 and np.std(lqs) < 0.6 and high_data[0][1] < LOG_SLICE:
+            return "Pandemic Dispersion"
             
-        # Safety Brake 2: The Tear
-        # If the drop is brutally higher than the step's tolerance, we stop.
-        if r_k > tear_threshold:
-            break
+        # 3. The Zipf's Law Descent
+        leaders = [high_data[0][0]]
+        for i in range(1, len(high_data)):
+            k = i  # The rank of the previous country being evaluated
+            current_lq = high_data[i-1][1]
+            next_lq = high_data[i][1]
             
-        # If it survived both brakes, it slides smoothly with the leader group!
-        leaders.append(high_data[i][0])
+            r_k = current_lq / next_lq if next_lq > 0 else 999
             
-    # 4. Final Title Assignment
+            # The strict Zipf's Law expectation for the current step
+            expected_zipf = (k + 1) / k 
+          
+            # The dynamic threshold for a structural tear (Zipf Tear Threshold)
+            tear_threshold = expected_zipf * LOG_SLICE
+            
+            # Safety Brake 1: The Floor (Normal noise)
+            # If the next country's LQ is below "Over-represented", we stop.
+            if next_lq < LOG_SLICE:
+                break
+                
+            # Safety Brake 2: The Tear
+            if r_k > tear_threshold:
+                # VIP Pass: If the drop is brutal but the next country is still Extreme, keep it!
+                # If not Extreme, we stop.
+                if next_lq >= EXTREME_THRESHOLD:
+                    pass
+                else:
+                    break
+                
+            # If it survived brakes (or got a VIP pass), it slides with the leader group!
+            leaders.append(high_data[i][0])
+
+    if not leaders:
+        return "Undetermined (Insufficient Data)"
+
+    # 4. Microstate Host Logic (Piggybacking)
+    display_names = {c: c for c in leaders}
+    if origin_country not in display_names:
+        display_names[origin_country] = origin_country
+
+    if microstates_data:
+        for ms, ms_lq in microstates_data:
+            if ms_lq >= LOG_SLICE:  # Microstate must actually be over-represented
+                hosts = HOST_MAP.get(ms, [])
+                for host in hosts:
+                    # If the host is a leader, attach the microstate to its name
+                    if host in leaders or (host == origin_country and len(leaders) == 1):
+                        display_names[host] += f" & {ms}"
+                        break
+
+    # 5. Final Title Assignment
     if len(leaders) == 1:
-        top1_c = leaders[0]
-        return "Domestic Concentration" if top1_c == origin_country else f"Displaced Concentration ({top1_c})"
-        
+        if leaders[0] == origin_country:
+            # E.g., if Italy absorbed Vatican City, it's no longer just Domestic
+            if display_names[origin_country] != origin_country:
+                 return f"Endemic Leakage ({display_names[origin_country]})"
+            return "Domestic Concentration"
+        else:
+            return f"Displaced Concentration ({display_names[leaders[0]]})"
+            
     if origin_country in leaders:
-        other_leaders = [c for c in leaders if c != origin_country]
+        other_leaders = [display_names[c] for c in leaders if c != origin_country]
         if other_leaders:
             return f"Endemic Leakage (Origin + {', '.join(other_leaders)})"
         else:
             return "Domestic Concentration"
     else:
-        return f"Multi-Hub ({', '.join(leaders)})"
+        disp_leaders = [display_names[c] for c in leaders]
+        return f"Multi-Hub ({', '.join(disp_leaders)})"
 
 # ==========================================
 # 1. PARSE GUY SOHIER CATALOG (WEB SCRAPING)
@@ -284,11 +326,11 @@ printers = {
     'R': {"name": "R - Bundesdruckerei (Germany)", "country": "Germany", "lon": 13.40095, "lat": 52.50783},
     'S': {"name": "S - Banca d'Italia (Italy)", "country": "Italy", "lon": 12.53644, "lat": 41.87130},
     'T': {"name": "T - Central Bank (Ireland)", "country": "Ireland", "lon": -6.23190, "lat": 53.27350},
-    'U': {"name": "U - Banque de France", "country": "France", "lon": 3.07290, "lat": 45.77480},
+    'U': {"name": "U - Bdf (France)", "country": "France", "lon": 3.07290, "lat": 45.77480},
     'V': {"name": "V - IMBISA (Spain)", "country": "Spain", "lon": -3.61894, "lat": 40.40927},
     'W': {"name": "W - G&D Leipzig (Germany)", "country": "Germany", "lon": 12.38355, "lat": 51.33704},
     'X': {"name": "X - G&D Munich (Germany)", "country": "Germany", "lon": 11.62249, "lat": 48.13881},
-    'Y': {"name": "Y - Bank of Greece", "country": "Greece", "lon": 23.80440, "lat": 38.01063},
+    'Y': {"name": "Y - BoG / ΤτΕ (Greece)", "country": "Greece", "lon": 23.80440, "lat": 38.01063},
     'Z': {"name": "Z - NBB (Belgium)", "country": "Belgium", "lon": 4.36017, "lat": 50.85019}
 }
 
@@ -395,12 +437,20 @@ for name, group in grouped_plates:
             row_baseline += c_base
             
     high_data_for_taxonomy = []
+    microstates_high = []
+    high_core_count = 0  # Tracks non-microstate core countries with High reliability
+    
     for c_code, c_data in countries_data.items():
         if c_code in CORE_COUNTRIES:
             rel = get_reliability(c_data["notes"], c_data["baseline"])
+            
             if rel == "High":
-                high_data_for_taxonomy.append((c_code, c_data["lq"]))
-                
+                if c_code in MICROSTATES:
+                    microstates_high.append((c_code, c_data["lq"]))
+                else:
+                    high_data_for_taxonomy.append((c_code, c_data["lq"]))
+                    high_core_count += 1
+                    
     if row_baseline > 0:
         rel_row = get_reliability(row_notes, row_baseline)
         if rel_row == "High":
@@ -408,8 +458,14 @@ for name, group in grouped_plates:
             row_base_pct = row_baseline / denom_ebt_totals[denom]
             row_lq = row_pct / row_base_pct if row_base_pct > 0 else 0
             high_data_for_taxonomy.append(("Rest of World", row_lq))
+            # Note: "Rest of World" does not count towards high_core_count
 
-    dispersion = determine_taxonomy(high_data_for_taxonomy, p_info["country"], total_ebt)
+    # System Confidence Veto: Downgrade if the plate relies on less than 2 solid core countries
+    if confidence == "High" and high_core_count < 2:
+        confidence = "Medium"
+
+    # Taxonomy calculation calling the new signature with microstates
+    dispersion = determine_taxonomy(high_data_for_taxonomy, p_info["country"], total_ebt, microstates_high)
 
     master_data["plates"][f"{denom}_{plate}"] = {
         "denomination": denom, "plate": plate, "origin": p_info["name"],
@@ -462,12 +518,20 @@ for (denom, printer_name), agg_data in agg_store.items():
             row_baseline += c_base
             
     high_data_for_taxonomy = []
-    for c_code, c_data_dict in countries_data.items():
+    microstates_high = []
+    high_core_count = 0  # Tracks non-microstate core countries with High reliability
+    
+    for c_code, c_data in countries_data.items():
         if c_code in CORE_COUNTRIES:
-            rel = get_reliability(c_data_dict["notes"], c_data_dict["baseline"])
+            rel = get_reliability(c_data["notes"], c_data["baseline"])
+            
             if rel == "High":
-                high_data_for_taxonomy.append((c_code, c_data_dict["lq"]))
-                
+                if c_code in MICROSTATES:
+                    microstates_high.append((c_code, c_data["lq"]))
+                else:
+                    high_data_for_taxonomy.append((c_code, c_data["lq"]))
+                    high_core_count += 1
+                    
     if row_baseline > 0:
         rel_row = get_reliability(row_notes, row_baseline)
         if rel_row == "High":
@@ -475,8 +539,14 @@ for (denom, printer_name), agg_data in agg_store.items():
             row_base_pct = row_baseline / denom_ebt_totals[denom]
             row_lq = row_pct / row_base_pct if row_base_pct > 0 else 0
             high_data_for_taxonomy.append(("Rest of World", row_lq))
+            # Note: "Rest of World" does not count towards high_core_count
 
-    dispersion = determine_taxonomy(high_data_for_taxonomy, p_info["country"], total_ebt)
+    # System Confidence Veto: Downgrade if the plate relies on less than 2 solid core countries
+    if confidence == "High" and high_core_count < 2:
+        confidence = "Medium"
+
+    # Taxonomy calculation calling the new signature with microstates
+    dispersion = determine_taxonomy(high_data_for_taxonomy, p_info["country"], total_ebt, microstates_high)
 
     master_data["plates"][f"{denom}_{printer_name}_all"] = {
         "denomination": denom, "plate": "All Plates", "origin": p_info["name"],
