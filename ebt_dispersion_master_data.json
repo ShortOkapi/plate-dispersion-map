@@ -1,7 +1,7 @@
 {
   "metadata": {
     "last_updated": "2026-07-06 01:39:08 UTC",
-    "version": "2.3.0"
+    "version": "2.4.0"
   },
   "plates": {
     "5_E001": {
@@ -530,7 +530,7 @@
       "print_run": "38.0M notes",
       "total_ebt": 207350,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Latvia)",
+      "dispersion": "Endemic Leakage (Origin + Latvia, Estonia, Lithuania)",
       "countries": {
         "Austria": {
           "lq": 0.67486,
@@ -3675,7 +3675,7 @@
       "print_run": "1.7M notes",
       "total_ebt": 20170,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Slovenia)",
       "countries": {
         "Austria": {
           "lq": 1.00289,
@@ -4110,7 +4110,7 @@
       "print_run": "114.0M notes",
       "total_ebt": 459409,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + San Marino, Italy, Rest of World, Croatia, Ireland, Cyprus)",
+      "dispersion": "Endemic Leakage (Origin + Italy & San Marino, Rest of World, Croatia, Ireland, Cyprus)",
       "countries": {
         "Albania": {
           "lq": 3.87019,
@@ -4955,7 +4955,7 @@
       "print_run": "110.0M notes",
       "total_ebt": 398734,
       "confidence": "High",
-      "dispersion": "Multi-Hub (San Marino, France, Switzerland, Italy, Croatia, Luxembourg)",
+      "dispersion": "Multi-Hub (France, Switzerland, Italy & San Marino, Croatia, Luxembourg)",
       "countries": {
         "Albania": {
           "lq": 5.64822,
@@ -5565,7 +5565,7 @@
       "print_run": "178.0M notes",
       "total_ebt": 1416225,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Vatican City, Cyprus, Montenegro)",
+      "dispersion": "Multi-Hub (Cyprus, Montenegro)",
       "countries": {
         "Albania": {
           "lq": 0.83697,
@@ -5900,7 +5900,7 @@
       "print_run": "196.0M notes",
       "total_ebt": 719030,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Greece, Vatican City, San Marino, Ireland, Cyprus, Slovenia, Malta, Monaco)",
+      "dispersion": "Endemic Leakage (Origin + Greece, Ireland, Cyprus, Slovenia, Malta)",
       "countries": {
         "Albania": {
           "lq": 2.47278,
@@ -6435,7 +6435,7 @@
       "print_run": "215.0M notes",
       "total_ebt": 627590,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + San Marino, Vatican City)",
+      "dispersion": "Endemic Leakage (Origin + Slovenia, Malta, Ireland)",
       "countries": {
         "Andorra": {
           "lq": 0.72403,
@@ -7350,7 +7350,7 @@
       "print_run": "179.0M notes",
       "total_ebt": 528087,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Vatican City, Italy)",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Andorra": {
           "lq": 0.5626,
@@ -7562,7 +7562,7 @@
     "5_U002": {
       "denomination": 5,
       "plate": "U002",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -7570,7 +7570,7 @@
       "print_run": "176.0M notes",
       "total_ebt": 1694028,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Germany)",
       "countries": {
         "Andorra": {
           "lq": 0.39203,
@@ -7872,7 +7872,7 @@
     "5_U003": {
       "denomination": 5,
       "plate": "U003",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -8127,7 +8127,7 @@
     "5_U004": {
       "denomination": 5,
       "plate": "U004",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -8135,7 +8135,7 @@
       "print_run": "171.0M notes",
       "total_ebt": 1521614,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Monaco, Estonia)",
+      "dispersion": "Displaced Concentration (Estonia)",
       "countries": {
         "Andorra": {
           "lq": 0.3216,
@@ -8412,7 +8412,7 @@
     "5_U005": {
       "denomination": 5,
       "plate": "U005",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -8420,7 +8420,7 @@
       "print_run": "181.0M notes",
       "total_ebt": 1208941,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Monaco, Luxembourg)",
+      "dispersion": "Endemic Leakage (Origin + Luxembourg)",
       "countries": {
         "Andorra": {
           "lq": 0.86737,
@@ -8702,7 +8702,7 @@
     "5_U006": {
       "denomination": 5,
       "plate": "U006",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -8710,7 +8710,7 @@
       "print_run": "183.0M notes",
       "total_ebt": 1456843,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Malta, Monaco, Finland)",
+      "dispersion": "Endemic Leakage (Origin + Malta, Finland, Estonia)",
       "countries": {
         "Andorra": {
           "lq": 0.43186,
@@ -8997,7 +8997,7 @@
     "5_U007": {
       "denomination": 5,
       "plate": "U007",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -9217,7 +9217,7 @@
     "5_U008": {
       "denomination": 5,
       "plate": "U008",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -9225,7 +9225,7 @@
       "print_run": "138.0M notes",
       "total_ebt": 565906,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Kosovo, Monaco, Austria, Cyprus, Slovenia, Lithuania)",
+      "dispersion": "Endemic Leakage (Origin + Kosovo, Austria, Cyprus, Slovenia, Lithuania)",
       "countries": {
         "Andorra": {
           "lq": 0.525,
@@ -9462,7 +9462,7 @@
     "5_U009": {
       "denomination": 5,
       "plate": "U009",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -9682,7 +9682,7 @@
     "5_U010": {
       "denomination": 5,
       "plate": "U010",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -9757,7 +9757,7 @@
     "5_U011": {
       "denomination": 5,
       "plate": "U011",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -9952,7 +9952,7 @@
     "5_U012": {
       "denomination": 5,
       "plate": "U012",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -10067,7 +10067,7 @@
     "5_U013": {
       "denomination": 5,
       "plate": "U013",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -10135,7 +10135,7 @@
       "print_run": "176.0M notes",
       "total_ebt": 1793821,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Germany)",
       "countries": {
         "Andorra": {
           "lq": 0.90607,
@@ -10745,7 +10745,7 @@
       "print_run": "186.0M notes",
       "total_ebt": 752941,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Andorra, Cyprus)",
+      "dispersion": "Endemic Leakage (Origin + Cyprus)",
       "countries": {
         "Albania": {
           "lq": 1.7317,
@@ -11035,7 +11035,7 @@
       "print_run": "157.0M notes",
       "total_ebt": 1166336,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Latvia, Vatican City, Andorra)",
+      "dispersion": "Displaced Concentration (Latvia)",
       "countries": {
         "Andorra": {
           "lq": 8.67584,
@@ -11335,7 +11335,7 @@
       "print_run": "126.0M notes",
       "total_ebt": 1332952,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Lithuania)",
       "countries": {
         "Andorra": {
           "lq": 0.49823,
@@ -11640,7 +11640,7 @@
       "print_run": "123.0M notes",
       "total_ebt": 973011,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Lithuania, Latvia, Andorra, Cyprus)",
+      "dispersion": "Multi-Hub (Lithuania, Latvia, Cyprus)",
       "countries": {
         "Andorra": {
           "lq": 5.67578,
@@ -11940,7 +11940,7 @@
       "print_run": "127.0M notes",
       "total_ebt": 359181,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Monaco, France)",
+      "dispersion": "Endemic Leakage (Origin + France & Monaco)",
       "countries": {
         "Andorra": {
           "lq": 3.21135,
@@ -12160,7 +12160,7 @@
       "print_run": "176.0M notes",
       "total_ebt": 952590,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Andorra, Finland, Slovakia, Rest of World)",
+      "dispersion": "Endemic Leakage (Origin + Finland, Slovakia, Rest of World)",
       "countries": {
         "Albania": {
           "lq": 1.36876,
@@ -12430,7 +12430,7 @@
       "print_run": "117.0M notes",
       "total_ebt": 404653,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Andorra, France, Belgium, Monaco)",
+      "dispersion": "Endemic Leakage (Origin + France & Monaco, Belgium)",
       "countries": {
         "Andorra": {
           "lq": 12.04975,
@@ -12645,7 +12645,7 @@
       "print_run": "172.0M notes",
       "total_ebt": 1119037,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Belgium)",
       "countries": {
         "Andorra": {
           "lq": 0.49976,
@@ -12925,7 +12925,7 @@
       "print_run": "167.0M notes",
       "total_ebt": 430157,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Andorra)",
+      "dispersion": "Endemic Leakage (Spain & Andorra)",
       "countries": {
         "Andorra": {
           "lq": 8.61322,
@@ -13150,7 +13150,7 @@
       "print_run": "113.0M notes",
       "total_ebt": 763075,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Germany)",
       "countries": {
         "Albania": {
           "lq": 2.17471,
@@ -14085,7 +14085,7 @@
       "print_run": "80.0M notes",
       "total_ebt": 92290,
       "confidence": "Medium",
-      "dispersion": "Multi-Hub (Andorra, Bulgaria)",
+      "dispersion": "Endemic Leakage (Origin + Bulgaria, Switzerland, Portugal)",
       "countries": {
         "Andorra": {
           "lq": 35.60079,
@@ -14245,7 +14245,7 @@
       "print_run": "71.0M notes",
       "total_ebt": 35733,
       "confidence": "Low",
-      "dispersion": "Displaced Concentration (Bulgaria)",
+      "dispersion": "Endemic Leakage (Origin + Bulgaria, Rest of World, Switzerland, Ireland)",
       "countries": {
         "Austria": {
           "lq": 0.67426,
@@ -14725,7 +14725,7 @@
       "print_run": "Unknown",
       "total_ebt": 4445,
       "confidence": "Undetermined",
-      "dispersion": "Displaced Concentration (Bulgaria)",
+      "dispersion": "Endemic Leakage (Origin + Bulgaria, Italy)",
       "countries": {
         "Austria": {
           "lq": 0.25424,
@@ -14805,7 +14805,7 @@
       "print_run": "Unknown",
       "total_ebt": 4924,
       "confidence": "Undetermined",
-      "dispersion": "Displaced Concentration (Bulgaria)",
+      "dispersion": "Endemic Leakage (Origin + Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 0.02852,
@@ -15150,7 +15150,7 @@
       "print_run": "227.0M notes",
       "total_ebt": 908502,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Luxembourg)",
       "countries": {
         "Albania": {
           "lq": 1.30471,
@@ -15382,7 +15382,7 @@
     "5_Y001": {
       "denomination": 5,
       "plate": "Y001",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -15390,7 +15390,7 @@
       "print_run": "95.0M notes",
       "total_ebt": 391524,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Vatican City, Italy)",
+      "dispersion": "Endemic Leakage (Origin + Italy & Vatican City)",
       "countries": {
         "Albania": {
           "lq": 3.02749,
@@ -15622,7 +15622,7 @@
     "5_Y002": {
       "denomination": 5,
       "plate": "Y002",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -15630,7 +15630,7 @@
       "print_run": "104.0M notes",
       "total_ebt": 271518,
       "confidence": "High",
-      "dispersion": "Domestic Concentration",
+      "dispersion": "Endemic Leakage (Origin + Portugal, France, Italy)",
       "countries": {
         "Andorra": {
           "lq": 0.83676,
@@ -15832,7 +15832,7 @@
     "5_Y003": {
       "denomination": 5,
       "plate": "Y003",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -15840,7 +15840,7 @@
       "print_run": "115.0M notes",
       "total_ebt": 709111,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Rest of World, Austria)",
       "countries": {
         "Albania": {
           "lq": 2.00589,
@@ -16092,7 +16092,7 @@
     "5_Y004": {
       "denomination": 5,
       "plate": "Y004",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -16297,7 +16297,7 @@
     "5_Y005": {
       "denomination": 5,
       "plate": "Y005",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -16492,7 +16492,7 @@
     "5_Y006": {
       "denomination": 5,
       "plate": "Y006",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -16717,7 +16717,7 @@
     "5_Y007": {
       "denomination": 5,
       "plate": "Y007",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -16887,7 +16887,7 @@
     "5_Y008": {
       "denomination": 5,
       "plate": "Y008",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -16895,7 +16895,7 @@
       "print_run": "93.0M notes",
       "total_ebt": 147235,
       "confidence": "Medium",
-      "dispersion": "Displaced Concentration (San Marino)",
+      "dispersion": "Endemic Leakage (Origin + Italy & San Marino, Bulgaria, Croatia, Rest of World)",
       "countries": {
         "Albania": {
           "lq": 22.54177,
@@ -17057,7 +17057,7 @@
     "5_Y009": {
       "denomination": 5,
       "plate": "Y009",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -17197,7 +17197,7 @@
     "5_Y010": {
       "denomination": 5,
       "plate": "Y010",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -17205,7 +17205,7 @@
       "print_run": "57.0M notes",
       "total_ebt": 9663,
       "confidence": "Low",
-      "dispersion": "Domestic Concentration",
+      "dispersion": "Endemic Leakage (Origin + Italy, France)",
       "countries": {
         "Austria": {
           "lq": 1.21381,
@@ -17307,7 +17307,7 @@
     "5_Y011": {
       "denomination": 5,
       "plate": "Y011",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -17422,7 +17422,7 @@
     "5_Y012": {
       "denomination": 5,
       "plate": "Y012",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -18380,7 +18380,7 @@
       "print_run": "84.0M notes",
       "total_ebt": 718173,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + France, Luxembourg, Monaco)",
+      "dispersion": "Endemic Leakage (Origin + France & Monaco, Luxembourg)",
       "countries": {
         "Austria": {
           "lq": 0.3028,
@@ -18585,7 +18585,7 @@
       "print_run": "23.0M notes",
       "total_ebt": 207992,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Monaco)",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 0.3062,
@@ -20125,7 +20125,7 @@
       "print_run": "159.0M notes",
       "total_ebt": 735963,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Slovenia)",
       "countries": {
         "Albania": {
           "lq": 2.32417,
@@ -20375,7 +20375,7 @@
       "print_run": "139.0M notes",
       "total_ebt": 638243,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (Belgium, Germany)",
       "countries": {
         "Andorra": {
           "lq": 0.46544,
@@ -20630,7 +20630,7 @@
       "print_run": "151.0M notes",
       "total_ebt": 659762,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (Lithuania, Germany)",
       "countries": {
         "Andorra": {
           "lq": 0.41273,
@@ -21065,7 +21065,7 @@
       "print_run": "121.0M notes",
       "total_ebt": 297745,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (Greece, Germany)",
       "countries": {
         "Austria": {
           "lq": 0.81464,
@@ -21270,7 +21270,7 @@
       "print_run": "159.0M notes",
       "total_ebt": 442319,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Rest of World)",
       "countries": {
         "Albania": {
           "lq": 2.65865,
@@ -21520,7 +21520,7 @@
       "print_run": "83.0M notes",
       "total_ebt": 184329,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Italy)",
       "countries": {
         "Albania": {
           "lq": 5.79976,
@@ -23540,7 +23540,7 @@
       "print_run": "16.5M notes",
       "total_ebt": 59168,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (Netherlands, Rest of World)",
       "countries": {
         "Austria": {
           "lq": 0.68873,
@@ -23680,7 +23680,7 @@
       "print_run": "3.9M notes",
       "total_ebt": 3468,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Spain)",
       "countries": {
         "Austria": {
           "lq": 1.36911,
@@ -24550,7 +24550,7 @@
       "print_run": "32.0M notes",
       "total_ebt": 13395,
       "confidence": "Medium",
-      "dispersion": "Displaced Concentration (Bulgaria)",
+      "dispersion": "Endemic Leakage (Origin + Bulgaria, Rest of World, Slovakia, Ireland, Spain)",
       "countries": {
         "Austria": {
           "lq": 2.74331,
@@ -25725,7 +25725,7 @@
       "print_run": "159.0M notes",
       "total_ebt": 360369,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (Belgium, France, Italy, Finland)",
       "countries": {
         "Albania": {
           "lq": 2.96658,
@@ -26700,7 +26700,7 @@
       "print_run": "151.0M notes",
       "total_ebt": 298071,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Albania": {
           "lq": 4.30393,
@@ -27540,7 +27540,7 @@
       "print_run": "209.0M notes",
       "total_ebt": 509611,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + San Marino, Slovenia, Malta)",
+      "dispersion": "Endemic Leakage (Origin + Slovenia, Malta)",
       "countries": {
         "Albania": {
           "lq": 2.93692,
@@ -27785,7 +27785,7 @@
       "print_run": "172.0M notes",
       "total_ebt": 305182,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Vatican City, San Marino)",
+      "dispersion": "Endemic Leakage (Italy & San Marino & Vatican City)",
       "countries": {
         "Albania": {
           "lq": 4.55395,
@@ -28005,7 +28005,7 @@
       "print_run": "112.0M notes",
       "total_ebt": 215999,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Greece, Rest of World)",
       "countries": {
         "Austria": {
           "lq": 0.88215,
@@ -28215,7 +28215,7 @@
       "print_run": "37.0M notes",
       "total_ebt": 71987,
       "confidence": "High",
-      "dispersion": "Domestic Concentration",
+      "dispersion": "Endemic Leakage (Origin + Italy)",
       "countries": {
         "Austria": {
           "lq": 0.38364,
@@ -28702,7 +28702,7 @@
     "10_U001": {
       "denomination": 10,
       "plate": "U001",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -28710,7 +28710,7 @@
       "print_run": "152.0M notes",
       "total_ebt": 470142,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Finland, Latvia, Belgium, Estonia, Monaco)",
+      "dispersion": "Multi-Hub (Finland, Latvia, Belgium, Estonia)",
       "countries": {
         "Andorra": {
           "lq": 2.00088,
@@ -28932,7 +28932,7 @@
     "10_U002": {
       "denomination": 10,
       "plate": "U002",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -29152,7 +29152,7 @@
     "10_U003": {
       "denomination": 10,
       "plate": "U003",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -29160,7 +29160,7 @@
       "print_run": "164.0M notes",
       "total_ebt": 206458,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Monaco, Luxembourg, Belgium)",
+      "dispersion": "Endemic Leakage (Origin + Luxembourg, Belgium)",
       "countries": {
         "Andorra": {
           "lq": 3.59712,
@@ -29352,7 +29352,7 @@
     "10_U004": {
       "denomination": 10,
       "plate": "U004",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -29360,7 +29360,7 @@
       "print_run": "164.0M notes",
       "total_ebt": 208066,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Monaco, Malta, Luxembourg, Belgium)",
+      "dispersion": "Endemic Leakage (Origin + Malta, Luxembourg, Belgium)",
       "countries": {
         "Andorra": {
           "lq": 2.97443,
@@ -29567,7 +29567,7 @@
     "10_U005": {
       "denomination": 10,
       "plate": "U005",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -29575,7 +29575,7 @@
       "print_run": "157.0M notes",
       "total_ebt": 206463,
       "confidence": "High",
-      "dispersion": "Displaced Concentration (Monaco)",
+      "dispersion": "Endemic Leakage (Origin + Luxembourg, Belgium)",
       "countries": {
         "Andorra": {
           "lq": 2.87763,
@@ -29782,7 +29782,7 @@
     "10_U006": {
       "denomination": 10,
       "plate": "U006",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -29790,7 +29790,7 @@
       "print_run": "161.0M notes",
       "total_ebt": 227693,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Luxembourg, Monaco, Belgium)",
+      "dispersion": "Endemic Leakage (Origin + Luxembourg, Belgium)",
       "countries": {
         "Andorra": {
           "lq": 3.04421,
@@ -29992,7 +29992,7 @@
     "10_U007": {
       "denomination": 10,
       "plate": "U007",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -30162,7 +30162,7 @@
     "10_U008": {
       "denomination": 10,
       "plate": "U008",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -30170,7 +30170,7 @@
       "print_run": "157.0M notes",
       "total_ebt": 206442,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Monaco, Belgium, Luxembourg)",
+      "dispersion": "Endemic Leakage (Origin + Belgium, Luxembourg)",
       "countries": {
         "Andorra": {
           "lq": 3.71731,
@@ -30372,7 +30372,7 @@
     "10_U009": {
       "denomination": 10,
       "plate": "U009",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -30380,7 +30380,7 @@
       "print_run": "166.0M notes",
       "total_ebt": 212574,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Latvia, Monaco, Luxembourg, Belgium, Malta)",
+      "dispersion": "Endemic Leakage (Origin + Latvia, Luxembourg, Belgium, Malta)",
       "countries": {
         "Andorra": {
           "lq": 2.67845,
@@ -30572,7 +30572,7 @@
     "10_U010": {
       "denomination": 10,
       "plate": "U010",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -30580,7 +30580,7 @@
       "print_run": "174.0M notes",
       "total_ebt": 296131,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Finland, Monaco, Portugal, Belgium)",
+      "dispersion": "Endemic Leakage (Origin + Finland, Portugal, Belgium)",
       "countries": {
         "Andorra": {
           "lq": 1.00314,
@@ -30772,7 +30772,7 @@
     "10_U011": {
       "denomination": 10,
       "plate": "U011",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -31027,7 +31027,7 @@
     "10_U012": {
       "denomination": 10,
       "plate": "U012",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -31035,7 +31035,7 @@
       "print_run": "157.0M notes",
       "total_ebt": 409859,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Germany)",
       "countries": {
         "Albania": {
           "lq": 2.60837,
@@ -31282,7 +31282,7 @@
     "10_U013": {
       "denomination": 10,
       "plate": "U013",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -31290,7 +31290,7 @@
       "print_run": "21.3M notes",
       "total_ebt": 42344,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Luxembourg)",
       "countries": {
         "Austria": {
           "lq": 0.86685,
@@ -31630,7 +31630,7 @@
       "print_run": "154.0M notes",
       "total_ebt": 114163,
       "confidence": "Medium",
-      "dispersion": "Endemic Leakage (Origin + Andorra)",
+      "dispersion": "Endemic Leakage (Spain & Andorra)",
       "countries": {
         "Andorra": {
           "lq": 13.87779,
@@ -31800,7 +31800,7 @@
       "print_run": "160.0M notes",
       "total_ebt": 113852,
       "confidence": "Medium",
-      "dispersion": "Endemic Leakage (Origin + Andorra)",
+      "dispersion": "Endemic Leakage (Spain & Andorra)",
       "countries": {
         "Andorra": {
           "lq": 16.30745,
@@ -31980,7 +31980,7 @@
       "print_run": "153.0M notes",
       "total_ebt": 112407,
       "confidence": "Medium",
-      "dispersion": "Endemic Leakage (Origin + Andorra)",
+      "dispersion": "Endemic Leakage (Spain & Andorra)",
       "countries": {
         "Andorra": {
           "lq": 21.80256,
@@ -32160,7 +32160,7 @@
       "print_run": "57.0M notes",
       "total_ebt": 141969,
       "confidence": "High",
-      "dispersion": "Displaced Concentration (Latvia)",
+      "dispersion": "Multi-Hub (Latvia, Estonia, Lithuania)",
       "countries": {
         "Andorra": {
           "lq": 2.78992,
@@ -32355,7 +32355,7 @@
       "print_run": "154.0M notes",
       "total_ebt": 344306,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Rest of World)",
       "countries": {
         "Albania": {
           "lq": 3.41548,
@@ -34095,7 +34095,7 @@
       "print_run": "Unknown",
       "total_ebt": 5307,
       "confidence": "Undetermined",
-      "dispersion": "Displaced Concentration (Bulgaria)",
+      "dispersion": "Multi-Hub (Bulgaria, Portugal)",
       "countries": {
         "Austria": {
           "lq": 0.09312,
@@ -34280,7 +34280,7 @@
       "print_run": "154.0M notes",
       "total_ebt": 470241,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (Austria, Switzerland)",
       "countries": {
         "Albania": {
           "lq": 2.27344,
@@ -34900,7 +34900,7 @@
       "print_run": "75.0M notes",
       "total_ebt": 153340,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Croatia, Switzerland)",
       "countries": {
         "Austria": {
           "lq": 0.96504,
@@ -35280,7 +35280,7 @@
       "print_run": "116.0M notes",
       "total_ebt": 253138,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Switzerland)",
       "countries": {
         "Austria": {
           "lq": 0.78618,
@@ -35655,7 +35655,7 @@
       "print_run": "113.0M notes",
       "total_ebt": 201991,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (France, Luxembourg)",
       "countries": {
         "Algeria": {
           "lq": 16.00697,
@@ -35840,7 +35840,7 @@
       "print_run": "176.0M notes",
       "total_ebt": 367148,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Rest of World, Croatia)",
       "countries": {
         "Albania": {
           "lq": 3.78535,
@@ -37130,7 +37130,7 @@
       "print_run": "156.0M notes",
       "total_ebt": 677243,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Albania": {
           "lq": 1.57855,
@@ -37400,7 +37400,7 @@
       "print_run": "167.0M notes",
       "total_ebt": 694360,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Albania": {
           "lq": 1.53964,
@@ -37660,7 +37660,7 @@
       "print_run": "158.0M notes",
       "total_ebt": 742708,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Albania": {
           "lq": 1.7273,
@@ -37922,7 +37922,7 @@
     "10_Y001": {
       "denomination": 10,
       "plate": "Y001",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -37930,7 +37930,7 @@
       "print_run": "97.0M notes",
       "total_ebt": 216001,
       "confidence": "High",
-      "dispersion": "Domestic Concentration",
+      "dispersion": "Endemic Leakage (Origin + Lithuania)",
       "countries": {
         "Albania": {
           "lq": 5.44428,
@@ -38132,7 +38132,7 @@
     "10_Y002": {
       "denomination": 10,
       "plate": "Y002",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -38322,7 +38322,7 @@
     "10_Y003": {
       "denomination": 10,
       "plate": "Y003",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -38532,7 +38532,7 @@
     "10_Y004": {
       "denomination": 10,
       "plate": "Y004",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -38540,7 +38540,7 @@
       "print_run": "19.0M notes",
       "total_ebt": 44375,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Malta)",
       "countries": {
         "Austria": {
           "lq": 0.89434,
@@ -38702,7 +38702,7 @@
     "10_Y005": {
       "denomination": 10,
       "plate": "Y005",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -38827,7 +38827,7 @@
     "10_Y006": {
       "denomination": 10,
       "plate": "Y006",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -39027,7 +39027,7 @@
     "10_Y007": {
       "denomination": 10,
       "plate": "Y007",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -39207,7 +39207,7 @@
     "10_Y008": {
       "denomination": 10,
       "plate": "Y008",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -39432,7 +39432,7 @@
     "10_Y009": {
       "denomination": 10,
       "plate": "Y009",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -39597,7 +39597,7 @@
     "10_Y010": {
       "denomination": 10,
       "plate": "Y010",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -39747,7 +39747,7 @@
     "10_Y011": {
       "denomination": 10,
       "plate": "Y011",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -39872,7 +39872,7 @@
     "10_Y012": {
       "denomination": 10,
       "plate": "Y012",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -40017,7 +40017,7 @@
     "10_Y013": {
       "denomination": 10,
       "plate": "Y013",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -40175,7 +40175,7 @@
       "print_run": "155.0M notes",
       "total_ebt": 202041,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Ireland, Andorra, Germany)",
+      "dispersion": "Displaced Concentration (Ireland)",
       "countries": {
         "Andorra": {
           "lq": 4.33878,
@@ -40780,7 +40780,7 @@
       "print_run": "140.0M notes",
       "total_ebt": 187921,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (Germany, Croatia)",
       "countries": {
         "Albania": {
           "lq": 4.69718,
@@ -42805,7 +42805,7 @@
       "print_run": "Unknown",
       "total_ebt": 1859,
       "confidence": "Undetermined",
-      "dispersion": "Displaced Concentration (Ireland)",
+      "dispersion": "Endemic Leakage (Origin + Ireland)",
       "countries": {
         "Austria": {
           "lq": 0.26089,
@@ -43525,7 +43525,7 @@
       "print_run": "11.5M notes",
       "total_ebt": 15985,
       "confidence": "High",
-      "dispersion": "Displaced Concentration (Latvia)",
+      "dispersion": "Endemic Leakage (Origin + Latvia, Lithuania, Estonia)",
       "countries": {
         "Austria": {
           "lq": 0.52923,
@@ -45934,7 +45934,7 @@
       },
       "print_run": "0.84M notes",
       "total_ebt": 632,
-      "confidence": "High",
+      "confidence": "Medium",
       "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
@@ -46265,7 +46265,7 @@
       "print_run": "74.0M notes",
       "total_ebt": 21225,
       "confidence": "Medium",
-      "dispersion": "Displaced Concentration (Bulgaria)",
+      "dispersion": "Endemic Leakage (Origin + Bulgaria, Rest of World, Lithuania, Spain, Croatia, Slovakia)",
       "countries": {
         "Austria": {
           "lq": 2.07041,
@@ -46825,7 +46825,7 @@
       "print_run": "65.0M notes",
       "total_ebt": 97884,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Netherlands)",
       "countries": {
         "Austria": {
           "lq": 1.04702,
@@ -47015,7 +47015,7 @@
       "print_run": "147.0M notes",
       "total_ebt": 282446,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 0.9167,
@@ -47240,7 +47240,7 @@
       "print_run": "17.0M notes",
       "total_ebt": 21149,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Netherlands)",
       "countries": {
         "Austria": {
           "lq": 1.01956,
@@ -47370,7 +47370,7 @@
       "print_run": "87.0M notes",
       "total_ebt": 162804,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Netherlands)",
       "countries": {
         "Angola": {
           "lq": 3.90373,
@@ -47750,7 +47750,7 @@
       "print_run": "124.7M notes",
       "total_ebt": 204589,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Rest of World, Spain)",
       "countries": {
         "Austria": {
           "lq": 0.74919,
@@ -50575,7 +50575,7 @@
       "print_run": "Unknown",
       "total_ebt": 2043,
       "confidence": "Undetermined",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 1.0858,
@@ -50760,7 +50760,7 @@
       "print_run": "Unknown",
       "total_ebt": 23928,
       "confidence": "Undetermined",
-      "dispersion": "Displaced Concentration (Bulgaria)",
+      "dispersion": "Multi-Hub (Bulgaria, Switzerland)",
       "countries": {
         "Austria": {
           "lq": 1.28627,
@@ -51050,7 +51050,7 @@
       "print_run": "Unknown",
       "total_ebt": 15148,
       "confidence": "Undetermined",
-      "dispersion": "Displaced Concentration (Bulgaria)",
+      "dispersion": "Multi-Hub (Bulgaria, Portugal)",
       "countries": {
         "Austria": {
           "lq": 0.12964,
@@ -51675,7 +51675,7 @@
       "print_run": "87.0M notes",
       "total_ebt": 76335,
       "confidence": "High",
-      "dispersion": "Displaced Concentration (Greece)",
+      "dispersion": "Endemic Leakage (Origin + Greece, Slovakia, Malta, Slovenia, Austria)",
       "countries": {
         "Austria": {
           "lq": 1.6009,
@@ -52930,7 +52930,7 @@
       "print_run": "172.0M notes",
       "total_ebt": 178956,
       "confidence": "High",
-      "dispersion": "Displaced Concentration (San Marino)",
+      "dispersion": "Endemic Leakage (Origin + Lithuania, Slovenia, Malta)",
       "countries": {
         "Andorra": {
           "lq": 1.83693,
@@ -53150,7 +53150,7 @@
       "print_run": "182.0M notes",
       "total_ebt": 174340,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + San Marino, Slovenia)",
+      "dispersion": "Endemic Leakage (Origin + Slovenia)",
       "countries": {
         "Austria": {
           "lq": 1.4202,
@@ -56362,7 +56362,7 @@
     "20_U001": {
       "denomination": 20,
       "plate": "U001",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -56497,7 +56497,7 @@
     "20_U002": {
       "denomination": 20,
       "plate": "U002",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -56712,7 +56712,7 @@
     "20_U003": {
       "denomination": 20,
       "plate": "U003",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -56917,7 +56917,7 @@
     "20_U004": {
       "denomination": 20,
       "plate": "U004",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -56925,7 +56925,7 @@
       "print_run": "154.0M notes",
       "total_ebt": 152088,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Monaco, Luxembourg, Belgium, Netherlands)",
+      "dispersion": "Endemic Leakage (Origin + Luxembourg, Belgium, Netherlands)",
       "countries": {
         "Andorra": {
           "lq": 5.04336,
@@ -57122,7 +57122,7 @@
     "20_U005": {
       "denomination": 20,
       "plate": "U005",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -57130,7 +57130,7 @@
       "print_run": "150.0M notes",
       "total_ebt": 126587,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Monaco, Luxembourg, Belgium, Netherlands)",
+      "dispersion": "Endemic Leakage (Origin + Luxembourg, Belgium, Netherlands)",
       "countries": {
         "Andorra": {
           "lq": 5.41013,
@@ -57337,7 +57337,7 @@
     "20_U006": {
       "denomination": 20,
       "plate": "U006",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -57345,7 +57345,7 @@
       "print_run": "144.0M notes",
       "total_ebt": 361242,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Finland, Estonia, Monaco, Belgium)",
+      "dispersion": "Multi-Hub (Finland, Estonia, Belgium)",
       "countries": {
         "Andorra": {
           "lq": 0.91,
@@ -57582,7 +57582,7 @@
     "20_U007": {
       "denomination": 20,
       "plate": "U007",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -57590,7 +57590,7 @@
       "print_run": "149.0M notes",
       "total_ebt": 126343,
       "confidence": "High",
-      "dispersion": "Displaced Concentration (Monaco)",
+      "dispersion": "Endemic Leakage (Origin + Belgium, Luxembourg, Netherlands)",
       "countries": {
         "Andorra": {
           "lq": 4.55329,
@@ -57792,7 +57792,7 @@
     "20_U008": {
       "denomination": 20,
       "plate": "U008",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -57997,7 +57997,7 @@
     "20_U009": {
       "denomination": 20,
       "plate": "U009",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -58207,7 +58207,7 @@
     "20_U010": {
       "denomination": 20,
       "plate": "U010",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -58215,7 +58215,7 @@
       "print_run": "131.0M notes",
       "total_ebt": 128541,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Ireland, Monaco)",
+      "dispersion": "Displaced Concentration (Ireland)",
       "countries": {
         "Andorra": {
           "lq": 2.98362,
@@ -58402,7 +58402,7 @@
     "20_U011": {
       "denomination": 20,
       "plate": "U011",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -58602,7 +58602,7 @@
     "20_U012": {
       "denomination": 20,
       "plate": "U012",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -58610,7 +58610,7 @@
       "print_run": "162.0M notes",
       "total_ebt": 135665,
       "confidence": "High",
-      "dispersion": "Displaced Concentration (Monaco)",
+      "dispersion": "Endemic Leakage (Origin + Luxembourg, Belgium)",
       "countries": {
         "Andorra": {
           "lq": 3.83656,
@@ -58802,7 +58802,7 @@
     "20_U013": {
       "denomination": 20,
       "plate": "U013",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -58810,7 +58810,7 @@
       "print_run": "62.0M notes",
       "total_ebt": 71137,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Monaco, Portugal)",
+      "dispersion": "Endemic Leakage (Origin + Portugal)",
       "countries": {
         "Austria": {
           "lq": 0.6259,
@@ -58967,7 +58967,7 @@
     "20_U014": {
       "denomination": 20,
       "plate": "U014",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -59162,7 +59162,7 @@
     "20_U015": {
       "denomination": 20,
       "plate": "U015",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -59332,7 +59332,7 @@
     "20_U016": {
       "denomination": 20,
       "plate": "U016",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -59527,7 +59527,7 @@
     "20_U017": {
       "denomination": 20,
       "plate": "U017",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -59692,7 +59692,7 @@
     "20_U018": {
       "denomination": 20,
       "plate": "U018",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -59902,7 +59902,7 @@
     "20_U019": {
       "denomination": 20,
       "plate": "U019",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -59910,7 +59910,7 @@
       "print_run": "145.0M notes",
       "total_ebt": 147095,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Portugal)",
       "countries": {
         "Andorra": {
           "lq": 3.72468,
@@ -60112,7 +60112,7 @@
     "20_U020": {
       "denomination": 20,
       "plate": "U020",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -60120,7 +60120,7 @@
       "print_run": "167.0M notes",
       "total_ebt": 158987,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Slovakia, Rest of World)",
       "countries": {
         "Andorra": {
           "lq": 2.23995,
@@ -60317,7 +60317,7 @@
     "20_U021": {
       "denomination": 20,
       "plate": "U021",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -60325,7 +60325,7 @@
       "print_run": "98.0M notes",
       "total_ebt": 131260,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (Rest of World, Malta)",
       "countries": {
         "Andorra": {
           "lq": 2.08701,
@@ -60522,7 +60522,7 @@
     "20_U022": {
       "denomination": 20,
       "plate": "U022",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -60530,7 +60530,7 @@
       "print_run": "174.0M notes",
       "total_ebt": 206000,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (Cyprus, Rest of World, Germany)",
       "countries": {
         "Australia": {
           "lq": 13.57904,
@@ -60752,7 +60752,7 @@
     "20_U023": {
       "denomination": 20,
       "plate": "U023",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -60957,7 +60957,7 @@
     "20_U024": {
       "denomination": 20,
       "plate": "U024",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -61162,7 +61162,7 @@
     "20_U025": {
       "denomination": 20,
       "plate": "U025",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -61170,7 +61170,7 @@
       "print_run": "157.0M notes",
       "total_ebt": 157460,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Luxembourg)",
       "countries": {
         "Andorra": {
           "lq": 2.26167,
@@ -61377,7 +61377,7 @@
     "20_U026": {
       "denomination": 20,
       "plate": "U026",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -61552,7 +61552,7 @@
     "20_U027": {
       "denomination": 20,
       "plate": "U027",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -61742,7 +61742,7 @@
     "20_U028": {
       "denomination": 20,
       "plate": "U028",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -61907,7 +61907,7 @@
     "20_U029": {
       "denomination": 20,
       "plate": "U029",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -62097,7 +62097,7 @@
     "20_U030": {
       "denomination": 20,
       "plate": "U030",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -62242,7 +62242,7 @@
     "20_U031": {
       "denomination": 20,
       "plate": "U031",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -62387,7 +62387,7 @@
     "20_U032": {
       "denomination": 20,
       "plate": "U032",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -62542,7 +62542,7 @@
     "20_U033": {
       "denomination": 20,
       "plate": "U033",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -62682,7 +62682,7 @@
     "20_U034": {
       "denomination": 20,
       "plate": "U034",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -62852,7 +62852,7 @@
     "20_U035": {
       "denomination": 20,
       "plate": "U035",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -63007,7 +63007,7 @@
     "20_U037": {
       "denomination": 20,
       "plate": "U037",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -63167,7 +63167,7 @@
     "20_U038": {
       "denomination": 20,
       "plate": "U038",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -63322,7 +63322,7 @@
     "20_U039": {
       "denomination": 20,
       "plate": "U039",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -63517,7 +63517,7 @@
     "20_U040": {
       "denomination": 20,
       "plate": "U040",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -63712,7 +63712,7 @@
     "20_U041": {
       "denomination": 20,
       "plate": "U041",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -63862,7 +63862,7 @@
     "20_U042": {
       "denomination": 20,
       "plate": "U042",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -64007,7 +64007,7 @@
     "20_U043": {
       "denomination": 20,
       "plate": "U043",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -64197,7 +64197,7 @@
     "20_U044": {
       "denomination": 20,
       "plate": "U044",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -64342,7 +64342,7 @@
     "20_U045": {
       "denomination": 20,
       "plate": "U045",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -64467,7 +64467,7 @@
     "20_U046": {
       "denomination": 20,
       "plate": "U046",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -64632,7 +64632,7 @@
     "20_U047": {
       "denomination": 20,
       "plate": "U047",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -64782,7 +64782,7 @@
     "20_U048": {
       "denomination": 20,
       "plate": "U048",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -64832,7 +64832,7 @@
     "20_U049": {
       "denomination": 20,
       "plate": "U049",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -64912,7 +64912,7 @@
     "20_U050": {
       "denomination": 20,
       "plate": "U050",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -65007,7 +65007,7 @@
     "20_U051": {
       "denomination": 20,
       "plate": "U051",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -65122,7 +65122,7 @@
     "20_U052": {
       "denomination": 20,
       "plate": "U052",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -65167,7 +65167,7 @@
     "20_U053": {
       "denomination": 20,
       "plate": "U053",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -65237,7 +65237,7 @@
     "20_U054": {
       "denomination": 20,
       "plate": "U054",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -65245,7 +65245,7 @@
       "print_run": "Unknown",
       "total_ebt": 2800,
       "confidence": "Undetermined",
-      "dispersion": "Displaced Concentration (Switzerland)",
+      "dispersion": "Multi-Hub (Switzerland, Rest of World)",
       "countries": {
         "Austria": {
           "lq": 0.45433,
@@ -65342,7 +65342,7 @@
     "20_U057": {
       "denomination": 20,
       "plate": "U057",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -66190,7 +66190,7 @@
       "print_run": "145.0M notes",
       "total_ebt": 280744,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Albania": {
           "lq": 3.45855,
@@ -66435,7 +66435,7 @@
       "print_run": "77.0M notes",
       "total_ebt": 127667,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 1.05599,
@@ -66630,7 +66630,7 @@
       "print_run": "165.0M notes",
       "total_ebt": 43996,
       "confidence": "Medium",
-      "dispersion": "Displaced Concentration (Bulgaria)",
+      "dispersion": "Multi-Hub (Bulgaria, Switzerland)",
       "countries": {
         "Austria": {
           "lq": 0.85732,
@@ -66935,7 +66935,7 @@
       "print_run": "241.0M notes",
       "total_ebt": 319183,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 1.1968,
@@ -67175,7 +67175,7 @@
       "print_run": "200.0M notes",
       "total_ebt": 276776,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 0.99926,
@@ -67400,7 +67400,7 @@
       "print_run": "118.0M notes",
       "total_ebt": 160001,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Andorra": {
           "lq": 1.71212,
@@ -67735,7 +67735,7 @@
       "print_run": "83.1M notes",
       "total_ebt": 120600,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 1.09183,
@@ -68720,7 +68720,7 @@
       "print_run": "100.0M notes",
       "total_ebt": 71387,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Germany)",
       "countries": {
         "Austria": {
           "lq": 1.1109,
@@ -68915,7 +68915,7 @@
       "print_run": "106.0M notes",
       "total_ebt": 73498,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (Germany, Switzerland)",
       "countries": {
         "Austria": {
           "lq": 1.18126,
@@ -69115,7 +69115,7 @@
       "print_run": "111.0M notes",
       "total_ebt": 68287,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Germany)",
       "countries": {
         "Austria": {
           "lq": 1.20617,
@@ -70905,7 +70905,7 @@
       "print_run": "85.0M notes",
       "total_ebt": 13002,
       "confidence": "Medium",
-      "dispersion": "Displaced Concentration (Latvia)",
+      "dispersion": "Multi-Hub (Latvia, Switzerland, Lithuania, Bulgaria, Ireland)",
       "countries": {
         "Austria": {
           "lq": 0.71114,
@@ -71050,7 +71050,7 @@
       "print_run": "94.0M notes",
       "total_ebt": 7449,
       "confidence": "Medium",
-      "dispersion": "Multi-Hub (Rest of World, Latvia)",
+      "dispersion": "Multi-Hub (Rest of World, Latvia, Bulgaria, Lithuania)",
       "countries": {
         "Austria": {
           "lq": 0.5251,
@@ -71270,7 +71270,7 @@
       "print_run": "105.0M notes",
       "total_ebt": 34006,
       "confidence": "High",
-      "dispersion": "Displaced Concentration (Switzerland)",
+      "dispersion": "Multi-Hub (Switzerland, Belgium, Netherlands, Rest of World, Bulgaria)",
       "countries": {
         "Andorra": {
           "lq": 6.38954,
@@ -72210,7 +72210,7 @@
       "print_run": "100.0M notes",
       "total_ebt": 17929,
       "confidence": "High",
-      "dispersion": "Displaced Concentration (Andorra)",
+      "dispersion": "Multi-Hub (Ireland, Belgium)",
       "countries": {
         "Andorra": {
           "lq": 163.60736,
@@ -74080,7 +74080,7 @@
       "print_run": "91.0M notes",
       "total_ebt": 80951,
       "confidence": "High",
-      "dispersion": "Displaced Concentration (Lithuania)",
+      "dispersion": "Multi-Hub (Lithuania, Estonia, Latvia, Greece)",
       "countries": {
         "Albania": {
           "lq": 1.47183,
@@ -75315,7 +75315,7 @@
       "print_run": "43.5M notes",
       "total_ebt": 32063,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 0.91622,
@@ -75475,7 +75475,7 @@
       "print_run": "107.0M notes",
       "total_ebt": 68832,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 1.12522,
@@ -75650,7 +75650,7 @@
       "print_run": "109.0M notes",
       "total_ebt": 83116,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Albania": {
           "lq": 1.43349,
@@ -75845,7 +75845,7 @@
       "print_run": "125.0M notes",
       "total_ebt": 89116,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 0.90403,
@@ -76025,7 +76025,7 @@
       "print_run": "58.5M notes",
       "total_ebt": 54461,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Argentina": {
           "lq": 5.86834,
@@ -76220,7 +76220,7 @@
       "print_run": "116.0M notes",
       "total_ebt": 89919,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 1.01336,
@@ -76430,7 +76430,7 @@
       "print_run": "54.0M notes",
       "total_ebt": 46234,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 0.97579,
@@ -76600,7 +76600,7 @@
       "print_run": "29.5M notes",
       "total_ebt": 21792,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 1.0121,
@@ -76745,7 +76745,7 @@
       "print_run": "63.0M notes",
       "total_ebt": 45703,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Argentina": {
           "lq": 4.54537,
@@ -77095,7 +77095,7 @@
       "print_run": "52.5M notes",
       "total_ebt": 32928,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Rest of World)",
       "countries": {
         "Austria": {
           "lq": 1.12849,
@@ -77390,7 +77390,7 @@
       "print_run": "70.0M notes",
       "total_ebt": 42714,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Switzerland)",
       "countries": {
         "Argentina": {
           "lq": 4.11522,
@@ -78565,7 +78565,7 @@
       "print_run": "45.5M notes",
       "total_ebt": 23236,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 0.99283,
@@ -78715,7 +78715,7 @@
       "print_run": "62.5M notes",
       "total_ebt": 21220,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 0.93129,
@@ -78855,7 +78855,7 @@
       "print_run": "74.0M notes",
       "total_ebt": 52103,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 1.26718,
@@ -79025,7 +79025,7 @@
       "print_run": "109.0M notes",
       "total_ebt": 64013,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Switzerland)",
       "countries": {
         "Austria": {
           "lq": 1.03957,
@@ -80405,7 +80405,7 @@
       "print_run": "124.0M notes",
       "total_ebt": 45268,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Malta, San Marino)",
+      "dispersion": "Displaced Concentration (Malta)",
       "countries": {
         "Albania": {
           "lq": 3.76002,
@@ -81330,7 +81330,7 @@
       "print_run": "40.0M notes",
       "total_ebt": 21904,
       "confidence": "High",
-      "dispersion": "Displaced Concentration (Malta)",
+      "dispersion": "Multi-Hub (Malta, Ireland, Slovakia, Austria)",
       "countries": {
         "Austria": {
           "lq": 2.37567,
@@ -81825,7 +81825,7 @@
       "print_run": "80.0M notes",
       "total_ebt": 36658,
       "confidence": "High",
-      "dispersion": "Displaced Concentration (San Marino)",
+      "dispersion": "Endemic Leakage (Italy & San Marino)",
       "countries": {
         "Albania": {
           "lq": 7.66119,
@@ -82470,7 +82470,7 @@
       "print_run": "132.0M notes",
       "total_ebt": 39483,
       "confidence": "High",
-      "dispersion": "Displaced Concentration (San Marino)",
+      "dispersion": "Endemic Leakage (Italy & San Marino)",
       "countries": {
         "Albania": {
           "lq": 3.44875,
@@ -84640,7 +84640,7 @@
       "print_run": "134.0M notes",
       "total_ebt": 37406,
       "confidence": "High",
-      "dispersion": "Displaced Concentration (San Marino)",
+      "dispersion": "Endemic Leakage (Origin + Malta)",
       "countries": {
         "Albania": {
           "lq": 4.5503,
@@ -87587,7 +87587,7 @@
     "50_U001": {
       "denomination": 50,
       "plate": "U001",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -87717,7 +87717,7 @@
     "50_U002": {
       "denomination": 50,
       "plate": "U002",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -87887,7 +87887,7 @@
     "50_U003": {
       "denomination": 50,
       "plate": "U003",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -88067,7 +88067,7 @@
     "50_U004": {
       "denomination": 50,
       "plate": "U004",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -88227,7 +88227,7 @@
     "50_U005": {
       "denomination": 50,
       "plate": "U005",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -88412,7 +88412,7 @@
     "50_U006": {
       "denomination": 50,
       "plate": "U006",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -88420,7 +88420,7 @@
       "print_run": "102.0M notes",
       "total_ebt": 44545,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Monaco, Portugal, Belgium, Rest of World)",
+      "dispersion": "Endemic Leakage (Origin + Portugal, Belgium, Rest of World)",
       "countries": {
         "Andorra": {
           "lq": 3.3535,
@@ -88602,7 +88602,7 @@
     "50_U007": {
       "denomination": 50,
       "plate": "U007",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -88757,7 +88757,7 @@
     "50_U008": {
       "denomination": 50,
       "plate": "U008",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -88765,7 +88765,7 @@
       "print_run": "122.0M notes",
       "total_ebt": 47496,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Monaco, Cyprus)",
+      "dispersion": "Endemic Leakage (Origin + Cyprus, Luxembourg, Portugal, Belgium, Rest of World)",
       "countries": {
         "Austria": {
           "lq": 0.9061,
@@ -88942,7 +88942,7 @@
     "50_U009": {
       "denomination": 50,
       "plate": "U009",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -89122,7 +89122,7 @@
     "50_U010": {
       "denomination": 50,
       "plate": "U010",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -89130,7 +89130,7 @@
       "print_run": "100.0M notes",
       "total_ebt": 54620,
       "confidence": "High",
-      "dispersion": "Displaced Concentration (Monaco)",
+      "dispersion": "Endemic Leakage (Origin + Finland)",
       "countries": {
         "Austria": {
           "lq": 0.66213,
@@ -89307,7 +89307,7 @@
     "50_U011": {
       "denomination": 50,
       "plate": "U011",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -89492,7 +89492,7 @@
     "50_U012": {
       "denomination": 50,
       "plate": "U012",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -89677,7 +89677,7 @@
     "50_U013": {
       "denomination": 50,
       "plate": "U013",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -89857,7 +89857,7 @@
     "50_U014": {
       "denomination": 50,
       "plate": "U014",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -90037,7 +90037,7 @@
     "50_U015": {
       "denomination": 50,
       "plate": "U015",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -90227,7 +90227,7 @@
     "50_U016": {
       "denomination": 50,
       "plate": "U016",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -90412,7 +90412,7 @@
     "50_U017": {
       "denomination": 50,
       "plate": "U017",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -90592,7 +90592,7 @@
     "50_U018": {
       "denomination": 50,
       "plate": "U018",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -90777,7 +90777,7 @@
     "50_U019": {
       "denomination": 50,
       "plate": "U019",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -90912,7 +90912,7 @@
     "50_U020": {
       "denomination": 50,
       "plate": "U020",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -91077,7 +91077,7 @@
     "50_U021": {
       "denomination": 50,
       "plate": "U021",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -91217,7 +91217,7 @@
     "50_U022": {
       "denomination": 50,
       "plate": "U022",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -91357,7 +91357,7 @@
     "50_U023": {
       "denomination": 50,
       "plate": "U023",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -91487,14 +91487,14 @@
     "50_U024": {
       "denomination": 50,
       "plate": "U024",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
       },
       "print_run": "0.88M notes",
       "total_ebt": 612,
-      "confidence": "High",
+      "confidence": "Medium",
       "dispersion": "Displaced Concentration (Germany)",
       "countries": {
         "Austria": {
@@ -91567,7 +91567,7 @@
     "50_U025": {
       "denomination": 50,
       "plate": "U025",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -91657,7 +91657,7 @@
     "50_U026": {
       "denomination": 50,
       "plate": "U026",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -91802,7 +91802,7 @@
     "50_U027": {
       "denomination": 50,
       "plate": "U027",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -91810,7 +91810,7 @@
       "print_run": "24.0M notes",
       "total_ebt": 10354,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Germany)",
       "countries": {
         "Austria": {
           "lq": 1.00179,
@@ -91922,7 +91922,7 @@
     "50_U028": {
       "denomination": 50,
       "plate": "U028",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -91930,7 +91930,7 @@
       "print_run": "97.0M notes",
       "total_ebt": 43898,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (Luxembourg, Germany)",
       "countries": {
         "Austria": {
           "lq": 0.90596,
@@ -92087,7 +92087,7 @@
     "50_U029": {
       "denomination": 50,
       "plate": "U029",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -92095,7 +92095,7 @@
       "print_run": "118.0M notes",
       "total_ebt": 53497,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (Netherlands, Croatia, Germany)",
       "countries": {
         "Austria": {
           "lq": 0.92753,
@@ -92247,7 +92247,7 @@
     "50_U030": {
       "denomination": 50,
       "plate": "U030",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -92417,7 +92417,7 @@
     "50_U031": {
       "denomination": 50,
       "plate": "U031",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -92592,7 +92592,7 @@
     "50_U032": {
       "denomination": 50,
       "plate": "U032",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -92762,7 +92762,7 @@
     "50_U033": {
       "denomination": 50,
       "plate": "U033",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -92937,7 +92937,7 @@
     "50_U034": {
       "denomination": 50,
       "plate": "U034",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -93057,7 +93057,7 @@
     "50_U035": {
       "denomination": 50,
       "plate": "U035",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -93227,7 +93227,7 @@
     "50_U036": {
       "denomination": 50,
       "plate": "U036",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -93397,7 +93397,7 @@
     "50_U037": {
       "denomination": 50,
       "plate": "U037",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -93587,7 +93587,7 @@
     "50_U038": {
       "denomination": 50,
       "plate": "U038",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -93752,7 +93752,7 @@
     "50_U039": {
       "denomination": 50,
       "plate": "U039",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -93917,7 +93917,7 @@
     "50_U040": {
       "denomination": 50,
       "plate": "U040",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -94087,7 +94087,7 @@
     "50_U041": {
       "denomination": 50,
       "plate": "U041",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -94242,7 +94242,7 @@
     "50_U042": {
       "denomination": 50,
       "plate": "U042",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -94412,7 +94412,7 @@
     "50_U043": {
       "denomination": 50,
       "plate": "U043",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -94420,7 +94420,7 @@
       "print_run": "124.0M notes",
       "total_ebt": 38429,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Monaco, Belgium, Luxembourg)",
+      "dispersion": "Endemic Leakage (Origin + Belgium, Luxembourg)",
       "countries": {
         "Algeria": {
           "lq": 23.02691,
@@ -94582,7 +94582,7 @@
     "50_U044": {
       "denomination": 50,
       "plate": "U044",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -94702,7 +94702,7 @@
     "50_U045": {
       "denomination": 50,
       "plate": "U045",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -94867,7 +94867,7 @@
     "50_U046": {
       "denomination": 50,
       "plate": "U046",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -95027,7 +95027,7 @@
     "50_U047": {
       "denomination": 50,
       "plate": "U047",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -95157,7 +95157,7 @@
     "50_U048": {
       "denomination": 50,
       "plate": "U048",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -95267,7 +95267,7 @@
     "50_U049": {
       "denomination": 50,
       "plate": "U049",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -95407,7 +95407,7 @@
     "50_U050": {
       "denomination": 50,
       "plate": "U050",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -95492,7 +95492,7 @@
     "50_U051": {
       "denomination": 50,
       "plate": "U051",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -95627,7 +95627,7 @@
     "50_U052": {
       "denomination": 50,
       "plate": "U052",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -95717,7 +95717,7 @@
     "50_U053": {
       "denomination": 50,
       "plate": "U053",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -95832,7 +95832,7 @@
     "50_U054": {
       "denomination": 50,
       "plate": "U054",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -95962,7 +95962,7 @@
     "50_U055": {
       "denomination": 50,
       "plate": "U055",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -96007,7 +96007,7 @@
     "50_U056": {
       "denomination": 50,
       "plate": "U056",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -96102,7 +96102,7 @@
     "50_U057": {
       "denomination": 50,
       "plate": "U057",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -96182,7 +96182,7 @@
     "50_U058": {
       "denomination": 50,
       "plate": "U058",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -96242,7 +96242,7 @@
     "50_U059": {
       "denomination": 50,
       "plate": "U059",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -96292,7 +96292,7 @@
     "50_U060": {
       "denomination": 50,
       "plate": "U060",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -96312,7 +96312,7 @@
     "50_U061": {
       "denomination": 50,
       "plate": "U061",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -96377,7 +96377,7 @@
     "50_U062": {
       "denomination": 50,
       "plate": "U062",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -96447,7 +96447,7 @@
     "50_U063": {
       "denomination": 50,
       "plate": "U063",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -98885,7 +98885,7 @@
       "print_run": "107.0M notes",
       "total_ebt": 46662,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Germany)",
       "countries": {
         "Austria": {
           "lq": 0.82552,
@@ -101000,7 +101000,7 @@
       "print_run": "110.0M notes",
       "total_ebt": 6708,
       "confidence": "Medium",
-      "dispersion": "Displaced Concentration (Rest of World)",
+      "dispersion": "Endemic Leakage (Origin + Rest of World)",
       "countries": {
         "Austria": {
           "lq": 0.3984,
@@ -101100,7 +101100,7 @@
       "print_run": "102.0M notes",
       "total_ebt": 10056,
       "confidence": "Medium",
-      "dispersion": "Displaced Concentration (Rest of World)",
+      "dispersion": "Endemic Leakage (Origin + Rest of World, Ireland)",
       "countries": {
         "Austria": {
           "lq": 0.49079,
@@ -101345,7 +101345,7 @@
       "print_run": "81.0M notes",
       "total_ebt": 67834,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 0.96471,
@@ -101520,7 +101520,7 @@
       "print_run": "121.0M notes",
       "total_ebt": 77443,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 1.25013,
@@ -101710,7 +101710,7 @@
       "print_run": "131.0M notes",
       "total_ebt": 81154,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Albania": {
           "lq": 1.36328,
@@ -101905,7 +101905,7 @@
       "print_run": "74.0M notes",
       "total_ebt": 57750,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Albania": {
           "lq": 1.47367,
@@ -102070,7 +102070,7 @@
       "print_run": "113.66M notes",
       "total_ebt": 80840,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Australia": {
           "lq": 20.73721,
@@ -102270,7 +102270,7 @@
       "print_run": "102.0M notes",
       "total_ebt": 80142,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 1.13827,
@@ -102460,7 +102460,7 @@
       "print_run": "111.0M notes",
       "total_ebt": 84558,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Argentina": {
           "lq": 3.7796,
@@ -102665,7 +102665,7 @@
       "print_run": "131.0M notes",
       "total_ebt": 80298,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 1.28997,
@@ -102860,7 +102860,7 @@
       "print_run": "93.8M notes",
       "total_ebt": 77748,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 1.22099,
@@ -103045,7 +103045,7 @@
       "print_run": "115.0M notes",
       "total_ebt": 72236,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 1.1099,
@@ -103230,7 +103230,7 @@
       "print_run": "79.5M notes",
       "total_ebt": 48789,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Switzerland, Netherlands)",
       "countries": {
         "Austria": {
           "lq": 1.21159,
@@ -103600,7 +103600,7 @@
       "print_run": "107.0M notes",
       "total_ebt": 71200,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 1.00711,
@@ -103780,7 +103780,7 @@
       "print_run": "61.0M notes",
       "total_ebt": 36091,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 1.28833,
@@ -104222,7 +104222,7 @@
     "50_Y001": {
       "denomination": 50,
       "plate": "Y001",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -104317,7 +104317,7 @@
     "50_Y002": {
       "denomination": 50,
       "plate": "Y002",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -104452,7 +104452,7 @@
     "50_Y003": {
       "denomination": 50,
       "plate": "Y003",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -104460,7 +104460,7 @@
       "print_run": "73.0M notes",
       "total_ebt": 7101,
       "confidence": "Medium",
-      "dispersion": "Domestic Concentration",
+      "dispersion": "Endemic Leakage (Origin + Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 1.49388,
@@ -104572,7 +104572,7 @@
     "50_Y004": {
       "denomination": 50,
       "plate": "Y004",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -105940,7 +105940,7 @@
       "print_run": "68.0M notes",
       "total_ebt": 24205,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Switzerland)",
       "countries": {
         "Austria": {
           "lq": 1.15996,
@@ -106180,7 +106180,7 @@
       "print_run": "93.0M notes",
       "total_ebt": 33632,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Finland)",
       "countries": {
         "Austria": {
           "lq": 0.90436,
@@ -106345,7 +106345,7 @@
       "print_run": "85.0M notes",
       "total_ebt": 30471,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Lithuania)",
       "countries": {
         "Austria": {
           "lq": 1.22662,
@@ -106780,7 +106780,7 @@
       "print_run": "110.0M notes",
       "total_ebt": 53974,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Luxembourg)",
       "countries": {
         "Albania": {
           "lq": 4.09108,
@@ -106960,7 +106960,7 @@
       "print_run": "112.0M notes",
       "total_ebt": 47150,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Malta)",
       "countries": {
         "Albania": {
           "lq": 8.69733,
@@ -107290,7 +107290,7 @@
       "print_run": "110.0M notes",
       "total_ebt": 46530,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Slovakia)",
       "countries": {
         "Austria": {
           "lq": 0.90297,
@@ -107535,7 +107535,7 @@
       "print_run": "104.0M notes",
       "total_ebt": 27517,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Andorra, Bulgaria, Luxembourg, Belgium, Switzerland)",
+      "dispersion": "Endemic Leakage (Origin + Bulgaria, Luxembourg, Belgium, Switzerland)",
       "countries": {
         "Andorra": {
           "lq": 11.70002,
@@ -108800,7 +108800,7 @@
       "print_run": "34.0M notes",
       "total_ebt": 7599,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Netherlands)",
       "countries": {
         "Austria": {
           "lq": 0.66697,
@@ -109065,7 +109065,7 @@
       "print_run": "109.0M notes",
       "total_ebt": 36204,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Switzerland)",
       "countries": {
         "Austria": {
           "lq": 0.51789,
@@ -109225,7 +109225,7 @@
       "print_run": "75.0M notes",
       "total_ebt": 26240,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Argentina": {
           "lq": 5.6673,
@@ -109450,7 +109450,7 @@
       "print_run": "75.0M notes",
       "total_ebt": 37338,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 0.38452,
@@ -109610,7 +109610,7 @@
       "print_run": "67.0M notes",
       "total_ebt": 26615,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 0.48651,
@@ -109750,7 +109750,7 @@
       "print_run": "100.0M notes",
       "total_ebt": 40464,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Albania": {
           "lq": 4.28764,
@@ -109915,7 +109915,7 @@
       "print_run": "116.0M notes",
       "total_ebt": 47260,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Argentina": {
           "lq": 2.86058,
@@ -110095,7 +110095,7 @@
       "print_run": "56.0M notes",
       "total_ebt": 19928,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Netherlands, Spain)",
       "countries": {
         "Albania": {
           "lq": 9.49756,
@@ -111324,7 +111324,7 @@
       },
       "print_run": "0.55M notes",
       "total_ebt": 366,
-      "confidence": "High",
+      "confidence": "Medium",
       "dispersion": "Displaced Concentration (Lithuania)",
       "countries": {
         "Austria": {
@@ -111365,7 +111365,7 @@
       "print_run": "93.0M notes",
       "total_ebt": 25845,
       "confidence": "High",
-      "dispersion": "Displaced Concentration (Estonia)",
+      "dispersion": "Endemic Leakage (Origin + Estonia, Lithuania, Malta, Latvia, Rest of World, Slovakia, Portugal)",
       "countries": {
         "Austria": {
           "lq": 0.69975,
@@ -111752,7 +111752,7 @@
     "100_U001": {
       "denomination": 100,
       "plate": "U001",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -111872,7 +111872,7 @@
     "100_U002": {
       "denomination": 100,
       "plate": "U002",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -112042,7 +112042,7 @@
     "100_U003": {
       "denomination": 100,
       "plate": "U003",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -112050,7 +112050,7 @@
       "print_run": "197.0M notes",
       "total_ebt": 83914,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Monaco, Ireland, Latvia, Lithuania, Slovakia, Estonia, Rest of World)",
+      "dispersion": "Multi-Hub (Ireland, Latvia, Lithuania, Slovakia, Estonia, Rest of World)",
       "countries": {
         "Albania": {
           "lq": 2.63141,
@@ -112242,7 +112242,7 @@
     "100_U004": {
       "denomination": 100,
       "plate": "U004",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -112250,7 +112250,7 @@
       "print_run": "120.0M notes",
       "total_ebt": 28792,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Andorra, Luxembourg, Belgium, Malta, Portugal, Rest of World, Spain, Netherlands)",
+      "dispersion": "Endemic Leakage (Origin + Luxembourg, Belgium, Malta, Portugal, Rest of World, Spain & Andorra, Netherlands)",
       "countries": {
         "Andorra": {
           "lq": 17.7894,
@@ -112417,7 +112417,7 @@
     "100_U005": {
       "denomination": 100,
       "plate": "U005",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -113465,7 +113465,7 @@
       "print_run": "144.0M notes",
       "total_ebt": 37496,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Endemic Leakage (Origin + Switzerland)",
       "countries": {
         "Argentina": {
           "lq": 6.85041,
@@ -114085,7 +114085,7 @@
       "print_run": "94.0M notes",
       "total_ebt": 10446,
       "confidence": "High",
-      "dispersion": "Displaced Concentration (Monaco)",
+      "dispersion": "Multi-Hub (Switzerland, Germany, Spain, Italy)",
       "countries": {
         "Austria": {
           "lq": 0.5099,
@@ -115100,7 +115100,7 @@
       "print_run": "120.0M notes",
       "total_ebt": 33629,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (Luxembourg, Rest of World)",
       "countries": {
         "Austria": {
           "lq": 1.06571,
@@ -115255,7 +115255,7 @@
       "print_run": "65.0M notes",
       "total_ebt": 29068,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (Greece, Slovakia)",
       "countries": {
         "Albania": {
           "lq": 11.0269,
@@ -115530,7 +115530,7 @@
       "print_run": "41.0M notes",
       "total_ebt": 9421,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Rest of World)",
       "countries": {
         "Austria": {
           "lq": 0.91629,
@@ -115622,7 +115622,7 @@
     "200_U001": {
       "denomination": 200,
       "plate": "U001",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -115722,7 +115722,7 @@
     "200_U002": {
       "denomination": 200,
       "plate": "U002",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -115872,7 +115872,7 @@
     "200_U003": {
       "denomination": 200,
       "plate": "U003",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -116027,7 +116027,7 @@
     "200_U004": {
       "denomination": 200,
       "plate": "U004",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -116162,7 +116162,7 @@
     "200_U005": {
       "denomination": 200,
       "plate": "U005",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -117160,7 +117160,7 @@
       "print_run": "663.0M notes",
       "total_ebt": 3208671,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + San Marino, Vatican City, Greece, Ireland, Cyprus, Slovenia, Montenegro)",
+      "dispersion": "Endemic Leakage (Origin + Greece, Ireland, Cyprus, Slovenia, Montenegro)",
       "countries": {
         "Albania": {
           "lq": 0.92354,
@@ -117739,10 +117739,10 @@
         }
       }
     },
-    "5_U - Banque de France_all": {
+    "5_U - Bdf (France)_all": {
       "denomination": 5,
       "plate": "All Plates",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -117750,7 +117750,7 @@
       "print_run": "1444.0M notes",
       "total_ebt": 10018959,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Monaco, Finland, Malta, Estonia)",
+      "dispersion": "Endemic Leakage (Origin + Finland, Malta, Estonia)",
       "countries": {
         "Andorra": {
           "lq": 0.48667,
@@ -118090,7 +118090,7 @@
       "print_run": "2565.5M notes",
       "total_ebt": 13209707,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Andorra, Lithuania, Bulgaria, Latvia, Vatican City)",
+      "dispersion": "Endemic Leakage (Origin + Lithuania, Bulgaria, Latvia)",
       "countries": {
         "Andorra": {
           "lq": 3.16861,
@@ -118470,7 +118470,7 @@
       "print_run": "448.0M notes",
       "total_ebt": 1682448,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (Switzerland, Luxembourg)",
       "countries": {
         "Albania": {
           "lq": 1.54997,
@@ -118734,10 +118734,10 @@
         }
       }
     },
-    "5_Y - Bank of Greece_all": {
+    "5_Y - BoG / ΤτΕ (Greece)_all": {
       "denomination": 5,
       "plate": "All Plates",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -118745,7 +118745,7 @@
       "print_run": "980.0M notes",
       "total_ebt": 2840165,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + San Marino, Italy, Latvia, Vatican City, Portugal, Montenegro)",
+      "dispersion": "Endemic Leakage (Origin + Italy & San Marino & Vatican City, Latvia, Portugal, Montenegro)",
       "countries": {
         "Albania": {
           "lq": 2.54582,
@@ -119400,7 +119400,7 @@
       "print_run": "1047.0M notes",
       "total_ebt": 4278528,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (Finland, Netherlands, Belgium, Estonia)",
       "countries": {
         "Australia": {
           "lq": 0.77459,
@@ -119730,7 +119730,7 @@
       "print_run": "473.4M notes",
       "total_ebt": 1091380,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Rest of World)",
       "countries": {
         "Austria": {
           "lq": 0.89362,
@@ -120400,7 +120400,7 @@
       "print_run": "862.0M notes",
       "total_ebt": 3008625,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (Kosovo, Portugal)",
       "countries": {
         "Andorra": {
           "lq": 0.65824,
@@ -120710,7 +120710,7 @@
       "print_run": "799.0M notes",
       "total_ebt": 1087942,
       "confidence": "High",
-      "dispersion": "Multi-Hub (San Marino, Switzerland, Italy, Luxembourg, France)",
+      "dispersion": "Multi-Hub (Switzerland, Italy & San Marino, Luxembourg, France)",
       "countries": {
         "Algeria": {
           "lq": 5.54756,
@@ -120960,7 +120960,7 @@
       "print_run": "556.0M notes",
       "total_ebt": 1391927,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Vatican City, San Marino, Estonia, Slovenia, Cyprus)",
+      "dispersion": "Endemic Leakage (Origin + Estonia, Slovenia, Cyprus)",
       "countries": {
         "Albania": {
           "lq": 3.3794,
@@ -121449,10 +121449,10 @@
         }
       }
     },
-    "10_U - Banque de France_all": {
+    "10_U - Bdf (France)_all": {
       "denomination": 10,
       "plate": "All Plates",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -121460,7 +121460,7 @@
       "print_run": "1846.3M notes",
       "total_ebt": 3246861,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Monaco, Malta, Belgium, Finland, Andorra, Luxembourg)",
+      "dispersion": "Endemic Leakage (Origin + Malta, Belgium, Finland, Luxembourg)",
       "countries": {
         "Andorra": {
           "lq": 1.91371,
@@ -121750,7 +121750,7 @@
       "print_run": "1770.5M notes",
       "total_ebt": 1992086,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Bulgaria, Andorra, Latvia)",
+      "dispersion": "Endemic Leakage (Origin + Bulgaria, Latvia)",
       "countries": {
         "Andorra": {
           "lq": 4.90857,
@@ -122030,7 +122030,7 @@
       "print_run": "2113.0M notes",
       "total_ebt": 3118664,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Switzerland)",
       "countries": {
         "Albania": {
           "lq": 0.78843,
@@ -122614,10 +122614,10 @@
         }
       }
     },
-    "10_Y - Bank of Greece_all": {
+    "10_Y - BoG / ΤτΕ (Greece)_all": {
       "denomination": 10,
       "plate": "All Plates",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -122885,7 +122885,7 @@
       "print_run": "1627.6M notes",
       "total_ebt": 2045365,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (Finland, Croatia)",
       "countries": {
         "Andorra": {
           "lq": 0.83038,
@@ -124160,7 +124160,7 @@
       "print_run": "2627.2M notes",
       "total_ebt": 2470773,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Vatican City, San Marino, Greece, Slovenia, Malta, Slovakia, Latvia, Lithuania, Cyprus)",
+      "dispersion": "Endemic Leakage (Origin + Greece, Slovenia, Malta, Slovakia, Latvia, Lithuania, Cyprus)",
       "countries": {
         "Austria": {
           "lq": 1.46496,
@@ -124534,10 +124534,10 @@
         }
       }
     },
-    "20_U - Banque de France_all": {
+    "20_U - Bdf (France)_all": {
       "denomination": 20,
       "plate": "All Plates",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -124545,7 +124545,7 @@
       "print_run": "5338.1M notes",
       "total_ebt": 5214967,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Monaco, Andorra, Luxembourg, Belgium)",
+      "dispersion": "Endemic Leakage (Origin + Luxembourg, Belgium)",
       "countries": {
         "Austria": {
           "lq": 0.79402,
@@ -124855,7 +124855,7 @@
       "print_run": "461.0M notes",
       "total_ebt": 253765,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Andorra)",
+      "dispersion": "Endemic Leakage (Spain & Andorra)",
       "countries": {
         "Andorra": {
           "lq": 3.56237,
@@ -125310,7 +125310,7 @@
       "print_run": "559.0M notes",
       "total_ebt": 755960,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 1.09663,
@@ -125780,7 +125780,7 @@
       "print_run": "2570.5M notes",
       "total_ebt": 812214,
       "confidence": "High",
-      "dispersion": "Multi-Hub (Andorra, Ireland, Switzerland, Greece, Montenegro, Latvia)",
+      "dispersion": "Multi-Hub (Ireland, Switzerland, Greece, Montenegro, Latvia)",
       "countries": {
         "Austria": {
           "lq": 1.11405,
@@ -126620,7 +126620,7 @@
       "print_run": "2282.0M notes",
       "total_ebt": 1300494,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 1.08803,
@@ -126900,7 +126900,7 @@
       "print_run": "4211.9M notes",
       "total_ebt": 1206923,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + San Marino, Malta)",
+      "dispersion": "Endemic Leakage (Origin + Malta)",
       "countries": {
         "Austria": {
           "lq": 1.23296,
@@ -127094,10 +127094,10 @@
         }
       }
     },
-    "50_U - Banque de France_all": {
+    "50_U - Bdf (France)_all": {
       "denomination": 50,
       "plate": "All Plates",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -127105,7 +127105,7 @@
       "print_run": "5119.28M notes",
       "total_ebt": 1688462,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Monaco, Luxembourg, Belgium)",
+      "dispersion": "Endemic Leakage (Origin + Luxembourg, Belgium)",
       "countries": {
         "Austria": {
           "lq": 0.83713,
@@ -127400,7 +127400,7 @@
       "print_run": "3511.1M notes",
       "total_ebt": 818102,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Andorra, Portugal, Bulgaria)",
+      "dispersion": "Endemic Leakage (Spain & Andorra)",
       "countries": {
         "Andorra": {
           "lq": 2.58954,
@@ -127904,10 +127904,10 @@
         }
       }
     },
-    "50_Y - Bank of Greece_all": {
+    "50_Y - BoG / ΤτΕ (Greece)_all": {
       "denomination": 50,
       "plate": "All Plates",
-      "origin": "Y - Bank of Greece",
+      "origin": "Y - BoG / ΤτΕ (Greece)",
       "origin_coords": {
         "lon": 23.8044,
         "lat": 38.01063
@@ -127915,7 +127915,7 @@
       "print_run": "238.0M notes",
       "total_ebt": 23458,
       "confidence": "Medium",
-      "dispersion": "Domestic Concentration",
+      "dispersion": "Endemic Leakage (Origin + Bulgaria)",
       "countries": {
         "Austria": {
           "lq": 1.50985,
@@ -128255,7 +128255,7 @@
       "print_run": "1506.0M notes",
       "total_ebt": 494689,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Cyprus)",
       "countries": {
         "Austria": {
           "lq": 1.14168,
@@ -128640,7 +128640,7 @@
       "print_run": "1217.5M notes",
       "total_ebt": 348892,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Domestic Concentration",
       "countries": {
         "Austria": {
           "lq": 0.47623,
@@ -129029,10 +129029,10 @@
         }
       }
     },
-    "100_U - Banque de France_all": {
+    "100_U - Bdf (France)_all": {
       "denomination": 100,
       "plate": "All Plates",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -129040,7 +129040,7 @@
       "print_run": "520.0M notes",
       "total_ebt": 184133,
       "confidence": "High",
-      "dispersion": "Endemic Leakage (Origin + Andorra, Monaco, Finland, Belgium, Luxembourg, Latvia, Ireland, Lithuania, Slovakia)",
+      "dispersion": "Endemic Leakage (Origin + Finland, Belgium, Luxembourg, Latvia, Ireland, Lithuania, Slovakia)",
       "countries": {
         "Albania": {
           "lq": 2.31274,
@@ -129450,7 +129450,7 @@
       "print_run": "417.0M notes",
       "total_ebt": 116903,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Multi-Hub (Switzerland, Ireland)",
       "countries": {
         "Argentina": {
           "lq": 4.39446,
@@ -129620,7 +129620,7 @@
       "print_run": "1054.5M notes",
       "total_ebt": 51186,
       "confidence": "Medium",
-      "dispersion": "Endemic Leakage (Origin + Monaco, Switzerland, Bulgaria, Italy)",
+      "dispersion": "Endemic Leakage (Origin + Switzerland, Bulgaria, Italy)",
       "countries": {
         "Austria": {
           "lq": 0.70542,
@@ -129765,7 +129765,7 @@
       "print_run": "191.9M notes",
       "total_ebt": 82175,
       "confidence": "High",
-      "dispersion": "Pandemic Dispersion",
+      "dispersion": "Displaced Concentration (Slovenia)",
       "countries": {
         "Austria": {
           "lq": 1.51502,
@@ -130059,10 +130059,10 @@
         }
       }
     },
-    "200_U - Banque de France_all": {
+    "200_U - Bdf (France)_all": {
       "denomination": 200,
       "plate": "All Plates",
-      "origin": "U - Banque de France",
+      "origin": "U - Bdf (France)",
       "origin_coords": {
         "lon": 3.0729,
         "lat": 45.7748
@@ -130285,7 +130285,7 @@
         "T004",
         "T005"
       ],
-      "U - Banque de France": [
+      "U - Bdf (France)": [
         "U002",
         "U003",
         "U004",
@@ -130329,7 +130329,7 @@
         "W001",
         "W002"
       ],
-      "Y - Bank of Greece": [
+      "Y - BoG / ΤτΕ (Greece)": [
         "Y001",
         "Y002",
         "Y003",
@@ -130420,7 +130420,7 @@
         "T003",
         "T004"
       ],
-      "U - Banque de France": [
+      "U - Bdf (France)": [
         "U001",
         "U002",
         "U003",
@@ -130479,7 +130479,7 @@
         "X002",
         "X003"
       ],
-      "Y - Bank of Greece": [
+      "Y - BoG / ΤτΕ (Greece)": [
         "Y001",
         "Y002",
         "Y003",
@@ -130622,7 +130622,7 @@
         "T008",
         "T010"
       ],
-      "U - Banque de France": [
+      "U - Bdf (France)": [
         "U001",
         "U002",
         "U003",
@@ -130852,7 +130852,7 @@
         "S067",
         "S069"
       ],
-      "U - Banque de France": [
+      "U - Bdf (France)": [
         "U001",
         "U002",
         "U003",
@@ -130972,7 +130972,7 @@
         "W015",
         "W016"
       ],
-      "Y - Bank of Greece": [
+      "Y - BoG / ΤτΕ (Greece)": [
         "Y001",
         "Y002",
         "Y003",
@@ -131043,7 +131043,7 @@
         "S008",
         "S009"
       ],
-      "U - Banque de France": [
+      "U - Bdf (France)": [
         "U001",
         "U002",
         "U003",
@@ -131093,7 +131093,7 @@
         "S006",
         "S008"
       ],
-      "U - Banque de France": [
+      "U - Bdf (France)": [
         "U001",
         "U002",
         "U003",
