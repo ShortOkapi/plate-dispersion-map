@@ -213,9 +213,23 @@
             
             <div style="margin-top: 15px; font-size: 0.75rem; color: #475569; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 10px;">
                 <strong>Data Reliability:</strong> 
-                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="#800080"></rect></svg> High (Solid)</span>
-                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="#94a3b8"></rect><rect width="24" height="14" fill="url(#empty-med-50)"></rect></svg> Medium (50%)</span>
-                <span class="conf-legend-item"><svg class="conf-box"><rect width="24" height="14" fill="#94a3b8"></rect><rect width="24" height="14" fill="url(#empty-low-25)"></rect></svg> Low (25%)</span>
+                
+                <svg width="0" height="0" style="position: absolute;">
+                    <defs>
+                        <pattern id="leg-empty-med-50" patternUnits="userSpaceOnUse" width="4" height="4">
+                            <rect width="2" height="2" fill="#e2e8f0"></rect>
+                            <rect x="2" y="2" width="2" height="2" fill="#e2e8f0"></rect>
+                        </pattern>
+                        <pattern id="leg-empty-low-25" patternUnits="userSpaceOnUse" width="4" height="4">
+                            <rect width="4" height="2" fill="#e2e8f0"></rect>
+                            <rect y="2" width="2" height="2" fill="#e2e8f0"></rect>
+                        </pattern>
+                    </defs>
+                </svg>
+
+                <span class="conf-legend-item"><svg class="conf-box"><rect id="leg-box-high" width="24" height="14"></rect></svg> High (Solid)</span>
+                <span class="conf-legend-item"><svg class="conf-box"><rect id="leg-box-med" width="24" height="14"></rect><rect width="24" height="14" fill="url(#leg-empty-med-50)"></rect></svg> Medium (50%)</span>
+                <span class="conf-legend-item"><svg class="conf-box"><rect id="leg-box-low" width="24" height="14"></rect><rect width="24" height="14" fill="url(#leg-empty-low-25)"></rect></svg> Low (25%)</span>
             </div>
         </div>
     </div>
@@ -723,6 +737,11 @@
                     </div>
                 `;
             }
+            // Dynamically extract the LQ = 1.0 color for the Data Reliability boxes
+            const colorNormal = colorScale(1.0);
+            document.getElementById('leg-box-high').setAttribute('fill', colorNormal);
+            document.getElementById('leg-box-med').setAttribute('fill', colorNormal);
+            document.getElementById('leg-box-low').setAttribute('fill', colorNormal);
         }
     </script>
 </body>
