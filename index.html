@@ -238,15 +238,23 @@
         
         const EMPTY_COLOR = "#e2e8f0";
 
-        // 1. New Core Color Scale and Exact Boundaries (6 Stops)
+        // 1. New Core Color Scale and Exact Mathematical Boundaries (6 Stops)
         const logDomain = [0.1, 0.2512, 0.6310, 1.5849, 3.9811, 10.0];
-        const lqColors = ["#003f5b", "#3a4d86", "#bc4d97", "#e64f80", "#ff7c41", "#ff9913"];
+        // Calculated dynamically: 10^-0.6, 10^-0.2, 10^0.2, 10^0.6
+        const L1 = Math.pow(10, -0.6); // ~0.25118...
+        const L2 = Math.pow(10, -0.2); // ~0.63095...
+        const L3 = Math.pow(10, 0.2);  // ~1.58489...
+        const L4 = Math.pow(10, 0.6);  // ~3.98107...
+        
+        const logDomain = [0.1, L1, L2, L3, L4, 10.0];
+        
+        const lqColors = ["#003f5b", "#4822a2", "#bb4ddc", "#e54f50", "#fe9a42", "#ffde00"];
         
         function getLqCategoryCode(lq) {
-            if (lq < 0.2512) return "rare";
-            if (lq < 0.6310) return "under";
-            if (lq < 1.5849) return "normal";
-            if (lq < 3.9811) return "over";
+            if (lq < L1) return "rare";
+            if (lq < L2) return "under";
+            if (lq < L3) return "normal";
+            if (lq < L4) return "over";
             return "extreme";
         }
         
@@ -678,18 +686,24 @@
                 let percentPosition = ((Math.log10(val) + 1) / 2) * 100;
                 let displayVal = val.toFixed(2);
                 
-                // Add contextual hints for extremities
-                if (idx === 0) displayVal += " or less";
-                if (idx === logDomain.length - 1) displayVal += " or more";
-                
-                // Adjust text translation to prevent container overflow on the edges
+                // Defaults for middle markers
                 let transform = "translateX(-50%)";
-                if (idx === 0) transform = "translateX(0%)";
-                if (idx === logDomain.length - 1) transform = "translateX(-100%)";
+                let align = "center";
+                
+                // Clean mathematical formatting for the extremities
+                if (idx === 0) {
+                    displayVal = "≤ 0.10";
+                    transform = "translateX(0%)";
+                    align = "flex-start"; // Aligns left edge
+                } else if (idx === logDomain.length - 1) {
+                    displayVal = "≥ 10.00";
+                    transform = "translateX(-100%)";
+                    align = "flex-end"; // Aligns right edge
+                }
 
                 markersDiv.innerHTML += `
-                    <div style="position: absolute; left: ${percentPosition}%; bottom: 0; transform: ${transform}; display: flex; flex-direction: column; align-items: center; font-size: 0.7rem; color: #64748b;">
-                        <div style="margin-bottom: 2px;">${displayVal}</div>
+                    <div style="position: absolute; left: ${percentPosition}%; bottom: 0; transform: ${transform}; display: flex; flex-direction: column; align-items: ${align}; font-size: 0.7rem; color: #64748b;">
+                        <div style="margin-bottom: 2px; white-space: nowrap;">${displayVal}</div>
                         <div style="width: 1px; height: 6px; background-color: #94a3b8;"></div>
                     </div>
                 `;
