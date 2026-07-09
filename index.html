@@ -101,7 +101,7 @@
         .legend-container {
             position: absolute;
             bottom: 30px; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 850px; /* Expanded width for better label distribution */
+            width: 90%; max-width: 850px;
             background: rgba(255,255,255,0.95); padding: 15px 20px 10px 20px;
             border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             border: 1px solid #cbd5e1; pointer-events: none;
@@ -207,7 +207,6 @@
         <div class="tooltip" id="tooltip"></div>
         
         <div class="legend-container" id="legend-box" style="display: none;">
-            
             <div id="legend-markers" style="position: relative; width: 100%; height: 36px; margin-bottom: 2px;"></div>
             
             <canvas id="legend-canvas" width="800" height="15" style="width: 100%; border-radius: 4px; border: 1px solid #e2e8f0;"></canvas>
@@ -239,7 +238,6 @@
         const EMPTY_COLOR = "#e2e8f0";
 
         // 1. New Core Color Scale and Exact Mathematical Boundaries (6 Stops)
-        const logDomain = [0.1, 0.2512, 0.6310, 1.5849, 3.9811, 10.0];
         // Calculated dynamically: 10^-0.6, 10^-0.2, 10^0.2, 10^0.6
         const L1 = Math.pow(10, -0.6); // ~0.25118...
         const L2 = Math.pow(10, -0.2); // ~0.63095...
@@ -247,8 +245,7 @@
         const L4 = Math.pow(10, 0.6);  // ~3.98107...
         
         const logDomain = [0.1, L1, L2, L3, L4, 10.0];
-        
-        const lqColors = ["#003f5b", "#4822a2", "#bb4ddc", "#e54f50", "#fe9a42", "#ffde00"];
+        const lqColors = ["#003f5b", "#3a4d86", "#bc4d97", "#e64f80", "#ff7c41", "#ff9913"];
         
         function getLqCategoryCode(lq) {
             if (lq < L1) return "rare";
@@ -681,7 +678,7 @@
             const markersDiv = document.getElementById('legend-markers');
             markersDiv.innerHTML = ""; 
             
-            // Draw exact boundary ticks and text values (e.g. "0.10 or less")
+            // Draw exact boundary ticks and text values
             logDomain.forEach((val, idx) => {
                 let percentPosition = ((Math.log10(val) + 1) / 2) * 100;
                 let displayVal = val.toFixed(2);
